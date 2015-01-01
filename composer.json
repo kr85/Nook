@@ -1,0 +1,48 @@
+{
+	"name": "nook",
+	"description": "Nook - Social Network.",
+	"keywords": ["nook", "social", "network"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"laravel/framework": "4.2.*",
+		"barryvdh/laravel-ide-helper": "1.11.*",
+        	"laracasts/commander": "~1.0",
+        	"dflydev/markdown": "1.0.*",
+        	"erusev/parsedown": "~0.7",
+        	"doctrine/dbal": "~2.3"
+	},
+    	"require-dev": {
+        	"way/generators": "~2.0",
+        	"codeception/codeception": "~2.0",
+        	"laracasts/testdummy": "~1.0"
+    	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		]
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+            		"php artisan ide-helper:generate",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable"
+}
