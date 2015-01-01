@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
       'Way\Generators\GeneratorsServiceProvider',
       'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-      'Laracasts\Commander\CommanderServiceProvider'
+      'Laracasts\Commander\CommanderServiceProvider',
+      'Laracasts\Validation\ValidationServiceProvider'
 
 	),
 

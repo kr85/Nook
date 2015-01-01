@@ -7,16 +7,17 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-ide-helper": "1.11.*",
-        	"laracasts/commander": "~1.0",
-        	"dflydev/markdown": "1.0.*",
-        	"erusev/parsedown": "~0.7",
-        	"doctrine/dbal": "~2.3"
+        "laracasts/commander": "~1.0",
+        "dflydev/markdown": "1.0.*",
+        "erusev/parsedown": "~0.7",
+        "doctrine/dbal": "~2.3",
+		"laracasts/validation": "1.1.*"
 	},
-    	"require-dev": {
-        	"way/generators": "~2.0",
-        	"codeception/codeception": "~2.0",
-        	"laracasts/testdummy": "~1.0"
-    	},
+    "require-dev": {
+       	"way/generators": "~2.0",
+       	"codeception/codeception": "~2.0",
+       	"laracasts/testdummy": "~1.0"
+    },
 	"autoload": {
 		"classmap": [
 			"app/commands",
@@ -25,7 +26,10 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+        "psr-4": {
+            "Nook\\": "app/Nook"
+        }
 	},
 	"scripts": {
 		"post-install-cmd": [
@@ -34,7 +38,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
-            		"php artisan ide-helper:generate",
+            "php artisan ide-helper:generate",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
