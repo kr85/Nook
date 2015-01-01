@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * Events
+ */
+Event::listen('Nook.Registration.Events.UserRegistered', function()
+{
+   dd('Send an email');
+});
+
 Route::get('/', [
    'as'   => 'home',
    'uses' => 'PagesController@home'

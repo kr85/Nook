@@ -2,7 +2,7 @@
 
 /**
  * Class UserRepository
- * 
+ *
  * @package Nook\Users
  */
 class UserRepository 
