@@ -5,9 +5,17 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Eloquent implements UserInterface, RemindableInterface
+{
 
 	use UserTrait, RemindableTrait;
+
+   /**
+    * The fields that can be mass assigned.
+    *
+    * @var array
+    */
+   protected $fillable = ['username', 'email', 'password'];
 
 	/**
 	 * The database table used by the model.
