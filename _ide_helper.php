@@ -12294,5 +12294,65 @@ namespace {
     }
 
 
+    class Flash extends \Laracasts\Flash\Flash{
+        
+        /**
+         * 
+         *
+         * @param $message
+         * @param $title
+         * @static 
+         */
+        public static function success($message){
+            return \Laracasts\Flash\FlashNotifier::success($message);
+        }
+        
+        /**
+         * 
+         *
+         * @param $message
+         * @param $title
+         * @static 
+         */
+        public static function error($message){
+            return \Laracasts\Flash\FlashNotifier::error($message);
+        }
+        
+        /**
+         * 
+         *
+         * @param $message
+         * @param $title
+         * @static 
+         */
+        public static function warning($message){
+            return \Laracasts\Flash\FlashNotifier::warning($message);
+        }
+        
+        /**
+         * 
+         *
+         * @param $message
+         * @param $title
+         * @static 
+         */
+        public static function overlay($message, $title = 'Notice'){
+            return \Laracasts\Flash\FlashNotifier::overlay($message, $title);
+        }
+        
+        /**
+         * 
+         *
+         * @param $message
+         * @param string $level
+         * @static 
+         */
+        public static function message($message, $level = 'info', $title = 'Notice'){
+            return \Laracasts\Flash\FlashNotifier::message($message, $level, $title);
+        }
+        
+    }
+
+
 }
 

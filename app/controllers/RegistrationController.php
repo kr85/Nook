@@ -54,6 +54,9 @@ class RegistrationController extends BaseController
       // Login the user
       Auth::login($user);
 
+      // Welcome message
+      Flash::message('Happy to have you as a new Nook member!');
+
       return Redirect::home();
    }
 
