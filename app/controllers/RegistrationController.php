@@ -1,9 +1,17 @@
 <?php
 
 use Nook\Forms\RegistrationForm;
+use Nook\Registration\RegisterUserCommand;
+use Nook\Core\CommandBus;
 
-class RegistrationController extends \BaseController
+/**
+ * Class RegistrationController
+ */
+class RegistrationController extends BaseController
 {
+
+   use CommandBus;
+
    /**
     * @var RegistrationForm
     */
@@ -31,12 +39,19 @@ class RegistrationController extends \BaseController
     */
    public function store()
    {
+      // Validate the input
       $this->registrationForm->validate(Input::all());
 
-      $user = User::create(
-         Input::only('username', 'email', 'password')
-      );
+      // Extract the input
+      extract(Input::only('username', 'email', 'password'));
 
+      // Register a user command
+      $command = new RegisterUserCommand($username, $email, $password);
+
+      // Inject the user command into the command bus
+      $user = $this->execute($command);
+
+      // Login the user
       Auth::login($user);
 
       return Redirect::home();
