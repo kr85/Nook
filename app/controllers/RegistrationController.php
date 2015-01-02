@@ -20,6 +20,9 @@ class RegistrationController extends BaseController
    public function __construct(RegistrationForm $registrationForm)
    {
       $this->registrationForm = $registrationForm;
+
+      // Allow only guest users
+      $this->beforeFilter('guest');
    }
 
 	/**

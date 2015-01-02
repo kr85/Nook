@@ -2,6 +2,11 @@
 
 use Laracasts\Validation\FormValidator;
 
+/**
+ * Class RegistrationForm
+ *
+ * @package Nook\Forms
+ */
 class RegistrationForm extends FormValidator
 {
    /**

@@ -1,7 +1,7 @@
 <?php
 
 $I = new FunctionalTester($scenario);
-$I->am('a guest');
+$I->am('guest');
 $I->wantTo('sign up for Nook account');
 
 $I->amOnPage('/');
