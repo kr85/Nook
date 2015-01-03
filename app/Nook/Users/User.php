@@ -51,6 +51,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface
    }
 
    /**
+    * A user has many statuses.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function statuses()
+   {
+      return $this->hasMany('Nook\Statuses\Status');
+   }
+
+   /**
     * Register a new user.
     *
     * @param $username

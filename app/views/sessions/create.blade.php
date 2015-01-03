@@ -18,7 +18,7 @@
             {{ Form::password('password', ['class' => 'form-control', 'required' => 'required']) }}
         </div>
 
-        <div class="form--error">
+        <div class="form-group">
             {{ Form::submit('Sign In', ['class' => 'btn btn-primary']) }}
         </div>
 

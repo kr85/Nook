@@ -4,3 +4,10 @@ Nook\Users\User:
   password: $string
   created_at: $date
   updated_at: $date
+
+Nook\Statuses\Status:
+  user_id:
+    type: Nook\Users\User
+  body: $text
+  created_at: $date
+  updated_at: $date

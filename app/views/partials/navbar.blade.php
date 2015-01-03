@@ -30,7 +30,8 @@
                         </ul>
                     </li>
                 @else
-                    <li><a href="/login">Log In</a></li>
+                    <li>{{ link_to_route('register_route', 'Register') }}</li>
+                    <li>{{ link_to_route('login_route', 'Login') }}</li>
                 @endif
             </ul>
         </div>
