@@ -3,8 +3,14 @@
 use Faker\Factory as Faker;
 use Nook\Users\User;
 
-class UsersTableSeeder extends Seeder {
-
+/**
+ * Class UsersTableSeeder
+ */
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the seeder for the users table.
+     */
     public function run()
     {
         $faker = Faker::create();
@@ -18,5 +24,4 @@ class UsersTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

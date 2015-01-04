@@ -4,8 +4,14 @@ use Faker\Factory as Faker;
 use Nook\Statuses\Status;
 use Nook\Users\User;
 
-class StatusesTableSeeder extends Seeder {
-
+/**
+ * Class StatusesTableSeeder
+ */
+class StatusesTableSeeder extends Seeder
+{
+    /**
+     * Run the seeder for the statuses table.
+     */
 	public function run()
 	{
 		$faker = Faker::create();
