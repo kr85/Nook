@@ -2,65 +2,56 @@
 
 use Nook\Forms\RegistrationForm;
 use Nook\Registration\RegisterUserCommand;
-use Nook\Core\CommandBus;
 
 /**
  * Class RegistrationController
  */
 class RegistrationController extends BaseController
 {
+    /**
+     * @var RegistrationForm
+     */
+    protected $registrationForm;
 
-   use CommandBus;
+    public function __construct(RegistrationForm $registrationForm)
+    {
+        $this->registrationForm = $registrationForm;
 
-   /**
-    * @var RegistrationForm
-    */
-   protected $registrationForm;
+        // Allow only guest users
+        $this->beforeFilter('guest');
+    }
 
-   public function __construct(RegistrationForm $registrationForm)
-   {
-      $this->registrationForm = $registrationForm;
+    /**
+     * Show a form to register a new user.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return View::make('registration.create');
+    }
 
-      // Allow only guest users
-      $this->beforeFilter('guest');
-   }
+    /**
+     * Create a new Nook user.
+     *
+     * @return string
+     */
+    public function store()
+    {
+        // Validate the input
+        $this->registrationForm->validate(Input::all());
 
-	/**
-	 * Show a form to register a new user.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('registration.create');
-	}
+        // Extract the input
+        // Register a user command
+        // Inject the user command into the command bus
+        $user = $this->execute(RegisterUserCommand::class);
 
-   /**
-    * Create a new Nook user.
-    *
-    * @return string
-    */
-   public function store()
-   {
-      // Validate the input
-      $this->registrationForm->validate(Input::all());
+        // Login the user
+        Auth::login($user);
 
-      // Extract the input
-      extract(Input::only('username', 'email', 'password'));
+        // Welcome message
+        Flash::message('Happy to have you as a new Nook member!');
 
-      // Register a user command
-      $command = new RegisterUserCommand($username, $email, $password);
-
-      // Inject the user command into the command bus
-      $user = $this->execute($command);
-
-      // Login the user
-      Auth::login($user);
-
-      // Welcome message
-      Flash::message('Happy to have you as a new Nook member!');
-
-      return Redirect::home();
-   }
-
+        return Redirect::home();
+    }
 }

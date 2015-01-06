@@ -10,40 +10,40 @@ use Laracasts\Commander\Events\DispatchableTrait;
  */
 class PublishStatusCommandHandler implements CommandHandler
 {
-   use DispatchableTrait;
+    use DispatchableTrait;
 
-   /**
-    * @var StatusRepository
-    */
-   protected $statusRepository;
+    /**
+     * @var StatusRepository
+     */
+    protected $statusRepository;
 
-   /**
-    * Constructor.
-    *
-    * @param StatusRepository $statusRepository
-    */
-   public function __construct(StatusRepository $statusRepository)
-   {
-      $this->statusRepository = $statusRepository;
-   }
+    /**
+     * Constructor.
+     *
+     * @param StatusRepository $statusRepository
+     */
+    public function __construct(StatusRepository $statusRepository)
+    {
+        $this->statusRepository = $statusRepository;
+    }
 
-   /**
-    * Handle the command.
-    *
-    * @param $command
-    * @return mixed
-    */
-   public function handle($command)
-   {
-      // Setup the status and fires an event
-      $status = Status::publish($command->body);
+    /**
+     * Handle the command.
+     *
+     * @param $command
+     * @return mixed
+     */
+    public function handle($command)
+    {
+        // Setup the status and fires an event
+        $status = Status::publish($command->body);
 
-      // Persists the status
-      $status = $this->statusRepository->save($status, $command->userId);
+        // Persists the status
+        $status = $this->statusRepository->save($status, $command->userId);
 
-      // Dispatch an event
-      $this->dispatchEventsFor($status);
+        // Dispatch an event
+        $this->dispatchEventsFor($status);
 
-      return $status;
-   }
+        return $status;
+    }
 }

@@ -7,20 +7,20 @@ use Nook\Users\User;
  *
  * @package Nook\Registration\Events
  */
-class UserRegistered 
+class UserRegistered
 {
-   /**
-    * @var User
-    */
-   public $user;
+    /**
+     * @var User
+     */
+    public $user;
 
-   /**
-    * Constructor
-    *
-    * @param User $user
-    */
-   public function __construct(User $user)
-   {
-      $this->user = $user;
-   }
+    /**
+     * Constructor
+     *
+     * @param User $user
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 }

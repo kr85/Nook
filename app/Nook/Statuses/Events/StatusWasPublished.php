@@ -5,20 +5,20 @@
  *
  * @package Nook\Statuses\Events
  */
-class StatusWasPublished 
+class StatusWasPublished
 {
-   /**
-    * @var $status
-    */
-   public $status;
+    /**
+     * @var $status
+     */
+    public $status;
 
-   /**
-    * Constructor.
-    *
-    * @param $status
-    */
-   public function __construct($status)
-   {
-      $this->status = $status;
-   }
+    /**
+     * Constructor.
+     *
+     * @param $status
+     */
+    public function __construct($status)
+    {
+        $this->status = $status;
+    }
 }

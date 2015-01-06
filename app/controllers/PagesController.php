@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * Class PagesController
+ */
 class PagesController extends \BaseController
 {
-   public function home()
-   {
-      return View::make('pages.home');
-   }
+    /**
+     * Display home page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function home()
+    {
+        return View::make('pages.home');
+    }
 }

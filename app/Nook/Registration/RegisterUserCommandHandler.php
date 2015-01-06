@@ -12,38 +12,39 @@ use Laracasts\Commander\CommandHandler;
  */
 class RegisterUserCommandHandler implements CommandHandler
 {
-   use DispatchableTrait;
+    use DispatchableTrait;
 
-   /**
-    * @var UserRepository
-    */
-   protected $userRepository;
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
 
-   public function __construct(UserRepository $userRepository)
-   {
-      $this->userRepository = $userRepository;
-   }
-   /**
-    * Handle the command
-    *
-    * @param $command
-    * @return mixed
-    */
-   public function handle($command)
-   {
-      // Register the user
-      $user = User::register(
-         $command->username,
-         $command->email,
-         $command->password
-      );
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
-      // Persist the user
-      $this->userRepository->save($user);
+    /**
+     * Handle the command
+     *
+     * @param $command
+     * @return mixed
+     */
+    public function handle($command)
+    {
+        // Register the user
+        $user = User::register(
+            $command->username,
+            $command->email,
+            $command->password
+        );
 
-      // Release the events
-      $this->dispatchEventsFor($user);
+        // Persist the user
+        $this->userRepository->save($user);
 
-      return $user;
-   }
+        // Release the events
+        $this->dispatchEventsFor($user);
+
+        return $user;
+    }
 }
