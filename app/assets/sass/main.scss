@@ -49,3 +49,17 @@ body {
   padding: 1em;
   margin-bottom: 2em;
 }
+
+// Users list
+.users {
+  margin-bottom: 3em;
+}
+
+.user-block {
+  text-align: center;
+  list-style: none;
+
+  .avatar {
+    margin: auto;
+  }
+}
