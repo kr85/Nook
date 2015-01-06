@@ -75,7 +75,7 @@ class StatusesController extends BaseController
 
       Flash::message('Your status has been posted!');
 
-      return Redirect::refresh();
+      return Redirect::back();
 	}
 
 

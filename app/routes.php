@@ -60,4 +60,12 @@ Route::post('statuses', [
 /**
  * Users
  */
-Route::get('users', 'UsersController@index');
+Route::get('users', [
+    'as'   => 'users_route',
+    'uses' => 'UsersController@index'
+]);
+
+Route::get('@{username}', [
+    'as'   => 'profile_route',
+    'uses' => 'UsersController@show'
+]);

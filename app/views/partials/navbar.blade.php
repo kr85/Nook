@@ -7,12 +7,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Nook</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Nook</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
+                <li class="active">{{ link_to_route('users_route', 'Browse Users') }}</li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -23,9 +22,8 @@
                             {{ $currentUser->username }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
+                            <li>{{ link_to_route('profile_route', 'Your Profile', $currentUser->username) }}</li>
                             <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
                             <li class="divider"></li>
                             <li>{{ link_to_route('logout_route', 'Log Out') }}</li>
                         </ul>

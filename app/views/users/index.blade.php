@@ -9,7 +9,9 @@
                 <li class="col-md-3 user-block">
                     @include('partials.avatar', ['size' => 70])
 
-                    <h4 class="user-block-username">{{ $user->username }}</h4>
+                    <h4 class="user-block-username">
+                        {{ link_to_route('profile_route', $user->username, $user->username) }}
+                    </h4>
                 </li>
             @endforeach
         </div>

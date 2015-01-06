@@ -1,5 +1,4 @@
-<?php
-namespace Codeception\Module;
+<?php namespace Codeception\Module;
 
 use Laracasts\TestDummy\Factory as TestDummy;
 
@@ -8,36 +7,61 @@ use Laracasts\TestDummy\Factory as TestDummy;
 
 class FunctionalHelper extends \Codeception\Module
 {
-   public function signIn()
-   {
-      $email = 'demo@email.com';
-      $password = 'demo';
+    /**
+     * Login a user.
+     *
+     * @throws \Codeception\Exception\Module
+     */
+    public function signIn()
+    {
+        $email = 'demo@email.com';
+        $username = 'ClarkKent';
+        $password = 'demo';
 
-      $this->haveAnAccount(compact('email', 'password'));
+        $this->haveAnAccount(compact('email', 'username', 'password'));
 
-      $I = $this->getModule('Laravel4');
+        $I = $this->getModule('Laravel4');
 
-      $I->amOnPage('/login');
-      $I->fillField('email', $email);
-      $I->fillField('password', $password);
-      $I->click('Sign In');
-   }
+        $I->amOnPage('/login');
+        $I->fillField('email', $email);
+        $I->fillField('password', $password);
+        $I->click('Sign In');
+    }
 
-   public function postAStatus($status)
-   {
-      $I = $this->getModule('Laravel4');
+    /**
+     * Post a status.
+     *
+     * @param $status
+     * @throws \Codeception\Exception\Module
+     */
+    public function postAStatus($status)
+    {
+        $I = $this->getModule('Laravel4');
 
-      $I->fillField('body', $status);
-      $I->click('Post Status');
-   }
+        $I->fillField('body', $status);
+        $I->click('Post Status');
+    }
 
-   public function haveAnAccount($overrides = [])
-   {
-      return $this->have('Nook\Users\User', $overrides);
-   }
+    /**
+     * Have an account.
+     *
+     * @param array $overrides
+     * @return mixed
+     */
+    public function haveAnAccount($overrides = [])
+    {
+        return $this->have('Nook\Users\User', $overrides);
+    }
 
-   public function have($model, $overrides = [])
-   {
-      return TestDummy::create($model, $overrides);
-   }
+    /**
+     * Create a test dummy object.
+     *
+     * @param $model
+     * @param array $overrides
+     * @return mixed
+     */
+    public function have($model, $overrides = [])
+    {
+        return TestDummy::create($model, $overrides);
+    }
 }
