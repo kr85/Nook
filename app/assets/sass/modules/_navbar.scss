@@ -1,0 +1,32 @@
+// Navbar
+.navbar-default {
+  background-color: #00bae9;
+  border-color: #F3F3F3;
+
+  .navbar-brand {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .navbar-nav > li > a {
+    color: #FFFFFF;
+
+    &:hover {
+      color: #2c6c91;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color: darken(#00bae9 , 10%);
+}
+
+.navbar-gravatar {
+  float: left;
+  position: relative;
+  top: -6px;
+  left: -9px;
+  border: 1px solid #555;
+  margin-left: 4px;
+}
