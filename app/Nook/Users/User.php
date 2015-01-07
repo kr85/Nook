@@ -18,7 +18,7 @@ use Laracasts\Commander\Events\EventGenerator;
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
 
-    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait;
+    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait;
 
     /**
      * The fields that can be mass assigned.

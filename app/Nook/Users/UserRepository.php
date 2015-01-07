@@ -42,4 +42,39 @@ class UserRepository
             $query->latest();
         }])->whereUsername($username)->first();
     }
+
+    /**
+     * Fetch a user by user id.
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|static
+     */
+    public function findById($id)
+    {
+        return User::findOrFail($id);
+    }
+
+    /**
+     * Follow a Nook user.
+     *
+     * @param $userIdToFollow
+     * @param User $user
+     * @return mixed
+     */
+    public function follow($userIdToFollow, User $user)
+    {
+        return $user->followedUsers()->attach($userIdToFollow);
+    }
+
+    /**
+     * Unfollow a Nook user.
+     *
+     * @param $userIdToUnfollow
+     * @param User $user
+     * @return int
+     */
+    public function unfollow($userIdToUnfollow, User $user)
+    {
+        return $user->followedUsers()->detach($userIdToUnfollow);
+    }
 }

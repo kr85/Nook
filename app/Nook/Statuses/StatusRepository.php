@@ -21,6 +21,22 @@ class StatusRepository
     }
 
     /**
+     * Get the feed for a user.
+     *
+     * @param User $user
+     * @return array|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getFeedForUser(User $user)
+    {
+        // Get other users
+        $userIds = $user->followedUsers()->lists('followed_id');
+        // Append current user
+        $userIds[] = $user->id;
+
+        return Status::whereIn('user_id', $userIds)->latest()->get();
+    }
+
+    /**
      * Save a new status.
      *
      * @param Status $status
@@ -29,8 +45,6 @@ class StatusRepository
      */
     public function save(Status $status, $userId)
     {
-        return User::findOrFail($userId)
-            ->statuses()
-            ->save($status);
+        return User::findOrFail($userId)->statuses()->save($status);
     }
 }

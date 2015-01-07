@@ -1,6 +1,6 @@
 <article class="media status-media">
     <div class="pull-left">
-        @include('partials.avatar', ['user' => $status->user])
+        @include('users.partials.avatar', ['user' => $status->user])
     </div>
 
     <div class="media-body">
