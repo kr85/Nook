@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Events
- */
-Event::listen('Nook.Registration.Events.UserRegistered', function()
-{
-
-});
-
 Route::get('/', [
    'as'   => 'home',
    'uses' => 'PagesController@home'

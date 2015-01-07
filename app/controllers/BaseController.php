@@ -2,6 +2,9 @@
 
 use Laracasts\Commander\CommanderTrait;
 
+/**
+ * Class BaseController
+ */
 class BaseController extends Controller
 {
     use CommanderTrait;
@@ -20,5 +23,6 @@ class BaseController extends Controller
 
         // Share current user
         View::share('currentUser', Auth::user());
+        View::share('signedIn', Auth::user());
     }
 }

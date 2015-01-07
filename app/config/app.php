@@ -125,7 +125,8 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Laracasts\Commander\CommanderServiceProvider',
         'Laracasts\Validation\ValidationServiceProvider',
-        'Laracasts\Flash\FlashServiceProvider'
+        'Laracasts\Flash\FlashServiceProvider',
+        'Nook\Providers\EventServiceProvider'
 
 	),
 

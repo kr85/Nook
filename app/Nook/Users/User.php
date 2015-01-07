@@ -7,7 +7,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Laracasts\Presenter\PresentableTrait;
-use Nook\Registration\Events\UserRegistered;
+use Nook\Registration\Events\UserHasRegistered;
 use Laracasts\Commander\Events\EventGenerator;
 
 /**
@@ -65,7 +65,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function statuses()
     {
-        return $this->hasMany('Nook\Statuses\Status');
+        return $this->hasMany('Nook\Statuses\Status')->latest();
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         $user = new static(compact('username', 'email', 'password'));
 
         // Raise an event
-        $user->raise(new UserRegistered($user));
+        $user->raise(new UserHasRegistered($user));
 
         return $user;
     }

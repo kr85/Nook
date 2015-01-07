@@ -3,11 +3,11 @@
 use Nook\Users\User;
 
 /**
- * Class UserRegistered
+ * Class UserHasRegistered
  *
  * @package Nook\Registration\Events
  */
-class UserRegistered
+class UserHasRegistered
 {
     /**
      * @var User
