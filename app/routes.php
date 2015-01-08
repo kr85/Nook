@@ -78,4 +78,22 @@ Route::delete('follow/{id}', [
 /**
  * Password Resets
  */
-Route::controller('password', 'RemindersController');
+Route::get('remind', [
+    'as'   => 'password_remind',
+    'uses' => 'RemindersController@getRemind'
+]);
+
+Route::post('remind', [
+    'as'   => 'password_remind',
+    'uses' => 'RemindersController@postRemind'
+]);
+
+Route::get('reset/{token}', [
+    'as'   => 'password_reset',
+    'uses' => 'RemindersController@getReset'
+]);
+
+Route::post('reset', [
+    'as'   => 'password_reset',
+    'uses' => 'RemindersController@postReset'
+]);

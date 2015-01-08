@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <h1>Need to reset your password?</h1>
 
-            {{ Form::open() }}
+            {{ Form::open(['route' => 'password_remind']) }}
 
             <!-- Email Form Input -->
             <div class="form-group">

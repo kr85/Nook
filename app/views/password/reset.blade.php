@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <h1>Reset Your Password</h1>
 
-            {{ Form::open() }}
+            {{ Form::open(['route' => 'password_reset']) }}
 
                 {{ Form::hidden('token', $token) }}
 

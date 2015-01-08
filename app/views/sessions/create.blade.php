@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 {{ Form::submit('Sign In', ['class' => 'btn btn-primary']) }}
-                {{ link_to('/password/remind', 'Forgot Your Password?') }}
+                {{ link_to_route('password_remind', 'Forgot your password?') }}
             </div>
 
             {{ Form::close() }}
