@@ -1,9 +1,9 @@
 // Each individual status
 .status-media {
   border: 1px solid #e3e3e3;
+  border-bottom: none;
   background: white;
   padding: 1em;
-  margin-bottom: 2em;
 }
 
 .status-media-heading {
@@ -69,3 +69,24 @@
   }
 }
 
+.comments_create-form textarea {
+  border: 1px solid #e3e3e3;
+  border-top: none;
+  border-radius: 0;
+}
+
+.comments {
+  margin-bottom: 5em;
+}
+
+.comments_comment {
+  background: darken(white, 10%);
+  margin-top: 0;
+  border: 1px solid darken(white, 15%);
+  border-bottom: 1px solid #e3e3e3;
+}
+
+textarea.form-control.comment-textarea {
+  padding-bottom: 0;
+  height: 34px;
+}

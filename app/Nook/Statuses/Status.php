@@ -52,4 +52,14 @@ class Status extends Eloquent
 
         return $status;
     }
+
+    /**
+     * Status has many comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('Nook\Statuses\Comment');
+    }
 }
