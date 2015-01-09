@@ -42,6 +42,6 @@ class RegistrationController extends BaseController
         // Welcome message
         Flash::message('Happy to have you as a new Nook member!');
 
-        return Redirect::home();
+        return Redirect::to('statuses');
     }
 }

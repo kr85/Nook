@@ -22,7 +22,7 @@ class FunctionalHelper extends \Codeception\Module
 
         $I = $this->getModule('Laravel4');
 
-        $I->amOnPage('/login');
+        $I->amOnPage('/');
 
         $I->submitForm('#login_form', ['email' => $email, 'password' => $password], 'Log In');
     }
