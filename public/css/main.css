@@ -355,7 +355,7 @@ textarea.form-control.comment-textarea {
     height: 85px; }
 
   footer {
-    position: absolute;
+    position: relative;
     margin: 0 auto;
     width: 100%;
     bottom: 0;
@@ -368,7 +368,7 @@ textarea.form-control.comment-textarea {
     height: 85px; }
 
   footer {
-    position: absolute;
+    position: relative;
     margin: 0 auto;
     width: 100%;
     bottom: 0;
@@ -618,7 +618,6 @@ body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -85px;
-    padding: 0 0 85px;
     overflow-x: hidden; }
  }
 
@@ -633,6 +632,5 @@ body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -85px;
-    padding: 0 0 85px;
     overflow-x: hidden; }
  }

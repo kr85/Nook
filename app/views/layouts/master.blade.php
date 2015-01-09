@@ -37,10 +37,13 @@
                 @yield('content')
 
             </div>
-
-            <!-- Footer -->
-            @include('partials.footer')
+            
+            <!-- Sticky Footer Fix -->
+            <div class="push"></div>
         </div>
+
+        <!-- Footer -->
+        @include('partials.footer')
 
         <script src="//code.jquery.com/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
