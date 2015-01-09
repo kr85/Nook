@@ -4,9 +4,11 @@ $I = new FunctionalTester($scenario);
 $I->am('Nook member');
 $I->wantTo('list all users who are registered for Nook');
 
-$I->haveAnAccount(['username' => 'clarkkent']);
+$I->signIn();
+
+$I->haveAnAccount(['username' => 'loislane']);
 $I->haveAnAccount(['username' => 'lexluthor']);
 
 $I->amOnPage('/users');
-$I->see('clarkkent');
+$I->see('loislane');
 $I->see('lexluthor');

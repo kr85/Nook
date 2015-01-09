@@ -8,7 +8,7 @@ $I->haveAnAccount(['username' => 'OtherUser']);
 $I->signIn();
 
 $I->click(['link' => 'Browse Users']);
-$I->click(['link' => 'OtherUser']);
+$I->click('OtherUser');
 
 $I->seeCurrentUrlEquals('/@OtherUser');
 
