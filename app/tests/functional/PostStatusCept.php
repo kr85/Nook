@@ -8,7 +8,7 @@ $I->signIn();
 
 $I->amOnPage('statuses');
 
-$I->postAStatus('My first status!');
+$I->postAStatus('my first status');
 
 $I->seeCurrentUrlEquals('/statuses');
-$I->see('My first status!');
+$I->see('my first status');

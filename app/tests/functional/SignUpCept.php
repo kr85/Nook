@@ -6,12 +6,12 @@ $I->wantTo('sign up for Nook account');
 
 $I->amOnPage('/');
 
-$I->submitForm('#registration_form', ['username' => 'ClarkKent', 'email' => 'clark@example.com', 'password' => 'secret', 'password_confirmation' => 'secret'], 'Sign Up');
+$I->submitForm('#registration_form', ['username' => 'clarkkent', 'email' => 'clark@example.com', 'password' => 'secret', 'password_confirmation' => 'secret'], 'Sign Up');
 
 $I->seeCurrentUrlEquals('/statuses');
 $I->see("This user hasn't posted a status yet.");
 $I->seeRecord('users', [
-   'username' => 'ClarkKent',
+   'username' => 'clarkkent',
    'email'    => 'clark@example.com'
 ]);
 
