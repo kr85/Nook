@@ -14,8 +14,8 @@ before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
   - chmod -R 777 app/storage
-  - php artisan migrate
-  - php artisan db:seed
+  - php artisan migrate --no-interaction -vvv
+  - php artisan db:seed --no-interaction -vvv
 
 script: vendor/bin/codecept run
 
