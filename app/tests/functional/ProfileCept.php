@@ -7,7 +7,7 @@ $I->wantTo('I want to view my profile.');
 $I->signIn();
 $I->postAStatus('my new status.');
 
-$I->click('Your Profile');
-$I->seeCurrentUrlEquals('/@clarkkent');
+$I->click('ClarkKent');
+$I->seeCurrentUrlEquals('/@ClarkKent');
 
 $I->see('my new status.');

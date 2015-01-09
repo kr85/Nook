@@ -4,21 +4,21 @@ $I = new FunctionalTester($scenario);
 $I->am('Nook member.');
 $I->wantTo('follow other Nook members.');
 
-$I->haveAnAccount(['username' => 'otheruser']);
+$I->haveAnAccount(['username' => 'OtherUser']);
 $I->signIn();
 
-$I->click('Browse Users');
-$I->click('otheruser');
+$I->click(['link' => 'Browse Users']);
+$I->click(['link' => 'OtherUser']);
 
-$I->seeCurrentUrlEquals('/@otheruser');
+$I->seeCurrentUrlEquals('/@OtherUser');
 
 // When I follow a user
-$I->click('Follow otheruser');
-$I->seeCurrentUrlEquals('/@otheruser');
-$I->see('Unfollow otheruser');
+$I->click('Follow OtherUser');
+$I->seeCurrentUrlEquals('/@OtherUser');
+$I->see('Unfollow OtherUser');
 
 // When I unfollow a user
-$I->click('Unfollow otheruser');
-$I->seeCurrentUrlEquals('/@otheruser');
-$I->see('Follow otheruser');
+$I->click('Unfollow OtherUser');
+$I->seeCurrentUrlEquals('/@OtherUser');
+$I->see('Follow OtherUser');
 
