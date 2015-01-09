@@ -388,7 +388,7 @@ textarea.form-control.comment-textarea {
 
 .footer-wrapper {
   padding: 2em;
-  background-color: #f0f0f0;
+  background-color: #ededed;
   border-top: 1px solid #d9d9d9;
   box-shadow: 0 -1px 15px #d9d9d9; }
 
@@ -664,7 +664,7 @@ html, body {
 
 body {
   padding-top: 90px;
-  background-color: #fcfcfc;
+  background-color: #f2f2f2;
   font-family: 'Roboto', sans-serif; }
 
 .container h1:first-of-type {
