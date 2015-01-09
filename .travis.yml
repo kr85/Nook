@@ -13,6 +13,9 @@ before_script:
   - mysql -e 'create database IF NOT EXISTS nook;'
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
+  - chmod -R 777 app/storage
+  - php artisan migrate
+  - php artisan db:seed
 
 script: vendor/bin/codecept run
 
