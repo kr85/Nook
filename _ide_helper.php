@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.16 on 2015-01-03.
+ * Generated for Laravel 4.2.16 on 2015-01-08.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1095,7 +1095,7 @@ namespace {
         }
         
         /**
-         * Set an input definition set to be used with this application
+         * Set an input definition set to be used with this application.
          *
          * @param \Symfony\Component\Console\InputDefinition $definition The input definition
          * @api 
@@ -1351,7 +1351,7 @@ namespace {
         }
         
         /**
-         * Tries to figure out the terminal dimensions based on the current environment
+         * Tries to figure out the terminal dimensions based on the current environment.
          *
          * @return array Array containing width and height
          * @static 
@@ -7140,7 +7140,7 @@ namespace {
          *
          * @return string The request method
          * @api 
-         * @see getRealMethod
+         * @see getRealMethod()
          * @static 
          */
         public static function getMethod(){
@@ -7152,7 +7152,7 @@ namespace {
          * Gets the "real" request method.
          *
          * @return string The request method
-         * @see getMethod
+         * @see getMethod()
          * @static 
          */
         public static function getRealMethod(){
@@ -7396,7 +7396,7 @@ namespace {
         }
         
         /**
-         * Gets a list of content types acceptable by the client browser
+         * Gets a list of content types acceptable by the client browser.
          *
          * @return array List of content types in preferable order
          * @api 
@@ -9775,7 +9775,7 @@ namespace {
          *
          * @return string The request method
          * @api 
-         * @see getRealMethod
+         * @see getRealMethod()
          * @static 
          */
         public static function getMethod(){
@@ -9787,7 +9787,7 @@ namespace {
          * Gets the "real" request method.
          *
          * @return string The request method
-         * @see getMethod
+         * @see getMethod()
          * @static 
          */
         public static function getRealMethod(){
@@ -10031,7 +10031,7 @@ namespace {
         }
         
         /**
-         * Gets a list of content types acceptable by the client browser
+         * Gets a list of content types acceptable by the client browser.
          *
          * @return array List of content types in preferable order
          * @api 
@@ -10914,7 +10914,7 @@ namespace {
         }
         
         /**
-         * Sets the session ID
+         * Sets the session ID.
          *
          * @param string $id
          * @api 

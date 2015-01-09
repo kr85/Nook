@@ -3,8 +3,16 @@
 /**
  * Class PagesController
  */
-class PagesController extends \BaseController
+class PagesController extends BaseController
 {
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->beforeFilter('guest', ['except' => '']);
+    }
+
     /**
      * Display home page.
      *
@@ -12,6 +20,11 @@ class PagesController extends \BaseController
      */
     public function home()
     {
+        if (Auth::check())
+        {
+            return Redirect::to('statuses_route');
+        }
+
         return View::make('pages.home.home');
     }
 }

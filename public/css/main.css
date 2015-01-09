@@ -565,6 +565,9 @@ body {
 .container h1:first-of-type {
   margin-top: 0; }
 
+.alert-info {
+  text-align: center; }
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
   .wrapper {

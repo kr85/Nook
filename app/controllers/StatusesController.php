@@ -38,6 +38,11 @@ class StatusesController extends BaseController
      */
     public function index()
     {
+        if (!Auth::check())
+        {
+            return Redirect::home();
+        }
+
         $statuses = $this->statusRepository->getFeedForUser(Auth::user());
 
         return View::make('statuses.index', compact('statuses'));
