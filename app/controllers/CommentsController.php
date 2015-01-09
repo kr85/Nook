@@ -2,10 +2,30 @@
 
 use Laracasts\Commander\CommanderTrait;
 use Nook\Statuses\LeaveCommentOnStatusCommand;
+use Nook\Forms\LeaveCommentForm;
 
+/**
+ * Class CommentsController
+ */
 class CommentsController extends BaseController
 {
     use CommanderTrait;
+
+    /**
+     * @var LeaveCommentForm
+     */
+    protected $leaveCommentFormForm;
+
+    /**
+     * Constructor.
+     *
+     * @param LeaveCommentForm $leaveCommentFormForm
+     */
+    public function __construct(LeaveCommentForm $leaveCommentFormForm)
+    {
+        $this->leaveCommentFormForm = $leaveCommentFormForm;
+    }
+
 	/**
      * Leave a new comment.
 	 *
@@ -15,6 +35,9 @@ class CommentsController extends BaseController
 	{
         // Fetch the input
         $input = array_add(Input::all(), 'user_id', Auth::id());
+
+        // Validate the input
+        $this->leaveCommentFormForm->validate($input);
 
         // Execute a command to leave a comment
         $this->execute(LeaveCommentOnStatusCommand::class, $input);
