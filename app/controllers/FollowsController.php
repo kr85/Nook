@@ -22,7 +22,7 @@ class FollowsController extends BaseController
         $this->execute(FollowUserCommand::class, $input);
 
         // Show a flash message and redirect back
-        Flash::success('You are now following this user.');
+        Flash::message('You are now following this user.');
         return Redirect::back();
 	}
 
@@ -42,7 +42,7 @@ class FollowsController extends BaseController
 		$this->execute(UnfollowUserCommand::class, $input);
 
         // Show a flash message and redirect back
-        Flash::success('You have now unfollowed this user.');
+        Flash::message('You have now unfollowed this user.');
         return Redirect::back();
 	}
 

@@ -79,7 +79,7 @@ class RemindersController extends BaseController
 				return Redirect::back();
 
 			case Password::PASSWORD_RESET:
-                Flash::success('Your password has been reset. You may log in now.');
+                Flash::message('Your password has been reset. You may log in now.');
 				return Redirect::to('/');
 		}
 	}
