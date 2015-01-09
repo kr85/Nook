@@ -1,0 +1,126 @@
+.footer-wrapper {
+  padding: 2em;
+  background-color: darken(white, 6%);
+  border-top: 1px solid darken(white, 15%);
+  box-shadow: 0 -1px 15px darken(white, 15%);
+}
+
+.footer-text {
+  display: inline;
+}
+
+.footer-copyright {
+  display: inline;
+  vertical-align: middle;
+  padding-top: 7px;
+  margin-left: -40px;
+  font-size: 15px;
+  letter-spacing: -1px;
+  color: lighten(#000000, 40%);
+}
+
+.footer-github {
+  display: inline;
+
+  a {
+    margin-left: 10px;
+    color: lighten(#000000, 50%);
+
+    &:hover {
+      color: #4183C4;
+    }
+  }
+}
+
+.footer-linkin {
+  display: inline;
+
+  a {
+    margin-left: 10px;
+    color: lighten(#000000, 50%);
+
+    &:hover {
+      color: #0976b4;
+    }
+  }
+}
+
+.footer-google-plus {
+  display: inline;
+
+  a {
+    margin-left: 10px;
+    color: lighten(#000000, 50%);
+
+    &:hover {
+      color: #dd4b39;
+    }
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  footer {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  footer {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  footer, .push {
+    height: 85px;
+  }
+
+  footer {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  footer, .push {
+    height: 85px;
+  }
+
+  footer {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  footer, .push {
+    height: 85px;
+  }
+
+  footer {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,182 @@
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  .home-header {
+    text-align: center;
+    font-size: 35px;
+    padding: 0.5em 0;
+  }
+
+  .home-subheader {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 3em;
+  }
+
+  .register-header {
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .home-image {
+    background-image: url("../images/pages/home-image.jpg");
+    background-size: 285px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 285px;
+    height: 155px;
+    border-radius: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+
+  .registration-form {
+    margin-bottom: 50px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .home-header {
+    text-align: center;
+    font-size: 45px;
+    padding: 0.5em 0;
+  }
+
+  .home-subheader {
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 3em;
+  }
+
+  .register-header {
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .home-image {
+    background-image: url("../images/pages/home-image.jpg");
+    background-size: 435px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 435px;
+    height: 280px;
+    border-radius: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  input.form-control.login-field {
+    height: 30px;
+    width: 200px;
+    font-size: 13px;
+  }
+
+  .home-header {
+    text-align: center;
+    font-size: 60px;
+    padding: 0.5em 0;
+  }
+
+  .home-subheader {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 3em;
+  }
+
+  .register-header {
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .home-image {
+    background-image: url("../images/pages/home-image.jpg");
+    background-size: 550px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 550px;
+    height: 355px;
+    border-radius: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  input.form-control.login-field {
+    height: 30px;
+    width: 200px;
+    font-size: 13px;
+  }
+
+  .home-header {
+    text-align: center;
+    font-size: 60px;
+    padding: 0.5em 0;
+  }
+
+  .home-subheader {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 3em;
+  }
+
+  .register-header {
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .home-image {
+    background-image: url("../images/pages/home-image.jpg");
+    background-size: 500px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 355px;
+    border-radius: 35px;
+    margin-bottom: 50px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  input.form-control.login-field {
+    height: 30px;
+    width: 200px;
+    font-size: 13px;
+  }
+
+  .home-header {
+    text-align: center;
+    font-size: 60px;
+    padding: 0.5em 0;
+  }
+
+  .home-subheader {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 3em;
+  }
+
+  .register-header {
+    text-align: center;
+    padding-bottom: 0.7em;
+  }
+
+  .home-image {
+    background-image: url("../images/pages/home-image.jpg");
+    background-size: 500px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 355px;
+    border-radius: 35px;
+    margin-bottom: 50px;
+  }
+}

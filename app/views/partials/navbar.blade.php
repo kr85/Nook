@@ -10,14 +10,14 @@
             <a class="navbar-brand" href="{{ Auth::check() ? route('statuses_route') : route('home') }}">Nook</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <!--ul class="nav navbar-nav">
                 <li class="active">{{ link_to_route('users_route', 'Browse Users') }}</li>
-            </ul>
+            </ul-->
 
             <ul class="nav navbar-nav navbar-right">
                 @if($currentUser)
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
                             <img class="navbar-gravatar" src="{{ $currentUser->present()->gravatar() }}" alt="{{ $currentUser->username }}"/>
                             {{ $currentUser->username }} <span class="caret"></span>
                         </a>
@@ -29,8 +29,7 @@
                         </ul>
                     </li>
                 @else
-                    <li>{{ link_to_route('register_route', 'Register') }}</li>
-                    <li>{{ link_to_route('login_route', 'Log In') }}</li>
+                    @include('pages.home.partials.login')
                 @endif
             </ul>
         </div>

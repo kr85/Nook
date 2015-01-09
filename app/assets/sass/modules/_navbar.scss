@@ -1,12 +1,16 @@
 // Navbar
 .navbar-default {
   background-color: #00bae9;
-  border-color: #F3F3F3;
+  border-bottom: 1px solid darken(#00bae9, 20%);
+  box-shadow: 0 2px 5px darken(#00bae9, 20%);
+  padding: 5px;
 
   .navbar-brand {
     color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-size: 28px;
+    font-weight: 700;
   }
 
   .navbar-nav > li > a {
@@ -19,7 +23,7 @@
 }
 
 .navbar-default .navbar-nav > .active > a {
-  background-color: darken(#00bae9 , 10%);
+  background-color: darken(#00bae9, 10%);
 }
 
 .navbar-gravatar {
@@ -29,4 +33,138 @@
   left: -9px;
   border: 1px solid #555;
   margin-left: 4px;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  form.navbar-form {
+    margin: 0;
+  }
+
+  .forgot-password-icon {
+    display: none;
+  }
+
+  .forgot-password-text {
+    text-align: center;
+    padding-top: 10px;
+
+    a {
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  form.navbar-form {
+    margin: 0;
+  }
+
+  .forgot-password-icon {
+    display: none;
+  }
+
+  .forgot-password-text {
+    text-align: center;
+    padding-top: 10px;
+
+    a {
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  form.navbar-form {
+    margin: 8px -15px;
+  }
+
+  .forgot-password-icon {
+    color: white;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    display: inline-block;
+  }
+
+  p.forgot-password-text {
+    display: none;
+  }
+
+  li.forgot-password-text {
+    display: block;
+    padding-bottom: 9px;
+
+    a {
+      font-weight: 700;
+      color: #337AB7;
+    }
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  form.navbar-form {
+    margin: 8px -15px;
+  }
+
+  .forgot-password-icon {
+    color: white;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    display: inline-block;
+  }
+
+  p.forgot-password-text {
+    display: none;
+  }
+
+  li.forgot-password-text {
+    display: block;
+    padding-bottom: 9px;
+
+    a {
+      font-weight: 700;
+      color: #337AB7;
+    }
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  form.navbar-form {
+    margin: 8px -15px;
+  }
+
+  .forgot-password-icon {
+    color: white;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    display: inline-block;
+  }
+
+  p.forgot-password-text {
+    display: none;
+  }
+
+  li.forgot-password-text {
+    display: block;
+    padding-bottom: 9px;
+
+    a {
+      font-weight: 700;
+      color: #337AB7;
+    }
+  }
 }

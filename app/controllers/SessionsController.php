@@ -25,17 +25,6 @@ class SessionsController extends BaseController
     }
 
     /**
-     * Show the form for signing in.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return View::make('sessions.create');
-    }
-
-
-    /**
      * Store a newly created session.
      *
      * @return Response

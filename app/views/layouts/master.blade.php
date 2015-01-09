@@ -16,26 +16,35 @@
         <meta name="author" content="Kosta Rashev">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"-->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        {{ HTML::style('css/main.css') }}
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        @include('partials.navbar')
+        <!-- Page Wrapper -->
+        <div class="wrapper">
+            <!-- Navigation Bar -->
+            @include('partials.navbar')
 
-        <div class="container">
+            <!-- Main Content Area -->
+            <div class="container">
 
-            @include('flash::message')
+                @include('flash::message')
 
-            @yield('content')
+                @yield('content')
 
+            </div>
+
+            <!-- Footer -->
+            @include('partials.footer')
         </div>
 
         <script src="//code.jquery.com/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        {{ HTML::script('javascript/bootstrap-hover-dropdown.js') }}
         <script>
             $('#flash-overlay-modal').modal();
             $('.comments_create-form').on('keydown', function(e) {

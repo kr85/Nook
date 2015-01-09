@@ -8,11 +8,6 @@ Route::get('/', [
 /**
  * Registration
  */
-Route::get('register', [
-   'as'   => 'register_route',
-   'uses' => 'RegistrationController@create'
-]);
-
 Route::post('register', [
    'as'   => 'register_route',
    'uses' => 'RegistrationController@store'
@@ -21,11 +16,6 @@ Route::post('register', [
 /**
  * Sessions
  */
-Route::get('login', [
-   'as'   => 'login_route',
-   'uses' => 'SessionsController@create'
-]);
-
 Route::post('login', [
    'as'   => 'login_route',
    'uses' => 'SessionsController@store'

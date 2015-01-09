@@ -14,18 +14,17 @@ class FunctionalHelper extends \Codeception\Module
      */
     public function signIn()
     {
-        $email = 'demo@email.com';
+        $email = 'clark@example.com';
         $username = 'ClarkKent';
-        $password = 'demo';
+        $password = 'secret';
 
         $this->haveAnAccount(compact('email', 'username', 'password'));
 
         $I = $this->getModule('Laravel4');
 
         $I->amOnPage('/login');
-        $I->fillField('email', $email);
-        $I->fillField('password', $password);
-        $I->click('Sign In');
+
+        $I->submitForm('#login_form', ['email' => $email, 'password' => $password], 'Log In');
     }
 
     /**
