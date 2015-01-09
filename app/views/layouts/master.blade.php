@@ -37,7 +37,7 @@
                 @yield('content')
 
             </div>
-            
+
             <!-- Sticky Footer Fix -->
             <div class="push"></div>
         </div>

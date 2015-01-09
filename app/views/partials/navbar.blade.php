@@ -10,16 +10,33 @@
             <a class="navbar-brand" href="{{ Auth::check() ? route('statuses_route') : route('home') }}">Nook</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <!--ul class="nav navbar-nav">
-                <li class="active">{{ link_to_route('users_route', 'Browse Users') }}</li>
-            </ul-->
-
+            @if($currentUser)
+                <ul class="nav navbar-nav">
+                    <li class="active">{{ link_to_route('users_route', 'Browse Users', null, ['class' => 'bold']) }}</li>
+                </ul>
+            @endif
             <ul class="nav navbar-nav navbar-right">
                 @if($currentUser)
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-                            <img class="navbar-gravatar" src="{{ $currentUser->present()->gravatar() }}" alt="{{ $currentUser->username }}"/>
-                            {{ $currentUser->username }} <span class="caret"></span>
+                    <li class="navbar-profile-link">
+                            <a href="{{ route('profile_route', $currentUser->username) }}">
+                                <img class="navbar-gravatar" src="{{ $currentUser->present()->gravatar() }}" alt="{{ $currentUser->username }}"/>
+                                <strong>{{ $currentUser->username }}</strong>
+                            </a>
+                    </li>
+                    <li>
+                        <p class="links-separator">|</p>
+                    </li>
+                    <li class="navbar-home-link">
+                        <a href="{{ route('statuses_route') }}">
+                            <strong><i class="fa fa-home fa-1x"></i> Home</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <p class="links-separator">|</p>
+                    </li>
+                    <li class="dropdown navbar-dropdown-link">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="250" data-close-others="false">
+                            <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>{{ link_to_route('profile_route', 'Your Profile', $currentUser->username) }}</li>

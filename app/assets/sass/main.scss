@@ -6,6 +6,24 @@
 @import "pages/users";
 
 // Main
+* {
+  margin: 0;
+}
+
+a:focus, a:active,
+.btn:focus, .btn:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  border: 0;
+  outline: 0 !important;
+  appearance: none;
+
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -25,6 +43,10 @@ body {
 
 .alert-info {
   text-align: center;
+}
+
+.bold {
+  font-weight: 700;
 }
 
 /* Custom, iPhone Retina */
