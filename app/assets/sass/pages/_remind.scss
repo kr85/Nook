@@ -1,0 +1,83 @@
+.remind-form-wrapper {
+  background-color: white;
+  border: 1px solid grey;
+  padding: 61px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px grey;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.remind-form-header {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  .remind-form-wrapper {
+    width: 90%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
+  .remind-form-header {
+    font-size: 30px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .remind-form-wrapper {
+    width: 90%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
+  .remind-form-header {
+    font-size: 30px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .remind-form-wrapper {
+    width: 80%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+
+  .remind-form-header {
+    font-size: 30px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .remind-form-wrapper {
+    width: 60%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+
+  .remind-form-header {
+    font-size: 35px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .remind-form-wrapper {
+    width: 50%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+
+  .remind-form-header {
+    font-size: 35px;
+  }
+}

@@ -386,6 +386,13 @@ textarea.form-control.comment-textarea {
         background-color: transparent; }
  }
 
+footer {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  bottom: 0;
+  z-index: 0; }
+
 .footer-wrapper {
   padding: 2em;
   background-color: #ededed;
@@ -429,62 +436,23 @@ textarea.form-control.comment-textarea {
       color: #dd4b39; }
 
 /* Custom, iPhone Retina */
-@media only screen and (min-width: 320px) {
-  footer {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    bottom: 0;
-    z-index: 0; }
- }
-
 /* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
-  footer {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    bottom: 0;
-    z-index: 0; }
- }
-
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   footer, .push {
     height: 85px; }
-
-  footer {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    bottom: 0;
-    z-index: 0; }
  }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   footer, .push {
     height: 85px; }
-
-  footer {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    bottom: 0;
-    z-index: 0; }
  }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   footer, .push {
     height: 85px; }
-
-  footer {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    bottom: 0;
-    z-index: 0; }
  }
 
 /* Custom, iPhone Retina */
@@ -648,6 +616,78 @@ textarea.form-control.comment-textarea {
 /* Small Devices, Tablets */
 /* Medium Devices, Desktops */
 /* Large Devices, Wide Screens */
+.remind-form-wrapper {
+  background-color: white;
+  border: 1px solid grey;
+  padding: 61px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px grey;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.remind-form-header {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 20px; }
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .remind-form-wrapper {
+    width: 90%;
+    margin-top: 100px;
+    margin-bottom: 100px; }
+
+  .remind-form-header {
+    font-size: 30px; }
+ }
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .remind-form-wrapper {
+    width: 90%;
+    margin-top: 100px;
+    margin-bottom: 100px; }
+
+  .remind-form-header {
+    font-size: 30px; }
+ }
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .remind-form-wrapper {
+    width: 80%;
+    margin-top: 200px;
+    margin-bottom: 200px; }
+
+  .remind-form-header {
+    font-size: 30px; }
+ }
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .remind-form-wrapper {
+    width: 60%;
+    margin-top: 200px;
+    margin-bottom: 200px; }
+
+  .remind-form-header {
+    font-size: 35px; }
+ }
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .remind-form-wrapper {
+    width: 50%;
+    margin-top: 200px;
+    margin-bottom: 200px; }
+
+  .remind-form-header {
+    font-size: 35px; }
+ }
+
 * {
   margin: 0; }
 
