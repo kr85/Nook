@@ -47,7 +47,8 @@
 
         <script src="//code.jquery.com/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        {{ HTML::script('javascript/bootstrap-hover-dropdown.js') }}
+        {{ HTML::script('javascript/lib/jquery.placeholder.min.js') }}
+        {{ HTML::script('javascript/lib/bootstrap-hover-dropdown.js') }}
         <script>
             $('#flash-overlay-modal').modal();
             $('.comments_create-form').on('keydown', function(e) {
