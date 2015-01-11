@@ -10,7 +10,7 @@
 
             {{ Form::close() }}
         </li>
-        <li>
+        <!--li>
             {{Form::open(['method' => 'PATCH', 'route' => ['update_status_route', $status->id]])}}
 
                 {{ Form::hidden('statusIdToUpdate', $status->id) }}
@@ -18,7 +18,7 @@
                 <input class="link-button" type="submit" value="Edit Status"/>
 
             {{ Form::close() }}
-        </li>
+        </li-->
     @else
         <li>
             <p>Hide Status</p>

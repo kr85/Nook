@@ -35,7 +35,7 @@
                         <p class="links-separator">|</p>
                     </li>
                     <li class="dropdown navbar-dropdown-link">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="250" data-close-others="false">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="250" data-close-others="false">
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">

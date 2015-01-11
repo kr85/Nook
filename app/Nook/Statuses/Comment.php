@@ -1,6 +1,7 @@
 <?php namespace Nook\Statuses;
 
 use Eloquent;
+use Laracasts\Presenter\PresentableTrait;
 
 /**
  * Class Comment
@@ -9,12 +10,21 @@ use Eloquent;
  */
 class Comment extends Eloquent
 {
+    use PresentableTrait;
+
     /**
      * Attributes that can be mass assigned.
      *
      * @var array
      */
     protected $fillable = ['user_id', 'status_id', 'body'];
+
+    /**
+     * Path to the presenter to a comment.
+     *
+     * @var string
+     */
+    protected $presenter = 'Nook\Statuses\CommentPresenter';
 
     /**
      * Comment belongs to a user.

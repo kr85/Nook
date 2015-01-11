@@ -13,7 +13,6 @@
     <!-- Reset Password Link -->
     <div class="form-group dropdown">
         <span class="glyphicon glyphicon-question-sign forgot-password-icon dropdown-toggle" aria-hidden="true" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false"></span>
-        <p class="forgot-password-text">{{ link_to_route('password_remind', 'Forgot your password?') }}</p>
         <ul class="dropdown-menu" role="menu">
             <li class="forgot-password-text">{{ link_to_route('password_remind', 'Forgot Your Password?') }}</li>
         </ul>
