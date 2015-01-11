@@ -122,7 +122,8 @@ textarea.form-control.comment-textarea {
   padding-bottom: 0;
   height: 34px; }
   textarea.form-control.comment-textarea:focus {
-    border: 1px solid #0091b6; }
+    border: 1px solid #0091b6;
+    box-shadow: 0 0 10px #0091b6; }
 
 /* Custom, iPhone Retina */
 /* Extra Small Devices, Phones */

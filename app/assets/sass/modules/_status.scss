@@ -152,6 +152,7 @@ textarea.form-control.comment-textarea {
 
   &:focus {
     border: 1px solid darken(#00bae9, 10%);
+    box-shadow: 0 0 10px darken(#00bae9, 10%);
   }
 }
 
