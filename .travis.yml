@@ -8,6 +8,8 @@ env:
   - DB=mysql
 
 before_script:
+  - export ADDITIONAL_PATH=`php -i | grep -F --color=never 'Scan this dir for additional .ini files'`
+  - echo 'xdebug.max_nesting_level=9999' | sudo tee ${ADDITIONAL_PATH:42}/php.ini
   - mv travis.env.php .env.testing.php
   - mysql -e 'create database IF NOT EXISTS defdx;'
   - travis_retry composer self-update
@@ -17,7 +19,6 @@ before_script:
 
 script:
  - php artisan migrate --env=testing --no-interaction -vvv
- - php artisan db:seed --env=testing --no-interaction -vvv
  - vendor/bin/codecept run
  - php artisan migrate:rollback --env=testing --no-interaction -vvv
 
