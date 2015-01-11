@@ -1,6 +1,8 @@
 <?php
 
 use Nook\Users\UserRepository;
+use Nook\Forms\EditProfileForm;
+use Nook\Users\EditProfileCommand;
 
 /**
  * Class UsersController
@@ -13,13 +15,20 @@ class UsersController extends BaseController
     protected $userRepository;
 
     /**
+     * @var EditProfileForm
+     */
+    protected $editProfileForm;
+
+    /**
      * Constructor.
      *
      * @param UserRepository $userRepository
+     * @param EditProfileForm $editProfileForm
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, EditProfileForm $editProfileForm)
     {
         $this->userRepository = $userRepository;
+        $this->editProfileForm = $editProfileForm;
     }
 
 	/**
@@ -49,7 +58,7 @@ class UsersController extends BaseController
     }
 
     /**
-     * Edit user's profile.
+     * Show the form to edit user's profile.
      *
      * @param $id
      * @return mixed
@@ -59,5 +68,30 @@ class UsersController extends BaseController
         $user = $this->userRepository->findById($id);
 
         return View::make('users.edit')->withUser($user);
+    }
+
+    /**
+     * Update the user's profile.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Laracasts\Validation\FormValidationException
+     */
+    public function update($id)
+    {
+        $input = $this->userRepository->checkUpdateProfileInput($id);
+
+        // Fetch the input and add the user id to it
+        $input = array_add($input, 'userIdToUpdate', $id);
+
+        // Validate the input
+        $this->editProfileForm->validate($input);
+
+        // Execute a command to update the user's profile
+        $this->execute(EditProfileCommand::class, $input);
+
+        // Show a flash message and redirect back
+        Flash::message('Your profile has been updated!');
+        return Redirect::back();
     }
 }
