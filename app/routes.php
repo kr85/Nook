@@ -68,6 +68,16 @@ Route::get('@{username}', [
     'uses' => 'UsersController@show'
 ]);
 
+Route::get('users/{id}/edit', [
+    'as'   => 'edit_profile_route',
+    'uses' => 'UsersController@edit'
+]);
+
+Route::patch('users/{id}', [
+    'as'   => 'update_profile_route',
+    'uses' => 'UsersController@update'
+]);
+
 /**
  * Follows
  */

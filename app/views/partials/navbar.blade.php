@@ -39,7 +39,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>{{ link_to_route('profile_route', 'Your Profile', $currentUser->username) }}</li>
+                            <li>{{ link_to_route('edit_profile_route', 'Edit Profile', $currentUser->id) }}</li>
                             <li><a href="#">Another action</a></li>
                             <li class="divider"></li>
                             <li>{{ link_to_route('logout_route', 'Log Out') }}</li>

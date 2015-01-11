@@ -693,17 +693,78 @@ footer {
 .user-block .media-object {
   margin: auto; }
 
+.edit-profile-wrapper {
+  margin-right: 10px;
+  margin-left: 10px; }
+
+.edit-profile-form-wrapper {
+  border: 1px solid #bfbfbf;
+  box-shadow: 0 0 10px #bfbfbf;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px; }
+
+.edit-profile-header {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 20px; }
+
 /* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .edit-profile-form-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px; }
+
+  .edit-profile-header {
+    font-size: 26px; }
+ }
+
 /* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .edit-profile-form-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px; }
+
+  .edit-profile-header {
+    font-size: 26px; }
+ }
+
 /* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .edit-profile-form-wrapper {
+    margin-top: 100px;
+    margin-bottom: 100px; }
+
+  .edit-profile-header {
+    font-size: 36px; }
+ }
+
 /* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .edit-profile-form-wrapper {
+    margin-top: 100px;
+    margin-bottom: 100px; }
+
+  .edit-profile-header {
+    font-size: 36px; }
+ }
+
 /* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .edit-profile-form-wrapper {
+    margin-top: 100px;
+    margin-bottom: 100px; }
+
+  .edit-profile-header {
+    font-size: 36px; }
+ }
+
 .remind-form-wrapper {
   background-color: white;
-  border: 1px solid grey;
+  border: 1px solid #bfbfbf;
   padding: 61px;
   border-radius: 15px;
-  box-shadow: 0 0 15px grey;
+  box-shadow: 0 0 15px #bfbfbf;
   position: relative;
   padding-left: 25px;
   padding-right: 25px;

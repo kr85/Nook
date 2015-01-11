@@ -35,10 +35,29 @@ class UsersController extends BaseController
         return View::make('users.index')->withUsers($users);
 	}
 
+    /**
+     * Show the user's profile.
+     *
+     * @param $username
+     * @return mixed
+     */
     public function show($username)
     {
         $user = $this->userRepository->findByUsername($username);
 
         return View::make('users.show')->withUser($user);
+    }
+
+    /**
+     * Edit user's profile.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function edit($id)
+    {
+        $user = $this->userRepository->findById($id);
+
+        return View::make('users.edit')->withUser($user);
     }
 }
