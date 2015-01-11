@@ -36,7 +36,7 @@ class PublishStatusCommandHandler implements CommandHandler
     public function handle($command)
     {
         // Setup the status and fires an event
-        $status = Status::publish($command->body);
+        $status = Status::publish(trim($command->body));
 
         // Persists the status
         $status = $this->statusRepository->save($status, $command->userId);

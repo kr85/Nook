@@ -34,8 +34,8 @@ class EditProfileCommandHandler implements CommandHandler
     {
         $input = [
             'userIdToUpdate' => $command->userIdToUpdate,
-            'username' => $command->username,
-            'email' => $command->email,
+            'username' => trim($command->username),
+            'email' => trim($command->email),
             'password' => $command->password
         ];
 

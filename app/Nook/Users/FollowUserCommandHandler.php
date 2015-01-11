@@ -2,10 +2,23 @@
 
 use Laracasts\Commander\CommandHandler;
 
+/**
+ * Class FollowUserCommandHandler
+ *
+ * @package Nook\Users
+ */
 class FollowUserCommandHandler implements CommandHandler
 {
+    /**
+     * @var UserRepository
+     */
     protected $userRepository;
 
+    /**
+     * Constructor.
+     *
+     * @param UserRepository $userRepository
+     */
     function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;

@@ -24,7 +24,7 @@ class LeaveCommentOnStatusCommandHandler implements CommandHandler
      */
     public function handle($command)
     {
-        $comment = $this->statusRepository->leaveComment($command->user_id, $command->status_id, $command->body);
+        $comment = $this->statusRepository->leaveComment($command->user_id, $command->status_id, trim($command->body));
 
         return $comment;
     }

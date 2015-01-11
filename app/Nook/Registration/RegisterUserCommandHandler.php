@@ -34,9 +34,9 @@ class RegisterUserCommandHandler implements CommandHandler
     {
         // Register the user
         $user = User::register(
-            $command->username,
-            $command->email,
-            $command->password
+            trim($command->username),
+            trim($command->email),
+            trim($command->password)
         );
 
         // Persist the user

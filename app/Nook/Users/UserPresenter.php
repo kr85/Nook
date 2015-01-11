@@ -20,6 +20,11 @@ class UserPresenter extends Presenter
         return "//www.gravatar.com/avatar/{$email}?s={$size}";
     }
 
+    /**
+     * Present the number of followers the user has.
+     *
+     * @return string
+     */
     public function followerCount()
     {
         $count = $this->entity->followers()->count();
@@ -28,6 +33,11 @@ class UserPresenter extends Presenter
         return "{$count} {$plural}";
     }
 
+    /**
+     * Present the number of statuses the user has.
+     *
+     * @return string
+     */
     public function statusCount()
     {
         $count = $this->entity->statuses()->count();
