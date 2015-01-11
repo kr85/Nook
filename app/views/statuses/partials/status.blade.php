@@ -12,7 +12,9 @@
             {{ $status->present()->timeSincePublished() }}
         </p>
 
-        {{ $status->body }}
+        <div class="status-media-body">
+            {{ $status->body }}
+        </div>
     </div>
     <div class="status-media-dropdown">
         @if($signedIn)

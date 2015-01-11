@@ -11,9 +11,9 @@
   top: 5px; }
 
 .status-media-body {
-  color: #b3bac0;
-  font-size: 1.2em;
-  padding: 0.5em 1em 1em 1em; }
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: auto; }
 
 .status-media-object {
   position: relative;
