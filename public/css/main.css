@@ -681,9 +681,6 @@ footer {
     margin-bottom: 50px; }
  }
 
-.users {
-  margin-bottom: 3em; }
-
 .user-block {
   text-align: center;
   list-style: none; }
@@ -709,8 +706,21 @@ footer {
   font-weight: 700;
   padding-bottom: 20px; }
 
+.browser-users-header {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  font-size: 36px; }
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
+  .users {
+    margin-bottom: 0; }
+
+  .user-block {
+    margin-bottom: 25px; }
+
   .edit-profile-form-wrapper {
     margin-top: 50px;
     margin-bottom: 50px; }
@@ -721,6 +731,12 @@ footer {
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
+  .users {
+    margin-bottom: 0; }
+
+  .user-block {
+    margin-bottom: 25px; }
+
   .edit-profile-form-wrapper {
     margin-top: 50px;
     margin-bottom: 50px; }
@@ -731,6 +747,12 @@ footer {
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
+  .users {
+    margin-bottom: 3em; }
+
+  .user-block {
+    margin-bottom: 0; }
+
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
@@ -741,6 +763,12 @@ footer {
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
+  .users {
+    margin-bottom: 3em; }
+
+  .user-block {
+    margin-bottom: 0; }
+
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
@@ -751,6 +779,12 @@ footer {
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
+  .users {
+    margin-bottom: 3em; }
+
+  .user-block {
+    margin-bottom: 0; }
+
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
