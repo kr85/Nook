@@ -14,6 +14,14 @@
 
         {{ $status->body }}
     </div>
+    <div class="status-media-dropdown">
+        @if($signedIn)
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="250" data-close-others="false">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+            @include('statuses.partials.status-options', ['status' => $status])
+        @endif
+    </div>
 </article>
 
 @if($signedIn)

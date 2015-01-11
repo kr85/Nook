@@ -40,6 +40,16 @@ Route::post('statuses', [
    'uses' => 'StatusesController@store'
 ]);
 
+Route::delete('statuses/{id}', [
+    'as'   => 'delete_status_route',
+    'uses' => 'StatusesController@destroy'
+]);
+
+Route::patch('statuses/{id}', [
+    'as'   => 'update_status_route',
+    'uses' => 'StatusesController@update'
+]);
+
 Route::post('statuses/{id}/comments', [
     'as'   => 'comment_route',
     'uses' => 'CommentsController@store'

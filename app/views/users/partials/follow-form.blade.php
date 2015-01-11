@@ -1,4 +1,5 @@
 @if($signedIn)
+
     @if($user->isFollowedBy($currentUser))
         {{ Form::open(['method' => 'DELETE', 'route' => ['follow_route', $user->id]]) }}
 

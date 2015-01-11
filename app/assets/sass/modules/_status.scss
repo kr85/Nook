@@ -1,5 +1,6 @@
 // Each individual status
 .status-media {
+  position: relative;
   border: 1px solid #e3e3e3;
   border-bottom: none;
   background: white;
@@ -30,6 +31,37 @@
   font-size: 0.7em;
   letter-spacing: 0.15em;
   color: rgb(204, 208, 211);
+}
+
+.status-media-dropdown {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+ul.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none outside none;
+  background-color: #FFF;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+}
+
+.status-media-dropdown ul.dropdown-menu {
+  padding: 10px 0;
 }
 
 // The "Publish Status" area

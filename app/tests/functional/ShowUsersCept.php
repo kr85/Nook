@@ -9,6 +9,6 @@ $I->signIn();
 $I->haveAnAccount(['username' => 'loislane']);
 $I->haveAnAccount(['username' => 'lexluthor']);
 
-$I->amOnPage('/users');
+$I->amOnPage('users');
 $I->see('loislane');
 $I->see('lexluthor');

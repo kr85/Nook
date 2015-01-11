@@ -48,6 +48,14 @@ class StatusRepository
         return User::findOrFail($userId)->statuses()->save($status);
     }
 
+    /**
+     * Leave comment to a status.
+     *
+     * @param $userId
+     * @param $statusId
+     * @param $body
+     * @return static
+     */
     public function leaveComment($userId, $statusId, $body)
     {
         $comment = Comment::leave($body, $statusId);
@@ -55,5 +63,27 @@ class StatusRepository
         User::findOrFail($userId)->comments()->save($comment);
 
         return $comment;
+    }
+
+    /**
+     * Fetch a status by status id.
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|static
+     */
+    public function findById($id)
+    {
+        return Status::findOrFail($id);
+    }
+
+    /**
+     * Delete a status.
+     *
+     * @param $id
+     * @return int
+     */
+    public function delete($id)
+    {
+        return Status::destroy($id);
     }
 }

@@ -2,7 +2,7 @@
 
 $I = new FunctionalTester($scenario);
 $I->am('Nook member');
-$I->wantTo('I want to post a status to my profile.');
+$I->wantTo('post a status to my profile');
 
 $I->signIn();
 

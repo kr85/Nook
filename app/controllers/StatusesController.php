@@ -3,6 +3,7 @@
 use Nook\Statuses\PublishStatusCommand;
 use Nook\Statuses\StatusRepository;
 use Nook\Forms\PublishStatusForm;
+use Nook\Statuses\DeleteStatusCommand;
 
 /**
  * Class StatusesController
@@ -65,6 +66,25 @@ class StatusesController extends BaseController
 
         Flash::message('Your status has been posted!');
 
+        return Redirect::back();
+    }
+
+    /**
+     * Delete a status.
+     *
+     * @param $statusIdToDelete
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($statusIdToDelete)
+    {
+        // Get input abd add status id to it
+        $input = array_add(Input::all(), 'status_id', $statusIdToDelete);
+
+        // Execute delete status command with input
+        $this->execute(DeleteStatusCommand::class, $input);
+
+        // Show flash message and refresh
+        Flash::message('Your status has been deleted!');
         return Redirect::back();
     }
 }

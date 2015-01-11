@@ -1,4 +1,5 @@
 .status-media {
+  position: relative;
   border: 1px solid #e3e3e3;
   border-bottom: none;
   background: white;
@@ -25,6 +26,34 @@
   font-size: 0.7em;
   letter-spacing: 0.15em;
   color: #ccd0d3; }
+
+.status-media-dropdown {
+  position: absolute;
+  top: 10px;
+  right: 15px; }
+
+ul.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none outside none;
+  background-color: #FFF;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176); }
+
+.status-media-dropdown ul.dropdown-menu {
+  padding: 10px 0; }
 
 .status-post {
   border: 1px solid #e3e3e3;
@@ -83,6 +112,25 @@ textarea.form-control.comment-textarea {
 
 .btn-strong {
   font-weight: 700; }
+
+.link-button {
+  width: 100%;
+  background: none;
+  border: none;
+  clear: both;
+  color: #333;
+  white-space: nowrap;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 400;
+  line-height: 1.42857;
+  cursor: pointer;
+  padding: 3px 0 3px 20px; }
+  .link-button:hover {
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    background-color: #006983; }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
@@ -147,6 +195,12 @@ textarea.form-control.comment-textarea {
   box-shadow: 0 2px 5px #006983;
   padding: 5px; }
   .navbar-default .navbar-brand {
+    /*background-image: url("../images/pages/nook-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 135px 35px;
+    width: 135px;
+    height: 35px;*/
     color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.1em;
