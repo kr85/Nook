@@ -14,8 +14,7 @@
         <meta name="description" content="A social networking website">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kosta Rashev">
-
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <!-- Styles -->
         {{ HTML::style('css/main.css') }}
     </head>
     <body>
@@ -44,15 +43,7 @@
         <!-- Footer -->
         @include('partials.footer')
 
+        <!-- JavaScript -->
         {{ HTML::script('javascript/main.js') }}
-        <script>
-            $('#flash-overlay-modal').modal();
-            $('.comments_create-form').on('keydown', function(e) {
-                if (e.keyCode == 13) {
-                    e.preventDefault();
-                    $(this).submit();
-                }
-            });
-        </script>
     </body>
 </html>

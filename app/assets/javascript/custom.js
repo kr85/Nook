@@ -1,6 +1,7 @@
 (function() {
 
-/*    $(function() {
+    $(function() {
+
         $('#flash-overlay-modal').modal();
 
         $('.comments_create-form').on('keydown', function(e) {
@@ -8,8 +9,7 @@
                 e.preventDefault();
                 $(this).submit();
             }
-            return false;
         });
-    });*/
+    });
 
-}());
+})();

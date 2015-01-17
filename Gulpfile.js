@@ -12,7 +12,8 @@ gulp.task('css', function() {
         .pipe(autoprefixer('last 10 version'))
         .pipe(gulp.dest('app/assets/css'));
     gulp.src([
-        'app/assets/css/lib/bootstrap.min.css',
+        'app/assets/css/lib/bootstrap.css',
+        'app/assets/css/lib/font-awesome.css',
         'app/assets/css/main.css'
     ])
         .pipe(concatCss('main.css'))

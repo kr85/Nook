@@ -4,8 +4,13 @@
     "gulp-autoprefixer": "^2.0.0",
     "gulp-concat": "^2.4.3",
     "gulp-concat-css": "^1.1.1",
+    "gulp-iconfont": "^1.0.0",
     "gulp-minify-css": "^0.3.12",
     "gulp-sass": "^1.2.4",
+    "gulp-svg2ttf": "^1.0.0",
+    "gulp-svgicons2svgfont": "^1.0.0",
+    "gulp-ttf2eot": "^1.0.0",
+    "gulp-ttf2woff": "^1.0.0",
     "gulp-uglify": "^1.0.2"
   }
 }
