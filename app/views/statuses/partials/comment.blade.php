@@ -11,5 +11,6 @@
         </p>
 
         {{ $comment->body }}
+
     </div>
 </article>

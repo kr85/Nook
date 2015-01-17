@@ -15,7 +15,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kosta Rashev">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         {{ HTML::style('css/main.css') }}
     </head>
@@ -45,10 +44,7 @@
         <!-- Footer -->
         @include('partials.footer')
 
-        <script src="//code.jquery.com/jquery.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        {{ HTML::script('javascript/lib/jquery.placeholder.min.js') }}
-        {{ HTML::script('javascript/lib/bootstrap-hover-dropdown.js') }}
+        {{ HTML::script('javascript/main.js') }}
         <script>
             $('#flash-overlay-modal').modal();
             $('.comments_create-form').on('keydown', function(e) {
