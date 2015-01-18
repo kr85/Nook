@@ -31,6 +31,7 @@
             <div class="container">
 
                 @include('flash::message')
+                @include('partials.errors')
 
                 @yield('content')
 

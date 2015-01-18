@@ -1,5 +1,3 @@
-@include('partials.errors')
-
 <div class="status-post">
     {{ Form::open(['route' => 'statuses_route']) }}
 

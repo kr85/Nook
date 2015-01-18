@@ -892,7 +892,8 @@ body {
   font-weight: 700; }
 
 .alert ul li {
-  list-style: none; }
+  list-style: none;
+  margin-left: -40px; }
 
 .bold {
   font-weight: 700; }
