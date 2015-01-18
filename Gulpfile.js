@@ -24,7 +24,6 @@ gulp.task('css', function() {
 gulp.task('scripts', function() {
     gulp.src([
         'app/assets/javascript/lib/jquery.js',
-        'app/assets/javascript/lib/angular.min.js',
         'app/assets/javascript/lib/bootstrap.min.js',
         'app/assets/javascript/lib/bootstrap-hover-dropdown.js',
         'app/assets/javascript/lib/jquery.placeholder.min.js',
