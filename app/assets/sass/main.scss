@@ -42,8 +42,13 @@ body {
   margin-top: 0;
 }
 
-.alert-info {
+.alert {
   text-align: center;
+  font-weight: 700;
+}
+
+.alert ul li {
+  list-style: none;
 }
 
 .bold {

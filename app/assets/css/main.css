@@ -887,8 +887,12 @@ body {
 .container h1:first-of-type {
   margin-top: 0; }
 
-.alert-info {
-  text-align: center; }
+.alert {
+  text-align: center;
+  font-weight: 700; }
+
+.alert ul li {
+  list-style: none; }
 
 .bold {
   font-weight: 700; }

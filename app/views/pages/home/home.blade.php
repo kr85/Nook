@@ -4,6 +4,8 @@
 
     <div class="row">
         <div class="col-lg-12">
+            @include('partials.errors')
+
             <h1 class="home-header"><strong>Welcome to Nook!</strong></h1>
 
             <p class="home-subheader">Follow friends, family and the world around you on Nook. Why don't you sign up?</p>

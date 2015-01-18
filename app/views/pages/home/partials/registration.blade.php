@@ -1,5 +1,3 @@
-@include('partials.errors')
-
 {{ Form::open(['route' => 'register_route', 'id' => 'registration_form', 'class' => 'registration-form']) }}
 
     <!-- Username Form Input -->
