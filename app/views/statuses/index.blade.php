@@ -6,8 +6,29 @@
 
             @include('statuses.partials.publish-status-form')
 
-            @include('statuses.partials.statuses')
+            <div class="scroller">
+                @include('statuses.partials.statuses')
+            </div>
 
         </div>
     </div>
+@stop
+
+@section('page-scripts')
+    <script type="text/javascript">
+        $(function() {
+            $('ul.pagination:visible:first').hide();
+
+            $('.scroller').jscroll({
+                loadingHtml: '',
+                debug: true,
+                autoTrigger: true,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.scroller',
+                callback: function() {
+                    $('ul.pagination:visible:first').hide();
+                }
+            });
+        });
+    </script>
 @stop

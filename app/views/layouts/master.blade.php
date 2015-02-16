@@ -46,5 +46,6 @@
 
         <!-- JavaScript -->
         {{ HTML::script('javascript/main.js') }}
+        @yield('page-scripts')
     </body>
 </html>

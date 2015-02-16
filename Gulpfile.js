@@ -27,8 +27,8 @@ gulp.task('scripts', function() {
         'app/assets/javascript/lib/bootstrap.min.js',
         'app/assets/javascript/lib/bootstrap-hover-dropdown.js',
         'app/assets/javascript/lib/jquery.placeholder.min.js',
-        'app/assets/javascript/custom.js',
-        'app/assets/javascript/angular/main.js'
+        'app/assets/javascript/lib/jquery.jscroll.min.js',
+        'app/assets/javascript/custom.js'
     ])
         .pipe(concat('main.js'))
         .pipe(uglify())
