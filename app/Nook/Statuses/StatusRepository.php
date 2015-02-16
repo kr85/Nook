@@ -9,31 +9,37 @@ use Nook\Users\User;
  */
 class StatusRepository
 {
+
     /**
      * Get all statuses for a user.
      *
      * @param User $user
+     * @param int $howMany
      * @return mixed
      */
-    public function getAllForUser(User $user)
+    public function getAllForUser(User $user, $howMany = 10)
     {
-        return $user->statuses()->with('user')->latest()->get();
+        return $user->statuses()->with('user')->latest()->simplePaginate($howMany);
     }
 
     /**
      * Get the feed for a user.
      *
      * @param User $user
-     * @return array|\Illuminate\Database\Eloquent\Collection|static[]
+     * @param int $howMany
+     * @return mixed
      */
-    public function getFeedForUser(User $user)
+    public function getFeedForUser(User $user, $howMany = 10)
     {
         // Get other users
         $userIds = $user->followedUsers()->lists('followed_id');
         // Append current user
         $userIds[] = $user->id;
 
-        return Status::with('comments')->whereIn('user_id', $userIds)->latest()->get();
+        return Status::with('comments')
+            ->whereIn('user_id', $userIds)
+            ->latest()
+            ->simplePaginate($howMany);
     }
 
     /**

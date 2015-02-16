@@ -3,3 +3,7 @@
 @empty
     <p>This user hasn't posted a status yet.</p>
 @endforelse
+
+@if(count($statuses))
+    {{ $statuses->links() }}
+@endif

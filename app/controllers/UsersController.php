@@ -1,6 +1,7 @@
 <?php
 
 use Nook\Users\UserRepository;
+use Nook\Statuses\StatusRepository;
 use Nook\Forms\EditProfileForm;
 use Nook\Users\EditProfileCommand;
 
@@ -15,6 +16,11 @@ class UsersController extends BaseController
     protected $userRepository;
 
     /**
+     * @var StatusRepository
+     */
+    protected $statusRepository;
+
+    /**
      * @var EditProfileForm
      */
     protected $editProfileForm;
@@ -23,11 +29,17 @@ class UsersController extends BaseController
      * Constructor.
      *
      * @param UserRepository $userRepository
+     * @param StatusRepository $statusRepository
      * @param EditProfileForm $editProfileForm
      */
-    public function __construct(UserRepository $userRepository, EditProfileForm $editProfileForm)
+    public function __construct(
+        UserRepository $userRepository,
+        StatusRepository $statusRepository,
+        EditProfileForm $editProfileForm
+    )
     {
         $this->userRepository = $userRepository;
+        $this->statusRepository = $statusRepository;
         $this->editProfileForm = $editProfileForm;
     }
 
@@ -53,8 +65,11 @@ class UsersController extends BaseController
     public function show($username)
     {
         $user = $this->userRepository->findByUsername($username);
+        $statuses = $this->statusRepository->getAllForUser($user);
 
-        return View::make('users.show')->withUser($user);
+        return View::make('users.show')
+            ->withUser($user)
+            ->with('statuses',  $statuses);
     }
 
     /**
