@@ -2,11 +2,10 @@
 
     @if($status->user_id == $currentUser->id)
         <li>
-            {{Form::open(['method' => 'DELETE', 'route' => ['delete_status_route', $status->id]])}}
+            {{Form::open(['class' => 'delete-status', 'id' => 'form-delete-status-' . $status->id, 'method' => 'DELETE', 'route' => ['delete_status_route', $status->id]])}}
 
-            {{ Form::hidden('statusIdToDelete', $status->id) }}
-
-                <input class="link-button" type="submit" value="Delete Status"/>
+                {{ Form::hidden('statusIdToDelete', $status->id) }}
+                {{ Form::submit('Delete Status', ['class' => 'link-button']) }}
 
             {{ Form::close() }}
         </li>

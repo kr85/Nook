@@ -85,6 +85,13 @@ class StatusesController extends BaseController
 
         // Show flash message and refresh
         Flash::message('Your status has been deleted!');
-        return Redirect::back();
+        //return Redirect::back();
+
+        $response = [
+            'success' => true,
+            'message' => 'Success'
+        ];
+
+        return Response::json($response);
     }
 }

@@ -14,6 +14,7 @@
         <meta name="description" content="A social networking website">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kosta Rashev">
+        <meta name="_token" content="{{ csrf_token() }}"/>
         <!-- Styles -->
         {{ HTML::style('css/main.css') }}
     </head>
@@ -46,6 +47,7 @@
 
         <!-- JavaScript -->
         {{ HTML::script('javascript/main.js') }}
+        {{ HTML::script('javascript/custom.js') }}
         @yield('page-scripts')
     </body>
 </html>
