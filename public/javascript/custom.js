@@ -72,6 +72,42 @@ var statusObject = {
                 console.log(response);
             }
         });
+    },
+    postComment: function(thisIdentity) {
+        "use strict";
+
+        $(document).on('keydown', thisIdentity, function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                var formId = $(this).attr('id');
+                var array = formId.split('-');
+                var statusId = array[0];
+                statusObject.postCommentAjax('#' + formId, formId, statusId);
+            }
+        });
+    },
+    postCommentAjax: function(target, id, statusId) {
+        "use strict";
+
+        var postComment = $(target).attr('action');
+        var text = $('#post-comment-textarea-' + id).val();
+        var token = $('input[name="_token"]').val();
+
+        $.ajax({
+            url: postComment,
+            type: 'POST',
+            dataType: 'json',
+            data: ({ status_id: statusId, body: text, _token: token }),
+            success: function(response) {
+                if (response.success) {
+                    $(target)[0].reset();
+                    location.reload();
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
     }
 };
 
@@ -79,4 +115,6 @@ $(function() {
     statusObject.ajaxSetup();
     statusObject.deleteStatus('.delete-status');
     statusObject.postStatus('#post-status');
+    statusObject.postComment('.comments_create-form');
+    $('#flash-overlay-modal').modal();
 });

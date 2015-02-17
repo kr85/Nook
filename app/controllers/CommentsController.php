@@ -42,7 +42,12 @@ class CommentsController extends BaseController
         // Execute a command to leave a comment
         $this->execute(LeaveCommentOnStatusCommand::class, $input);
 
-        // Go back
-        return Redirect::back();
+        // Return response
+        $response = [
+            'success' => true,
+            'message' => 'The comment has been successfully posted.'
+        ];
+
+        return Response::json($response);
 	}
 }
