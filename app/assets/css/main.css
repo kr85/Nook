@@ -74,7 +74,7 @@ ul.dropdown-menu {
     border-top: 1px solid #e9e9e9;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 0.5em 1em;
+    padding: .5em 1em;
     margin-bottom: 0;
     overflow: hidden;
     background: #fdfcfc; }
@@ -168,8 +168,7 @@ textarea.form-control.comment-textarea {
     margin-top: 6px; }
     input.btn.btn-primary.btn-strong.btn-login:hover {
       background: #007d9d;
-      border: 1px solid #00546a; }
- }
+      border: 1px solid #00546a; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
@@ -180,8 +179,7 @@ textarea.form-control.comment-textarea {
     margin-top: 6px; }
     input.btn.btn-primary.btn-strong.btn-login:hover {
       background: #007d9d;
-      border: 1px solid #00546a; }
- }
+      border: 1px solid #00546a; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -191,8 +189,7 @@ textarea.form-control.comment-textarea {
     margin-top: 0; }
     input.btn.btn-primary.btn-strong.btn-login:hover {
       background: #007d9d;
-      border: 1px solid #00546a; }
- }
+      border: 1px solid #00546a; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
@@ -202,8 +199,7 @@ textarea.form-control.comment-textarea {
     margin-top: 0; }
     input.btn.btn-primary.btn-strong.btn-login:hover {
       background: #007d9d;
-      border: 1px solid #00546a; }
- }
+      border: 1px solid #00546a; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
@@ -213,8 +209,7 @@ textarea.form-control.comment-textarea {
     margin-top: 0; }
     input.btn.btn-primary.btn-strong.btn-login:hover {
       background: #007d9d;
-      border: 1px solid #00546a; }
- }
+      border: 1px solid #00546a; } }
 
 .navbar-default {
   background-color: #00bae9;
@@ -268,10 +263,8 @@ textarea.form-control.comment-textarea {
 @media only screen and (min-width: 320px) {
   form.navbar-form {
     margin: 0; }
-
   .forgot-password-icon {
     display: none; }
-
   .forgot-password-text {
     text-align: center;
     padding-top: 10px; }
@@ -279,10 +272,8 @@ textarea.form-control.comment-textarea {
       color: white;
       font-weight: 700;
       font-size: 15px; }
-
   .links-separator {
     display: none; }
-
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: white;
     border-radius: 5px;
@@ -291,17 +282,14 @@ textarea.form-control.comment-textarea {
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
       border-radius: 5px;
       background-color: #006983;
-      color: white; }
- }
+      color: white; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
   form.navbar-form {
     margin: 0; }
-
   .forgot-password-icon {
     display: none; }
-
   .forgot-password-text {
     text-align: center;
     padding-top: 10px; }
@@ -309,10 +297,8 @@ textarea.form-control.comment-textarea {
       color: white;
       font-weight: 700;
       font-size: 15px; }
-
   .links-separator {
     display: none; }
-
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: white;
     border-radius: 5px;
@@ -321,14 +307,12 @@ textarea.form-control.comment-textarea {
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
       border-radius: 5px;
       background-color: #006983;
-      color: white; }
- }
+      color: white; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   form.navbar-form {
     margin: 8px -15px; }
-
   .forgot-password-icon {
     color: white;
     font-size: 20px;
@@ -336,42 +320,35 @@ textarea.form-control.comment-textarea {
     padding-right: 5px;
     padding-top: 3px;
     display: inline-block; }
-
   p.forgot-password-text {
     display: none; }
-
   li.forgot-password-text {
     display: block;
     padding-bottom: 9px; }
     li.forgot-password-text a {
       font-weight: 700;
       color: #337AB7; }
-
   input.form-control.login-field {
     height: 30px;
     width: 200px;
     font-size: 13px; }
-
   .links-separator {
     display: inline-block;
     padding-top: 9px;
     font-size: 20px;
     color: rgba(0, 84, 106, 0.26); }
-
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: #333333;
     background-color: white; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
       border-radius: 5px;
       background-color: #006983;
-      color: white; }
- }
+      color: white; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   form.navbar-form {
     margin: 8px -15px; }
-
   .forgot-password-icon {
     color: white;
     font-size: 20px;
@@ -379,42 +356,35 @@ textarea.form-control.comment-textarea {
     padding-right: 5px;
     padding-top: 3px;
     display: inline-block; }
-
   p.forgot-password-text {
     display: none; }
-
   li.forgot-password-text {
     display: block;
     padding-bottom: 9px; }
     li.forgot-password-text a {
       font-weight: 700;
       color: #337AB7; }
-
   input.form-control.login-field {
     height: 30px;
     width: 200px;
     font-size: 13px; }
-
   .links-separator {
     display: inline-block;
     padding-top: 9px;
     font-size: 20px;
     color: rgba(0, 84, 106, 0.26); }
-
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: #333333;
     background-color: white; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
       border-radius: 5px;
       background-color: #006983;
-      color: white; }
- }
+      color: white; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   form.navbar-form {
     margin: 8px -15px; }
-
   .forgot-password-icon {
     color: white;
     font-size: 20px;
@@ -422,28 +392,23 @@ textarea.form-control.comment-textarea {
     padding-right: 5px;
     padding-top: 3px;
     display: inline-block; }
-
   p.forgot-password-text {
     display: none; }
-
   li.forgot-password-text {
     display: block;
     padding-bottom: 9px; }
     li.forgot-password-text a {
       font-weight: 700;
       color: #337AB7; }
-
   input.form-control.login-field {
     height: 30px;
     width: 200px;
     font-size: 13px; }
-
   .links-separator {
     display: inline-block;
     padding-top: 9px;
     font-size: 20px;
     color: rgba(0, 84, 106, 0.26); }
-
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: #333333;
     background-color: white; }
@@ -451,12 +416,10 @@ textarea.form-control.comment-textarea {
       border-radius: 5px;
       background-color: #006983;
       color: white; }
-
   .navbar-profile-link a {
     background-color: #00bae9; }
     .navbar-profile-link a:hover {
       background-color: #006983; }
-
   .navbar-dropdown-link {
     background-color: #00bae9; }
     .navbar-dropdown-link:hover {
@@ -464,8 +427,7 @@ textarea.form-control.comment-textarea {
     .navbar-dropdown-link a {
       background-color: transparent; }
       .navbar-dropdown-link a:hover {
-        background-color: transparent; }
- }
+        background-color: transparent; } }
 
 footer {
   position: relative;
@@ -522,20 +484,17 @@ footer {
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   footer, .push {
-    height: 85px; }
- }
+    height: 85px; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   footer, .push {
-    height: 85px; }
- }
+    height: 85px; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   footer, .push {
-    height: 85px; }
- }
+    height: 85px; } }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
@@ -543,16 +502,13 @@ footer {
     text-align: center;
     font-size: 35px;
     padding: 0.5em 0; }
-
   .home-subheader {
     text-align: center;
     font-size: 16px;
     padding-bottom: 3em; }
-
   .register-header {
     text-align: center;
     padding-bottom: 0.7em; }
-
   .home-image {
     background-image: url("../images/pages/home-image.jpg");
     background-size: 285px auto;
@@ -564,10 +520,8 @@ footer {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px; }
-
   .registration-form {
-    margin-bottom: 50px; }
- }
+    margin-bottom: 50px; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
@@ -575,16 +529,13 @@ footer {
     text-align: center;
     font-size: 45px;
     padding: 0.5em 0; }
-
   .home-subheader {
     text-align: center;
     font-size: 18px;
     padding-bottom: 3em; }
-
   .register-header {
     text-align: center;
     padding-bottom: 0.7em; }
-
   .home-image {
     background-image: url("../images/pages/home-image.jpg");
     background-size: 435px auto;
@@ -595,8 +546,7 @@ footer {
     border-radius: 35px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px; }
- }
+    margin-bottom: 50px; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -604,16 +554,13 @@ footer {
     text-align: center;
     font-size: 60px;
     padding: 0.5em 0; }
-
   .home-subheader {
     text-align: center;
     font-size: 20px;
     padding-bottom: 3em; }
-
   .register-header {
     text-align: center;
     padding-bottom: 0.7em; }
-
   .home-image {
     background-image: url("../images/pages/home-image.jpg");
     background-size: 550px auto;
@@ -624,8 +571,7 @@ footer {
     border-radius: 35px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px; }
- }
+    margin-bottom: 50px; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
@@ -633,16 +579,13 @@ footer {
     text-align: center;
     font-size: 60px;
     padding: 0.5em 0; }
-
   .home-subheader {
     text-align: center;
     font-size: 20px;
     padding-bottom: 3em; }
-
   .register-header {
     text-align: center;
     padding-bottom: 0.7em; }
-
   .home-image {
     background-image: url("../images/pages/home-image.jpg");
     background-size: 500px auto;
@@ -651,8 +594,7 @@ footer {
     width: 500px;
     height: 355px;
     border-radius: 35px;
-    margin-bottom: 50px; }
- }
+    margin-bottom: 50px; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
@@ -660,16 +602,13 @@ footer {
     text-align: center;
     font-size: 60px;
     padding: 0.5em 0; }
-
   .home-subheader {
     text-align: center;
     font-size: 20px;
     padding-bottom: 3em; }
-
   .register-header {
     text-align: center;
     padding-bottom: 0.7em; }
-
   .home-image {
     background-image: url("../images/pages/home-image.jpg");
     background-size: 500px auto;
@@ -678,8 +617,7 @@ footer {
     width: 500px;
     height: 355px;
     border-radius: 35px;
-    margin-bottom: 50px; }
- }
+    margin-bottom: 50px; } }
 
 .user-block {
   text-align: center;
@@ -717,81 +655,61 @@ footer {
 @media only screen and (min-width: 320px) {
   .users {
     margin-bottom: 0; }
-
   .user-block {
     margin-bottom: 25px; }
-
   .edit-profile-form-wrapper {
     margin-top: 50px;
     margin-bottom: 50px; }
-
   .edit-profile-header {
-    font-size: 26px; }
- }
+    font-size: 26px; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
   .users {
     margin-bottom: 0; }
-
   .user-block {
     margin-bottom: 25px; }
-
   .edit-profile-form-wrapper {
     margin-top: 50px;
     margin-bottom: 50px; }
-
   .edit-profile-header {
-    font-size: 26px; }
- }
+    font-size: 26px; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   .users {
     margin-bottom: 3em; }
-
   .user-block {
     margin-bottom: 0; }
-
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
-
   .edit-profile-header {
-    font-size: 36px; }
- }
+    font-size: 36px; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   .users {
     margin-bottom: 3em; }
-
   .user-block {
     margin-bottom: 0; }
-
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
-
   .edit-profile-header {
-    font-size: 36px; }
- }
+    font-size: 36px; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   .users {
     margin-bottom: 3em; }
-
   .user-block {
     margin-bottom: 0; }
-
   .edit-profile-form-wrapper {
     margin-top: 100px;
     margin-bottom: 100px; }
-
   .edit-profile-header {
-    font-size: 36px; }
- }
+    font-size: 36px; } }
 
 .remind-form-wrapper {
   background-color: white;
@@ -816,10 +734,8 @@ footer {
     width: 90%;
     margin-top: 100px;
     margin-bottom: 100px; }
-
   .remind-form-header {
-    font-size: 30px; }
- }
+    font-size: 30px; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
@@ -827,10 +743,8 @@ footer {
     width: 90%;
     margin-top: 100px;
     margin-bottom: 100px; }
-
   .remind-form-header {
-    font-size: 30px; }
- }
+    font-size: 30px; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -838,10 +752,8 @@ footer {
     width: 80%;
     margin-top: 200px;
     margin-bottom: 200px; }
-
   .remind-form-header {
-    font-size: 30px; }
- }
+    font-size: 30px; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
@@ -849,10 +761,8 @@ footer {
     width: 60%;
     margin-top: 200px;
     margin-bottom: 200px; }
-
   .remind-form-header {
-    font-size: 35px; }
- }
+    font-size: 35px; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
@@ -860,10 +770,8 @@ footer {
     width: 50%;
     margin-top: 200px;
     margin-bottom: 200px; }
-
   .remind-form-header {
-    font-size: 35px; }
- }
+    font-size: 35px; } }
 
 * {
   margin: 0; }
@@ -903,64 +811,54 @@ body {
   .wrapper {
     position: relative;
     width: 100%; }
-
   .wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
- }
+    overflow-x: hidden; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
   .wrapper {
     position: relative;
     width: 100%; }
-
   .wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
- }
+    overflow-x: hidden; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   .wrapper {
     position: relative;
     width: 100%; }
-
   .wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
- }
+    overflow-x: hidden; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
   .wrapper {
     position: relative;
     width: 100%; }
-
   .wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
     margin: 0 auto -110px;
-    overflow-x: hidden; }
- }
+    overflow-x: hidden; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
   .wrapper {
     position: relative;
     width: 100%; }
-
   .wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
     margin: 0 auto -110px;
-    overflow-x: hidden; }
- }
+    overflow-x: hidden; } }
