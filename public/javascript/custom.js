@@ -29,9 +29,42 @@ var statusObject = {
         $.ajax({
             url: deleteStatus,
             type: 'POST',
-            data: { _method: 'DELETE', _token: token },
+            dataType: 'json',
+            data: ({ _method: 'DELETE', _token: token }),
             success: function(response) {
                 if (response.success) {
+                    location.reload();
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    },
+    postStatus: function(thisIdentity) {
+        "use strict";
+
+        $(document).on('click', thisIdentity, function(e) {
+            e.preventDefault();
+            statusObject.postStatusAjax('#post-status-form');
+        });
+    },
+    postStatusAjax: function(target) {
+        "use strict";
+
+        var postStatus = $(target).attr('action');
+        var text = $('#post-status-textarea').val();
+        var token = $('input[name="_token"]').val();
+        var userId = $('input[name="userId"]').val();
+
+        $.ajax({
+            url: postStatus,
+            type: 'POST',
+            dataType: 'json',
+            data: ({ userId: userId, body: text, _token: token }),
+            success: function(response) {
+                if (response.success) {
+                    $(target)[0].reset();
                     location.reload();
                 }
             },
@@ -45,4 +78,5 @@ var statusObject = {
 $(function() {
     statusObject.ajaxSetup();
     statusObject.deleteStatus('.delete-status');
+    statusObject.postStatus('#post-status');
 });

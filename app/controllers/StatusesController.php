@@ -66,7 +66,12 @@ class StatusesController extends BaseController
 
         Flash::message('Your status has been posted!');
 
-        return Redirect::back();
+        $response = [
+            'success' => true,
+            'message' => 'The status has been successfully posted.'
+        ];
+
+        return Response::json($response);
     }
 
     /**
@@ -85,11 +90,10 @@ class StatusesController extends BaseController
 
         // Show flash message and refresh
         Flash::message('Your status has been deleted!');
-        //return Redirect::back();
 
         $response = [
             'success' => true,
-            'message' => 'Success'
+            'message' => 'The status has been successfully deleted.'
         ];
 
         return Response::json($response);
