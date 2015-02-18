@@ -31,7 +31,9 @@
             <!-- Main Content Area -->
             <div class="container">
 
-                @include('flash::message')
+                <div class="alert-info-wrapper">
+                    @include('flash::message')
+                </div>
                 @include('partials.errors')
 
                 @yield('content')

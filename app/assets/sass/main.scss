@@ -69,6 +69,15 @@ body {
     height: 100%;
     overflow-x: hidden;
   }
+
+  .alert-info {
+    position: relative;
+    z-index: 9999;
+
+    button {
+      display: none;
+    }
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -84,6 +93,15 @@ body {
     height: 100%;
     overflow-x: hidden;
   }
+
+  .alert-info {
+    position: relative;
+    z-index: 9999;
+
+    button {
+      display: none;
+    }
+  }
 }
 
 /* Small Devices, Tablets */
@@ -98,6 +116,15 @@ body {
     height: auto !important;
     height: 100%;
     overflow-x: hidden;
+  }
+
+  .alert-info {
+    position: relative;
+    z-index: 9999;
+
+    button {
+      display: none;
+    }
   }
 }
 
@@ -115,6 +142,29 @@ body {
     margin: 0 auto -110px;
     overflow-x: hidden;
   }
+
+  .alert-info-wrapper {
+    position: fixed;
+    top: 0;
+    right: 35px;
+    height: 100%;
+    width: 200px;
+  }
+
+  .alert-info-wrapper .alert-info {
+    position: absolute;
+    top: 125px;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 9999;
+  }
+
+  .alert-info {
+    button {
+      display: none;
+    }
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -130,5 +180,28 @@ body {
     height: 100%;
     margin: 0 auto -110px;
     overflow-x: hidden;
+  }
+
+  .alert-info-wrapper {
+    position: fixed;
+    top: 0;
+    right: 35px;
+    height: 100%;
+    width: 300px;
+  }
+
+  .alert-info-wrapper .alert-info {
+    position: absolute;
+    top: 125px;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 9999;
+  }
+
+  .alert-info {
+    button {
+      display: none;
+    }
   }
 }

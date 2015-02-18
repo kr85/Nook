@@ -77,7 +77,8 @@ var statusObject = {
         "use strict";
 
         $(document).on('keydown', thisIdentity, function(e) {
-            if (e.keyCode == 13) {
+            var code = e.keyCode ? e.keyCode : e.which;
+            if (code == 13) {
                 e.preventDefault();
                 var formId = $(this).attr('id');
                 var array = formId.split('-');
@@ -108,6 +109,20 @@ var statusObject = {
                 console.log(response);
             }
         });
+    },
+    alertShowHide: function(thisIdentity) {
+        var element = $(thisIdentity).find('.alert-info');
+        if (element.length > 0) {
+            $(element).hide();
+            $(element).fadeIn(500, function() {
+                $(this).show();
+                setTimeout(function() {
+                    $(element).fadeOut(500, function() {
+                        $(this).hide();
+                    });
+                }, 1000);
+            });
+        }
     }
 };
 
@@ -116,5 +131,6 @@ $(function() {
     statusObject.deleteStatus('.delete-status');
     statusObject.postStatus('#post-status');
     statusObject.postComment('.comments_create-form');
+    statusObject.alertShowHide('body');
     $('#flash-overlay-modal').modal();
 });
