@@ -43,18 +43,25 @@ class UsersController extends BaseController
         $this->editProfileForm = $editProfileForm;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /users
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$users = $this->userRepository->getPaginated();
+    /**
+     * Display a listing of the resource.
+     * GET /users
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $users = $this->userRepository->getPaginated();
 
         return View::make('users.index')->withUsers($users);
-	}
+    }
+
+    public function getUsers()
+    {
+        $users = $this->userRepository->getUsers();
+
+        return $users;
+    }
 
     /**
      * Show the user's profile.

@@ -63,6 +63,11 @@ Route::get('users', [
     'uses' => 'UsersController@index'
 ]);
 
+Route::get('api/users', [
+    'as'   => 'get_users_route',
+    'uses' => 'UsersController@getUsers'
+]);
+
 Route::get('@{username}', [
     'as'   => 'profile_route',
     'uses' => 'UsersController@show'

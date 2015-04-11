@@ -20,6 +20,11 @@ class UserRepository
         return $user->save();
     }
 
+    public function getUsers()
+    {
+        return User::orderBy('username', 'asc')->get();
+    }
+
     /**
      * Get a paginated list of all users.
      *
