@@ -1,0 +1,3 @@
+<a href="{{ route('profile_route', $user->username) }}">
+    <img class="media-object img-round avatar" src="{{ $user->present()->gravatar(isset($size) ? $size : 30) }}" alt="{{ $user->username }}"/>
+</a>

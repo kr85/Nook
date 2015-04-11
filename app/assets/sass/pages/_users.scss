@@ -18,8 +18,8 @@
 }
 
 .edit-profile-form-wrapper {
-  border: 1px solid darken(#F2F2F2, 20%);
-  box-shadow: 0 0 10px darken(#F2F2F2, 20%);
+  border: 1px solid $borderColor;
+  box-shadow: 0 0 10px $borderColor;
   padding: 30px;
   background-color: white;
   border-radius: 15px;

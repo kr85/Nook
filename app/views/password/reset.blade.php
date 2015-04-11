@@ -2,11 +2,12 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-6">
-            <h1>Reset Your Password</h1>
+    <div class="container navbar-padding">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Reset Your Password</h1>
 
-            {{ Form::open(['route' => 'password_reset']) }}
+                {{ Form::open(['route' => 'password_reset']) }}
 
                 {{ Form::hidden('token', $token) }}
 
@@ -33,7 +34,9 @@
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary form-control']) }}
                 </div>
 
-            {{ Form::close() }}
+                {{ Form::close() }}
+            </div>
         </div>
     </div>
+
 @stop

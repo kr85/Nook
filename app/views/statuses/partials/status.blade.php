@@ -1,7 +1,7 @@
 <div class="status-comments-wrapper">
     <article class="media status-media">
         <div class="pull-left">
-            @include('users.partials.avatar', ['user' => $status->user])
+            @include('users.partials.avatar-circle', ['user' => $status->user])
         </div>
 
         <div class="media-body">

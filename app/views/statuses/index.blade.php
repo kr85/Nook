@@ -1,15 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="container navbar-padding">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
 
-            @include('statuses.partials.publish-status-form')
+                @include('statuses.partials.publish-status-form')
 
-            <div class="scroller">
-                @include('statuses.partials.statuses')
+                <div class="scroller">
+                    @include('statuses.partials.statuses')
+                </div>
+
             </div>
-
         </div>
     </div>
 @stop

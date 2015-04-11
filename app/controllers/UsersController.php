@@ -82,7 +82,7 @@ class UsersController extends BaseController
     {
         $user = $this->userRepository->findById($id);
 
-        return View::make('users.edit')->withUser($user);
+        return View::make('users.edit')->withUser($user, ['except' => 'password']);
     }
 
     /**

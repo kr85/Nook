@@ -126,6 +126,10 @@ var statusObject = {
     }
 };
 
+var userObject = {
+
+};
+
 $(function() {
     statusObject.ajaxSetup();
     statusObject.deleteStatus('.delete-status');

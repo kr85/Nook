@@ -36,9 +36,9 @@
                 </div>
                 @include('partials.errors')
 
-                @yield('content')
-
             </div>
+
+            @yield('content')
 
             <!-- Sticky Footer Fix -->
             <div class="push"></div>
