@@ -15,8 +15,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kosta Rashev">
         <meta name="_token" content="{{ csrf_token() }}"/>
+
         <!-- Styles -->
-        {{ HTML::style('css/main.css') }}
+        {{ HTML::style('css/all.min.css') }}
+
+        <!-- Modernizr -->
+        {{ HTML::script('js/modernizr.min.js') }}
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -48,8 +52,8 @@
         @include('partials.footer')
 
         <!-- JavaScript -->
-        {{ HTML::script('javascript/main.js') }}
-        {{ HTML::script('javascript/custom.js') }}
+        {{ HTML::script('js/all.min.js') }}
+
         @yield('page-scripts')
     </body>
 </html>
