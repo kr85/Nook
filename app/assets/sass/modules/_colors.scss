@@ -1,0 +1,32 @@
+$white: white;
+$backgroundColor: #EDEEEF;
+$borderColor: darken(#F2F2F2, 20%);
+$linkButtonTextColor: #333;
+$linkButtonHoverColor: darken(#00bae9, 20%);
+$primaryButtonColor: #00bae9;
+$primaryLoginButtonColor: darken(#00bae9, 5%);
+$primaryButtonBorderColor: darken(#00bae9, 10%);
+$primaryButtonHoverColor: darken(#00bae9, 15%);
+$primaryButtonHoverBorderColor: darken(#00bae9, 25%);
+
+@mixin linear-gradient-1($fromColor, $toColor) {
+  background: $fromColor; /* Old browsers */
+  background: -moz-linear-gradient(top, $fromColor 0%, $toColor 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$fromColor), color-stop(100%,$toColor)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $fromColor 0%,$toColor 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $fromColor 0%,$toColor 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $fromColor 0%,$toColor 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $fromColor 0%,$toColor 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$fromColor}', endColorstr='#{$toColor}',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin linear-gradient-2($fromColor, $midColor, $toColor) {
+  background: $fromColor; /* Old browsers */
+  background: -moz-linear-gradient(top, $fromColor 0%, $midColor 40%, $toColor 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$fromColor), color-stop(40%,$midColor), color-stop(100%,$toColor)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $fromColor 0%,$midColor 40%,$toColor 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $fromColor 0%,$midColor 40%,$toColor 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $fromColor 0%,$midColor 40%,$toColor 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $fromColor 0%,$midColor 40%,$toColor 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$fromColor}', endColorstr='#{$toColor}',GradientType=0 ); /* IE6-9 */
+}

@@ -47,7 +47,8 @@ class SessionsController extends BaseController
         }
 
         // Otherwise, try to sign in and show a flash message
-        Flash::message('Welcome back!');
+        $message = 'Welcome back, ' . Auth::getUser()->username . '!';
+        Flash::message($message);
 
         // Redirect to statuses
         return Redirect::intended('statuses');
@@ -64,7 +65,7 @@ class SessionsController extends BaseController
         // Logout the user
         Auth::logout();
 
-        Flash::message('You have logged out!');
+        Flash::message('Hope to see you soon!');
 
         return Redirect::home();
     }

@@ -1,11 +1,11 @@
 // Button
 .btn-primary {
-  background: #00bae9;
-  border: 1px solid darken(#00bae9, 10%);
+  background: $primaryButtonColor;
+  border: 1px solid $primaryButtonBorderColor;
 
   &:hover {
-    background: darken(#00bae9, 15%);
-    border: 1px solid darken(#00bae9, 25%);
+    background: $primaryButtonHoverColor;
+    border: 1px solid $primaryButtonHoverBorderColor;
   }
 }
 
@@ -18,7 +18,7 @@
   background: none;
   border: none;
   clear: both;
-  color: #333;
+  color: $linkButtonTextColor;
   white-space: nowrap;
   text-decoration: none;
   text-align: left;
@@ -29,23 +29,23 @@
 
   &:hover {
     border-radius: 5px;
-    color: white;
+    color: $white;
     text-decoration: none;
-    background-color: darken(#00bae9, 20%);
+    background-color: $linkButtonHoverColor;
   }
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
   input.btn.btn-primary.btn-strong.btn-login {
-    background: darken(#00bae9, 5%);
-    border: 1px solid darken(#00bae9, 15%);
+    background: $primaryLoginButtonColor;
+    border: 1px solid $primaryButtonHoverColor;
     width: 100%;
     margin-top: 6px;
 
     &:hover {
-      background: darken(#00bae9, 15%);
-      border: 1px solid darken(#00bae9, 25%);
+      background: $primaryButtonHoverColor;
+      border: 1px solid $primaryButtonHoverBorderColor;
     }
   }
 }
@@ -53,14 +53,14 @@
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
   input.btn.btn-primary.btn-strong.btn-login {
-    background: darken(#00bae9, 5%);
-    border: 1px solid darken(#00bae9, 15%);
+    background: $primaryLoginButtonColor;
+    border: 1px solid $primaryButtonHoverColor;
     width: 100%;
     margin-top: 6px;
 
     &:hover {
-      background: darken(#00bae9, 15%);
-      border: 1px solid darken(#00bae9, 25%);
+      background: $primaryButtonHoverColor;
+      border: 1px solid $primaryButtonHoverBorderColor;
     }
   }
 }
@@ -68,13 +68,13 @@
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
   input.btn.btn-primary.btn-strong.btn-login {
-    background: darken(#00bae9, 5%);
-    border: 1px solid darken(#00bae9, 15%);
+    background: $primaryLoginButtonColor;
+    border: 1px solid $primaryButtonHoverColor;
     margin-top: 0;
 
     &:hover {
-      background: darken(#00bae9, 15%);
-      border: 1px solid darken(#00bae9, 25%);
+      background: $primaryButtonHoverColor;
+      border: 1px solid $primaryButtonHoverBorderColor;
     }
   }
 }
@@ -82,13 +82,13 @@
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
   input.btn.btn-primary.btn-strong.btn-login {
-    background: darken(#00bae9, 5%);
-    border: 1px solid darken(#00bae9, 15%);
+    background: $primaryLoginButtonColor;
+    border: 1px solid $primaryButtonHoverColor;
     margin-top: 0;
 
     &:hover {
-      background: darken(#00bae9, 15%);
-      border: 1px solid darken(#00bae9, 25%);
+      background: $primaryButtonHoverColor;
+      border: 1px solid $primaryButtonHoverBorderColor;
     }
   }
 }
@@ -96,13 +96,17 @@
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
   input.btn.btn-primary.btn-strong.btn-login {
-    background: darken(#00bae9, 5%);
-    border: 1px solid darken(#00bae9, 15%);
+    background: $primaryLoginButtonColor;
+    border: 1px solid $primaryButtonHoverColor;
     margin-top: 0;
 
     &:hover {
-      background: darken(#00bae9, 15%);
-      border: 1px solid darken(#00bae9, 25%);
+      background: $primaryButtonHoverColor;
+      border: 1px solid $primaryButtonHoverBorderColor;
     }
   }
+}
+
+.disabled {
+  display: none;
 }

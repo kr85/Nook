@@ -1,3 +1,5 @@
+@import "modules/colors";
+@import "modules/profile";
 @import "modules/status";
 @import "modules/button";
 @import "modules/navbar";
@@ -33,9 +35,17 @@ html, body {
 }
 
 body {
-  padding-top: 90px;
-  background-color: darken(white, 5%);
+  padding-top: 60px;
+  background: $backgroundColor url(../../assets/images/pages/noise-2.png) repeat scroll 0 0;
   font-family: 'Roboto', sans-serif;
+}
+
+.navbar-padding {
+  padding-top: 30px;
+}
+
+.header-padding {
+  padding-top: 30px;
 }
 
 .container h1:first-of-type {
@@ -54,6 +64,43 @@ body {
 
 .bold {
   font-weight: 700;
+}
+
+.alert-info-wrapper {
+  position: fixed;
+  top: 51px;
+  right: 0;
+  width: 100%;
+  left: 0;
+  z-index: 9999;
+}
+
+.alert-info {
+  color: #31708F;
+  background-color: rgba(217, 237, 247, 0.8);
+  border-color: #BCE8F1;
+
+  button {
+    display: none;
+  }
+}
+
+.centered {
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.pb20 {
+  padding-bottom: 20px;
+}
+
+.pb30 {
+  padding-bottom: 30px;
 }
 
 /* Custom, iPhone Retina */
@@ -112,7 +159,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden;
   }
 }
@@ -128,7 +175,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden;
   }
 }

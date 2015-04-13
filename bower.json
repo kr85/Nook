@@ -1,0 +1,16 @@
+{
+  "name": "Nook",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kr85/Nook",
+  "authors": [
+    "Kosta Rashev"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

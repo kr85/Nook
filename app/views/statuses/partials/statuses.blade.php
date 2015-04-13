@@ -5,5 +5,7 @@
 @endforelse
 
 @if(count($statuses))
-    {{ $statuses->links() }}
+    <div class="centered">
+        {{ $statuses->links() }}
+    </div>
 @endif

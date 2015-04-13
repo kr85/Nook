@@ -42,6 +42,8 @@ class CommentsController extends BaseController
         // Execute a command to leave a comment
         $this->execute(LeaveCommentOnStatusCommand::class, $input);
 
+        Flash::message('Your comment has been posted!');
+
         // Return response
         $response = [
             'success' => true,

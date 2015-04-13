@@ -2,38 +2,44 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="media">
-                <div class="pull-left">
-                    @include('users.partials.avatar', ['size' => 50])
+    @include('users.partials.profile-header')
+
+    <div class="container header-padding">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="media">
+                    @include('users.partials.profile-header-avatar')
+
+                    <!--div class="pull-left">
+                        @include('users.partials.avatar-round', ['size' => 50])
+                    </div-->
+
+                    <!--div class="media-body">
+                        <h1 class="media-heading">{{ $user->username }}</h1>
+                        <ul class="list-inline text-muted">
+                            <li>{{ $user->present()->statusCount() }}</li>
+                            <li>{{ $user->present()->followerCount() }}</li>
+                        </ul>
+
+                        @foreach($user->followers as $follower)
+                            @include('users.partials.avatar-circle', ['size' => 25, 'user' => $follower])
+                        @endforeach
+                    </div-->
+
                 </div>
-
-                <div class="media-body">
-                    <h1 class="media-heading">{{ $user->username }}</h1>
-                    <ul class="list-inline text-muted">
-                        <li>{{ $user->present()->statusCount() }}</li>
-                        <li>{{ $user->present()->followerCount() }}</li>
-                    </ul>
-
-                    @foreach($user->followers as $follower)
-                        @include('users.partials.avatar', ['size' => 25, 'user' => $follower])
-                    @endforeach
-                </div>
-
             </div>
-        </div>
-        <div class="col-md-6">
-            @unless($user->is($currentUser))
-                @include('users.partials.follow-form')
-            @endunless
+            <div class="col-md-6">
+                @unless($user->is($currentUser))
+                    @include('users.partials.follow-form')
+                @endunless
 
-            @if($user->is($currentUser))
-                @include('statuses.partials.publish-status-form')
-            @endif
+                @if($user->is($currentUser))
+                    @include('statuses.partials.publish-status-form')
+                @endif
 
-            <div class="scroller">
-                @include('statuses.partials.statuses', ['statuses' => $statuses])
+                <div class="scroller">
+                    @include('statuses.partials.statuses', ['statuses' => $statuses])
+                </div>
             </div>
         </div>
     </div>
@@ -55,6 +61,10 @@
                     $('ul.pagination:visible:first').hide();
                 }
             });
+
+            if ($('.profile-header-wrapper').length) {
+                $('.navbar-default').css({'box-shadow': 'none'});
+            }
         });
     </script>
 @stop
