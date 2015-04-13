@@ -1,6 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container">
-        @if(Route::getCurrentRoute()->getPath() != '/')
+        @if(Route::getCurrentRoute()->getPath() != '/' &&
+            Route::getCurrentRoute()->getName() != 'password_reset' &&
+            Route::getCurrentRoute()->getName() != 'password_remind')
             <a href="{{ route('statuses_route') }}" class="navbar-desktop">
                 <div class="navbar-home-icon-box">
                     <div class="navbar-home-icon"></div>
@@ -14,7 +16,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @if(Route::getCurrentRoute()->getPath() == '/')
+            @if(Route::getCurrentRoute()->getPath() == '/' ||
+                Route::getCurrentRoute()->getName() == 'password_reset' ||
+                Route::getCurrentRoute()->getName() == 'password_remind')
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <div class="navbar-logo-box-left">
                         <div class="navbar-logo"></div>

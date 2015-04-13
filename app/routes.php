@@ -10,16 +10,18 @@ Route::get('/', [
  * Registration
  */
 Route::post('register', [
-   'as'   => 'register_route',
-   'uses' => 'RegistrationController@store'
+   'as'     => 'register_route',
+   'uses'   => 'RegistrationController@store',
+   'before' => 'guest'
 ]);
 
 /**
  * Sessions
  */
 Route::post('login', [
-   'as'   => 'login_route',
-   'uses' => 'SessionsController@store'
+   'as'     => 'login_route',
+   'uses'   => 'SessionsController@store',
+   'before' => 'guest'
 ]);
 
 Route::get('logout', [
@@ -31,28 +33,33 @@ Route::get('logout', [
  * Statuses
  */
 Route::get('statuses', [
-   'as'   => 'statuses_route',
-   'uses' => 'StatusesController@index'
+   'as'     => 'statuses_route',
+   'uses'   => 'StatusesController@index',
+   'before' => 'auth'
 ]);
 
 Route::post('statuses', [
-   'as'   => 'statuses_route',
-   'uses' => 'StatusesController@store'
+   'as'     => 'statuses_route',
+   'uses'   => 'StatusesController@store',
+   'before' => 'csrf'
 ]);
 
 Route::delete('statuses/{id}', [
     'as'   => 'delete_status_route',
-    'uses' => 'StatusesController@destroy'
+    'uses' => 'StatusesController@destroy',
+    'before' => 'csrf'
 ]);
 
 Route::patch('statuses/{id}', [
-    'as'   => 'update_status_route',
-    'uses' => 'StatusesController@update'
+    'as'     => 'update_status_route',
+    'uses'   => 'StatusesController@update',
+    'before' => 'csrf'
 ]);
 
 Route::post('statuses/{id}/comments', [
-    'as'   => 'comment_route',
-    'uses' => 'CommentsController@store'
+    'as'     => 'comment_route',
+    'uses'   => 'CommentsController@store',
+    'before' => 'csrf'
 ]);
 
 /**
@@ -69,21 +76,24 @@ Route::get('@{username}', [
 ]);
 
 Route::get('users/{id}/edit', [
-    'as'   => 'edit_profile_route',
-    'uses' => 'UsersController@edit'
+    'as'     => 'edit_profile_route',
+    'uses'   => 'UsersController@edit',
+    'before' => 'auth'
 ]);
 
 Route::patch('users/{id}', [
-    'as'   => 'update_profile_route',
-    'uses' => 'UsersController@update'
+    'as'     => 'update_profile_route',
+    'uses'   => 'UsersController@update',
+    'before' => 'csrf'
 ]);
 
 /**
  * Follows
  */
 Route::post('followers', [
-    'as'   => 'followers_route',
-    'uses' => 'FollowsController@store'
+    'as'     => 'followers_route',
+    'uses'   => 'FollowsController@store',
+    'before' => 'csrf'
 ]);
 
 Route::delete('follow/{id}', [
@@ -95,21 +105,25 @@ Route::delete('follow/{id}', [
  * Password Resets
  */
 Route::get('remind', [
-    'as'   => 'password_remind',
-    'uses' => 'RemindersController@getRemind'
+    'as'     => 'password_remind',
+    'uses'   => 'RemindersController@getRemind',
+    'before' => 'guest'
 ]);
 
 Route::post('remind', [
-    'as'   => 'password_remind',
-    'uses' => 'RemindersController@postRemind'
+    'as'     => 'password_remind',
+    'uses'   => 'RemindersController@postRemind',
+    'before' => 'guest'
 ]);
 
 Route::get('reset/{token}', [
-    'as'   => 'password_reset',
-    'uses' => 'RemindersController@getReset'
+    'as'     => 'password_reset',
+    'uses'   => 'RemindersController@getReset',
+    'before' => 'guest'
 ]);
 
 Route::post('reset', [
-    'as'   => 'password_reset',
-    'uses' => 'RemindersController@postReset'
+    'as'     => 'password_reset',
+    'uses'   => 'RemindersController@postReset',
+    'before' => 'csrf'
 ]);
