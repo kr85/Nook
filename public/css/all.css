@@ -10519,6 +10519,10 @@ textarea.form-control.comment-textarea:focus {
   }
 }
 
+.disabled {
+  display: none;
+}
+
 .navbar-inverse .navbar-toggle {
   border-color: rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;

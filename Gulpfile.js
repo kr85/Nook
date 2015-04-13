@@ -46,7 +46,7 @@ gulp.task('scripts', function() {
     'app/assets/js/lib/bootstrap.min.js',
     'app/assets/js/lib/bootstrap-hover-dropdown.js',
     'app/assets/js/lib/jquery.placeholder.min.js',
-    'app/assets/js/lib/jquery.jscroll.min.js',
+    'app/assets/js/lib/jquery.jscroll.js',
     'app/assets/js/custom.js'
   ])
     .pipe(jshint('.jshintrc'))

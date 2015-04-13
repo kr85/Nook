@@ -10,7 +10,6 @@
                 <div class="scroller">
                     @include('statuses.partials.statuses')
                 </div>
-
             </div>
         </div>
     </div>
@@ -19,16 +18,18 @@
 @section('page-scripts')
     <script type="text/javascript">
         $(function() {
-            $('ul.pagination:visible:first').hide();
-
+            var i = 0, link;
             $('.scroller').jscroll({
-                loadingHtml: '',
-                debug: true,
-                autoTrigger: true,
-                nextSelector: '.pagination li.active + li a',
+                loadingHtml: '<div>Loading...</div>',
+                debug: false,
+                animate: true,
+                autoTrigger: false,
+                nextSelector: '.pagination li a.active',
                 contentSelector: 'div.scroller',
                 callback: function() {
-                    $('ul.pagination:visible:first').hide();
+                    i++;
+                    link = '#pagination-' + i;
+                    $(link).hide();
                 }
             });
         });
