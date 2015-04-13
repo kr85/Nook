@@ -1239,6 +1239,11 @@ body {
   .alert-info button {
     display: none; }
 
+.centered {
+  text-align: center;
+  vertical-align: middle;
+  margin: auto; }
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
   .wrapper {

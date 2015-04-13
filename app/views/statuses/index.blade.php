@@ -20,7 +20,7 @@
         $(function() {
             var i = 0, link;
             $('.scroller').jscroll({
-                loadingHtml: '<div>Loading...</div>',
+                loadingHtml: '<div class="centered" style="margin-bottom: 25px; margin-top: -40px;"><img src="../images/pages/loading.gif" alt="Loading..." width="75" height="75"/></div>',
                 debug: false,
                 animate: true,
                 autoTrigger: false,
