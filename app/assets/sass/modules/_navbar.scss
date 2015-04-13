@@ -1,17 +1,22 @@
 // Navbar
+.navbar-inverse {
+  .navbar-toggle {
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+  }
+}
+
+.navbar-inverse .navbar-collapse {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
 .navbar-default {
-  background-color: #00bae9;
+  @include linear-gradient-1(rgb(0, 186, 233), rgb(19, 148, 233));
   border-bottom: 1px solid darken(#00bae9, 20%);
   box-shadow: 0 2px 5px darken(#00bae9, 20%);
-  padding: 5px;
 
-  .navbar-brand {
-    /*background-image: url("../images/pages/nook-logo.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 135px 35px;
-    width: 135px;
-    height: 35px;*/
+  .navbar-logo-text {
     color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -19,13 +24,81 @@
     font-weight: 700;
   }
 
+  .navbar-brand {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .navbar-logo-box-center {
+    width: 135px;
+    float: left;
+    position: absolute;
+    left: 50%;
+    margin-left: -75px !important;
+
+    .navbar-logo {
+      background-image: url(../images/pages/logo.png);
+      background-color: transparent;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 147px 55px;
+      width: 147px;
+      height: 55px;
+      margin-top: -1px;
+    }
+  }
+
+  .navbar-logo-box-left {
+    width: 135px;
+    float: left;
+
+    .navbar-logo {
+      background-image: url(../images/pages/logo.png);
+      background-color: transparent;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 147px 55px;
+      width: 147px;
+      height: 55px;
+      margin-top: -15px;
+    }
+  }
+
+  .navbar-home-icon-box {
+    float: left;
+    height: 50px;
+    padding: 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+
+    &:hover {
+      background-color: #00A6D0;
+    }
+  }
+
+  .navbar-home-icon-pressed {
+    background-color: #00A6D0;
+  }
+
+  .navbar-home-icon {
+    background-image: url(../images/pages/home-icon.png);
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 35px 30px;
+    width: 35px;
+    height: 30px;
+  }
+
   .navbar-nav > li > a {
     color: #FFFFFF;
-    border-radius: 8px;
 
     &:hover {
       background-color: darken(#00bae9, 5%);
-      border-radius: 8px;
     }
   }
 }
@@ -67,8 +140,41 @@
   margin-left: 4px;
 }
 
+.navbar-user {
+  strong {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
+  .navbar-mobile-link {
+    display: block !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    margin-bottom: 5px;
+
+    a {
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .navbar-logo-box-left {
+    margin-left: 0;
+  }
+
+  .navbar-mobile-logo {
+    display: block !important;
+    margin-left: -15px;
+  }
+
+  .navbar-desktop {
+    display: none !important;
+  }
+
   form.navbar-form {
     margin: 0;
   }
@@ -97,12 +203,10 @@
       li {
         a {
           color: white;
-          border-radius: 5px;
           background-color: darken(#00bae9, 5%);
           margin-top: 5px;
 
           &:hover {
-            border-radius: 5px;
             background-color: darken(#00bae9, 20%);
             color: white;
           }
@@ -114,6 +218,33 @@
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
+  .navbar-mobile-link {
+    display: block !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    margin-bottom: 5px;
+
+    a {
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .navbar-logo-box-left {
+    margin-left: 0;
+  }
+
+  .navbar-mobile-logo {
+    display: block !important;
+    margin-left: -15px;
+  }
+
+  .navbar-desktop {
+    display: none !important;
+  }
+
   form.navbar-form {
     margin: 0;
   }
@@ -142,12 +273,10 @@
       li {
         a {
           color: white;
-          border-radius: 5px;
           background-color: darken(#00bae9, 5%);
           margin-top: 5px;
 
           &:hover {
-            border-radius: 5px;
             background-color: darken(#00bae9, 20%);
             color: white;
           }
@@ -159,6 +288,26 @@
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
+  .navbar-inverse .navbar-collapse {
+    box-shadow: none;
+  }
+
+  .navbar-mobile-link {
+    display: none !important;
+  }
+
+  .navbar-logo-box-left {
+    margin-left: -40px;
+  }
+
+  .navbar-mobile-logo {
+    display: none !important;
+  }
+
+  .navbar-desktop {
+    display: block !important;
+  }
+
   form.navbar-form {
     margin: 8px -15px;
   }
@@ -205,13 +354,30 @@
         a {
           color: #333333;
           background-color: white;
+          text-align: center;
 
           &:hover {
-            border-radius: 5px;
             background-color: darken(#00bae9, 20%);
             color: white;
           }
         }
+      }
+    }
+  }
+
+  .navbar-dropdown-link {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+
+    &:hover {
+      background-color: #00A6D0;
+    }
+
+    a {
+      background-color: transparent;
+      &:hover {
+        background-color: transparent;
       }
     }
   }
@@ -219,6 +385,18 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
+  .navbar-mobile-link {
+    display: none !important;
+  }
+
+  .navbar-mobile-logo {
+    display: none !important;
+  }
+
+  .navbar-desktop {
+    display: block !important;
+  }
+
   form.navbar-form {
     margin: 8px -15px;
   }
@@ -267,7 +445,6 @@
           background-color: white;
 
           &:hover {
-            border-radius: 5px;
             background-color: darken(#00bae9, 20%);
             color: white;
           }
@@ -275,10 +452,39 @@
       }
     }
   }
+
+  .navbar-dropdown-link {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+
+    &:hover {
+      background-color: #00A6D0;
+    }
+
+    a {
+      background-color: transparent;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
+  .navbar-mobile-link {
+    display: none !important;
+  }
+
+  .navbar-mobile-logo {
+    display: none !important;
+  }
+
+  .navbar-desktop {
+    display: block !important;
+  }
+
   form.navbar-form {
     margin: 8px -15px;
   }
@@ -327,7 +533,6 @@
           background-color: white;
 
           &:hover {
-            border-radius: 5px;
             background-color: darken(#00bae9, 20%);
             color: white;
           }
@@ -347,10 +552,12 @@
   }
 
   .navbar-dropdown-link {
-    background-color: #00bae9;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
 
     &:hover {
-      background-color: transparent;
+      background-color: #00A6D0;
     }
 
     a {

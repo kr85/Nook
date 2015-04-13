@@ -418,35 +418,109 @@ textarea.form-control.comment-textarea {
       background: #007d9d;
       border: 1px solid #00546a; } }
 
+.navbar-inverse .navbar-toggle {
+  border-color: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+  -moz-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset; }
+
+.navbar-inverse .navbar-collapse {
+  border-color: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+  -moz-box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1) inset, -1px -1px 0 rgba(255, 255, 255, 0.1) inset; }
+
 .navbar-default {
-  background-color: #00bae9;
+  background: #00bae9;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #00bae9 0%, #1394e9 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00bae9), color-stop(100%, #1394e9));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #00bae9 0%, #1394e9 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #00bae9 0%, #1394e9 100%);
+  /* Opera 11.10+ */
+  /* IE10+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#00bae9), to(#1394e9));
+  background: linear-gradient(to bottom, #00bae9 0%, #1394e9 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bae9', endColorstr='#1394e9',GradientType=0 );
+  /* IE6-9 */
   border-bottom: 1px solid #006983;
   -webkit-box-shadow: 0 2px 5px #006983;
   -moz-box-shadow: 0 2px 5px #006983;
-  box-shadow: 0 2px 5px #006983;
-  padding: 5px; }
-  .navbar-default .navbar-brand {
-    /*background-image: url("../images/pages/nook-logo.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 135px 35px;
-    width: 135px;
-    height: 35px;*/
+  box-shadow: 0 2px 5px #006983; }
+  .navbar-default .navbar-logo-text {
     color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 28px;
     font-weight: 700; }
-  .navbar-default .navbar-nav > li > a {
+  .navbar-default .navbar-brand {
     color: #FFFFFF;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px; }
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 28px;
+    font-weight: 700; }
+  .navbar-default .navbar-logo-box-center {
+    width: 135px;
+    float: left;
+    position: absolute;
+    left: 50%;
+    margin-left: -75px !important; }
+    .navbar-default .navbar-logo-box-center .navbar-logo {
+      background-image: url(../images/pages/logo.png);
+      background-color: transparent;
+      background-position: center center;
+      background-repeat: no-repeat;
+      -moz-background-size: 147px 55px;
+      -o-background-size: 147px 55px;
+      background-size: 147px 55px;
+      width: 147px;
+      height: 55px;
+      margin-top: -1px; }
+  .navbar-default .navbar-logo-box-left {
+    width: 135px;
+    float: left; }
+    .navbar-default .navbar-logo-box-left .navbar-logo {
+      background-image: url(../images/pages/logo.png);
+      background-color: transparent;
+      background-position: center center;
+      background-repeat: no-repeat;
+      -moz-background-size: 147px 55px;
+      -o-background-size: 147px 55px;
+      background-size: 147px 55px;
+      width: 147px;
+      height: 55px;
+      margin-top: -15px; }
+  .navbar-default .navbar-home-icon-box {
+    float: left;
+    height: 50px;
+    padding: 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset; }
+    .navbar-default .navbar-home-icon-box:hover {
+      background-color: #00A6D0; }
+  .navbar-default .navbar-home-icon-pressed {
+    background-color: #00A6D0; }
+  .navbar-default .navbar-home-icon {
+    background-image: url(../images/pages/home-icon.png);
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -moz-background-size: 35px 30px;
+    -o-background-size: 35px 30px;
+    background-size: 35px 30px;
+    width: 35px;
+    height: 30px; }
+  .navbar-default .navbar-nav > li > a {
+    color: #FFFFFF; }
     .navbar-default .navbar-nav > li > a:hover {
-      background-color: #00a6d0;
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      border-radius: 8px; }
+      background-color: #00a6d0; }
 
 .navbar-inverse .navbar-nav .open a, .navbar-inverse .navbar-nav .open a:hover, .navbar-inverse .navbar-nav .open a:focus {
   background-color: transparent; }
@@ -474,8 +548,30 @@ textarea.form-control.comment-textarea {
   border-radius: 5px;
   margin-left: 4px; }
 
+.navbar-user strong {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
+  .navbar-mobile-link {
+    display: block !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    margin-bottom: 5px; }
+    .navbar-mobile-link a {
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+  .navbar-logo-box-left {
+    margin-left: 0; }
+  .navbar-mobile-logo {
+    display: block !important;
+    margin-left: -15px; }
+  .navbar-desktop {
+    display: none !important; }
   form.navbar-form {
     margin: 0; }
   .forgot-password-icon {
@@ -491,20 +587,33 @@ textarea.form-control.comment-textarea {
     display: none; }
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
     background-color: #00a6d0;
     margin-top: 5px; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
       background-color: #006983;
       color: white; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
+  .navbar-mobile-link {
+    display: block !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0px -1px 0 rgba(255, 255, 255, 0.1) inset;
+    margin-bottom: 5px; }
+    .navbar-mobile-link a {
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+  .navbar-logo-box-left {
+    margin-left: 0; }
+  .navbar-mobile-logo {
+    display: block !important;
+    margin-left: -15px; }
+  .navbar-desktop {
+    display: none !important; }
   form.navbar-form {
     margin: 0; }
   .forgot-password-icon {
@@ -520,20 +629,26 @@ textarea.form-control.comment-textarea {
     display: none; }
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
     background-color: #00a6d0;
     margin-top: 5px; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
       background-color: #006983;
       color: white; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
+  .navbar-inverse .navbar-collapse {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+  .navbar-mobile-link {
+    display: none !important; }
+  .navbar-logo-box-left {
+    margin-left: -40px; }
+  .navbar-mobile-logo {
+    display: none !important; }
+  .navbar-desktop {
+    display: block !important; }
   form.navbar-form {
     margin: 8px -15px; }
   .forgot-password-icon {
@@ -562,16 +677,32 @@ textarea.form-control.comment-textarea {
     color: rgba(0, 84, 106, 0.26); }
   li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a {
     color: #333333;
-    background-color: white; }
+    background-color: white;
+    text-align: center; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
       background-color: #006983;
-      color: white; } }
+      color: white; }
+  .navbar-dropdown-link {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset; }
+    .navbar-dropdown-link:hover {
+      background-color: #00A6D0; }
+    .navbar-dropdown-link a {
+      background-color: transparent; }
+      .navbar-dropdown-link a:hover {
+        background-color: transparent; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
+  .navbar-mobile-link {
+    display: none !important; }
+  .navbar-mobile-logo {
+    display: none !important; }
+  .navbar-desktop {
+    display: block !important; }
   form.navbar-form {
     margin: 8px -15px; }
   .forgot-password-icon {
@@ -602,14 +733,29 @@ textarea.form-control.comment-textarea {
     color: #333333;
     background-color: white; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
       background-color: #006983;
-      color: white; } }
+      color: white; }
+  .navbar-dropdown-link {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset; }
+    .navbar-dropdown-link:hover {
+      background-color: #00A6D0; }
+    .navbar-dropdown-link a {
+      background-color: transparent; }
+      .navbar-dropdown-link a:hover {
+        background-color: transparent; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
+  .navbar-mobile-link {
+    display: none !important; }
+  .navbar-mobile-logo {
+    display: none !important; }
+  .navbar-desktop {
+    display: block !important; }
   form.navbar-form {
     margin: 8px -15px; }
   .forgot-password-icon {
@@ -640,9 +786,6 @@ textarea.form-control.comment-textarea {
     color: #333333;
     background-color: white; }
     li.dropdown.navbar-dropdown-link.open ul.dropdown-menu li a:hover {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
       background-color: #006983;
       color: white; }
   .navbar-profile-link a {
@@ -650,9 +793,13 @@ textarea.form-control.comment-textarea {
     .navbar-profile-link a:hover {
       background-color: #006983; }
   .navbar-dropdown-link {
-    background-color: #00bae9; }
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1) inset, -1px 0 0 rgba(255, 255, 255, 0.1) inset; }
     .navbar-dropdown-link:hover {
-      background-color: transparent; }
+      background-color: #00A6D0; }
     .navbar-dropdown-link a {
       background-color: transparent; }
       .navbar-dropdown-link a:hover {
@@ -1048,7 +1195,7 @@ html, body {
 
 body {
   padding-top: 60px;
-  background-color: #f2f2f2;
+  background: #EDEEEF url(../../assets/images/pages/noise-2.png) repeat scroll 0 0;
   font-family: 'Roboto', sans-serif; }
 
 .navbar-padding {
@@ -1128,7 +1275,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden; }
   .alert-info-wrapper {
     position: fixed;
@@ -1159,7 +1306,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden; }
   .alert-info-wrapper {
     position: fixed;

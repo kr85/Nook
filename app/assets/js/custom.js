@@ -1,14 +1,14 @@
 var statusObject = {
-  ajaxSetup: function() {
+  ajaxSetup : function() {
     "use strict";
 
     $.ajaxSetup({
       headers: {
-        'X-CSRF-Token': $('input[name="_token"]').val()
+        'X-CSRF-Token' : $('input[name="_token"]').val()
       }
     });
   },
-  deleteStatus: function(thisIdentity) {
+  deleteStatus : function(thisIdentity) {
     "use strict";
 
     $(document).on('click', thisIdentity, function(e) {
@@ -20,28 +20,31 @@ var statusObject = {
       }
     });
   },
-  deleteStatusAjax: function(target) {
+  deleteStatusAjax : function(target) {
     "use strict";
 
     var deleteStatus = $(target).attr('action');
     var token = $('input[name="_token"]').val();
 
     $.ajax({
-      url: deleteStatus,
-      type: 'POST',
-      dataType: 'json',
-      data: ({ _method: 'DELETE', _token: token }),
-      success: function(response) {
+      url      : deleteStatus,
+      type     : 'POST',
+      dataType : 'json',
+      data : ({
+        _method : 'DELETE',
+        _token  : token
+      }),
+      success : function(response) {
         if (response.success) {
           location.reload();
         }
       },
-      error: function(response) {
+      error : function(response) {
         console.log(response);
       }
     });
   },
-  postStatus: function(thisIdentity) {
+  postStatus : function(thisIdentity) {
     "use strict";
 
     $(document).on('click', thisIdentity, function(e) {
@@ -49,68 +52,76 @@ var statusObject = {
       statusObject.postStatusAjax('#post-status-form');
     });
   },
-  postStatusAjax: function(target) {
+  postStatusAjax : function(target) {
     "use strict";
 
     var postStatus = $(target).attr('action');
-    var text = $('#post-status-textarea').val();
-    var token = $('input[name="_token"]').val();
-    var userId = $('input[name="userId"]').val();
+    var text       = $('#post-status-textarea').val();
+    var token      = $('input[name="_token"]').val();
+    var userId     = $('input[name="userId"]').val();
 
     $.ajax({
-      url: postStatus,
-      type: 'POST',
-      dataType: 'json',
-      data: ({ userId: userId, body: text, _token: token }),
-      success: function(response) {
+      url      : postStatus,
+      type     : 'POST',
+      dataType : 'json',
+      data : ({
+        userId : userId,
+        body   : text,
+        _token : token
+      }),
+      success : function(response) {
         if (response.success) {
           $(target)[0].reset();
           location.reload();
         }
       },
-      error: function(response) {
+      error : function(response) {
         console.log(response);
       }
     });
   },
-  postComment: function(thisIdentity) {
+  postComment : function(thisIdentity) {
     "use strict";
 
     $(document).on('keydown', thisIdentity, function(e) {
       var code = e.keyCode ? e.keyCode : e.which;
       if (code == 13) {
         e.preventDefault();
-        var formId = $(this).attr('id');
-        var array = formId.split('-');
+        var formId   = $(this).attr('id');
+        var array    = formId.split('-');
         var statusId = array[0];
         statusObject.postCommentAjax('#' + formId, formId, statusId);
       }
     });
   },
-  postCommentAjax: function(target, id, statusId) {
+  postCommentAjax : function(target, id, statusId) {
     "use strict";
 
     var postComment = $(target).attr('action');
-    var text = $('#post-comment-textarea-' + id).val();
-    var token = $('input[name="_token"]').val();
+    var text        = $('#post-comment-textarea-' + id).val();
+    var token       = $('input[name="_token"]').val();
 
     $.ajax({
-      url: postComment,
-      type: 'POST',
-      dataType: 'json',
-      data: ({ status_id: statusId, body: text, _token: token }),
-      success: function(response) {
+      url      : postComment,
+      type     : 'POST',
+      dataType : 'json',
+      data : ({
+        status_id : statusId,
+        body      : text,
+        _token    : token
+      }),
+      success : function(response) {
         if (response.success) {
           $(target)[0].reset();
           location.reload();
         }
       },
-      error: function(response) {
+      error : function(response) {
         console.log(response);
       }
     });
   },
-  alertShowHide: function(thisIdentity) {
+  alertShowHide : function(thisIdentity) {
     var element = $(thisIdentity).find('.alert-info');
     if (element.length > 0) {
       $(element).hide();
@@ -126,8 +137,12 @@ var statusObject = {
   }
 };
 
-var userObject = {
-
+var systemObject = {
+  addPressedToHomeIcon : function (thisIdentity) {
+    if (window.location.pathname === '/statuses') {
+      $(thisIdentity).addClass('navbar-home-icon-pressed');
+    }
+  }
 };
 
 $(function() {
@@ -137,4 +152,6 @@ $(function() {
   statusObject.postComment('.comments_create-form');
   statusObject.alertShowHide('body');
   $('#flash-overlay-modal').modal();
+
+  systemObject.addPressedToHomeIcon('.navbar-home-icon-box');
 });

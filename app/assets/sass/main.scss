@@ -36,7 +36,7 @@ html, body {
 
 body {
   padding-top: 60px;
-  background-color: $backgroundColor;
+  background: $backgroundColor url(../../assets/images/pages/noise-2.png) repeat scroll 0 0;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -149,7 +149,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden;
   }
 
@@ -188,7 +188,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -110px;
+    margin: 0 auto -109px;
     overflow-x: hidden;
   }
 

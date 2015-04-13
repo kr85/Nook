@@ -17,7 +17,7 @@ var gulp         = require('gulp'),
 // Styles task
 gulp.task('css', function() {
   gulp.src('app/assets/sass/main.scss')
-    .pipe(sass({ style : 'expanded' }))
+    .pipe(sass({ style : 'expanded' })).on('error', errorHandler)
     .pipe(autoprefixer({
       browsers : ['last 40 versions'],
       cascade  : false
@@ -28,7 +28,7 @@ gulp.task('css', function() {
     'app/assets/css/lib/font-awesome.css',
     'app/assets/css/main.css'
   ])
-    .pipe(concatCss('all.css'))
+    .pipe(concatCss('all.css')).on('error', errorHandler)
     .pipe(gulp.dest('public/css'))
     .pipe(rename({ suffix : '.min' }))
     .pipe(minifyCss({
@@ -79,7 +79,7 @@ gulp.task('images', function () {
       interlaced        : true
     })))
     .pipe(gulp.dest('public/images'))
-    .pipe(notify({ message : 'Images task complete' }));
+    .pipe(notify({ message : 'Images task complete.' }));
 });
 
 // Clean task
@@ -103,5 +103,13 @@ gulp.task('watch', function() {
 
 // Default tast
 gulp.task('default', ['clean'], function () {
-  gulp.start('css', 'scripts', 'modernizr', 'images');
+  gulp.start('css', 'scripts', 'images');
+  setTimeout(function () {
+    gulp.start('modernizr');
+  }, 6000);
 });
+
+function errorHandler (error) {
+  console.log(error.toString());
+  this.emit('end');
+}
