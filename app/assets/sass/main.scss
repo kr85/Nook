@@ -66,6 +66,25 @@ body {
   font-weight: 700;
 }
 
+.alert-info-wrapper {
+  position: fixed;
+  top: 51px;
+  right: 0;
+  width: 100%;
+  left: 0;
+  z-index: 9999;
+}
+
+.alert-info {
+  color: #31708F;
+  background-color: rgba(217, 237, 247, 0.8);
+  border-color: #BCE8F1;
+
+  button {
+    display: none;
+  }
+}
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
   .wrapper {
@@ -78,15 +97,6 @@ body {
     height: auto !important;
     height: 100%;
     overflow-x: hidden;
-  }
-
-  .alert-info {
-    position: relative;
-    z-index: 9999;
-
-    button {
-      display: none;
-    }
   }
 }
 
@@ -103,15 +113,6 @@ body {
     height: 100%;
     overflow-x: hidden;
   }
-
-  .alert-info {
-    position: relative;
-    z-index: 9999;
-
-    button {
-      display: none;
-    }
-  }
 }
 
 /* Small Devices, Tablets */
@@ -126,15 +127,6 @@ body {
     height: auto !important;
     height: 100%;
     overflow-x: hidden;
-  }
-
-  .alert-info {
-    position: relative;
-    z-index: 9999;
-
-    button {
-      display: none;
-    }
   }
 }
 
@@ -152,29 +144,6 @@ body {
     margin: 0 auto -109px;
     overflow-x: hidden;
   }
-
-  .alert-info-wrapper {
-    position: fixed;
-    top: 0;
-    right: 35px;
-    height: 100%;
-    width: 200px;
-  }
-
-  .alert-info-wrapper .alert-info {
-    position: absolute;
-    top: 125px;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    z-index: 9999;
-  }
-
-  .alert-info {
-    button {
-      display: none;
-    }
-  }
 }
 
 /* Large Devices, Wide Screens */
@@ -190,28 +159,5 @@ body {
     height: 100%;
     margin: 0 auto -109px;
     overflow-x: hidden;
-  }
-
-  .alert-info-wrapper {
-    position: fixed;
-    top: 0;
-    right: 35px;
-    height: 100%;
-    width: 300px;
-  }
-
-  .alert-info-wrapper .alert-info {
-    position: absolute;
-    top: 125px;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    z-index: 9999;
-  }
-
-  .alert-info {
-    button {
-      display: none;
-    }
   }
 }

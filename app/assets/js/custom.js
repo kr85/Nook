@@ -131,7 +131,7 @@ var statusObject = {
           $(element).fadeOut(500, function() {
             $(this).hide();
           });
-        }, 1000);
+        }, 1500);
       });
     }
   }

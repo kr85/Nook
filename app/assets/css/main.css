@@ -508,7 +508,7 @@ textarea.form-control.comment-textarea {
   .navbar-default .navbar-home-icon-pressed {
     background-color: #00A6D0; }
   .navbar-default .navbar-home-icon {
-    background-image: url(../images/pages/home-icon.png);
+    background-image: url(../images/pages/home-icon-3.png);
     background-color: transparent;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1218,6 +1218,21 @@ body {
 .bold {
   font-weight: 700; }
 
+.alert-info-wrapper {
+  position: fixed;
+  top: 51px;
+  right: 0;
+  width: 100%;
+  left: 0;
+  z-index: 9999; }
+
+.alert-info {
+  color: #31708F;
+  background-color: rgba(217, 237, 247, 0.8);
+  border-color: #BCE8F1; }
+  .alert-info button {
+    display: none; }
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
   .wrapper {
@@ -1227,12 +1242,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
-  .alert-info {
-    position: relative;
-    z-index: 9999; }
-    .alert-info button {
-      display: none; } }
+    overflow-x: hidden; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
@@ -1243,12 +1253,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
-  .alert-info {
-    position: relative;
-    z-index: 9999; }
-    .alert-info button {
-      display: none; } }
+    overflow-x: hidden; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -1259,12 +1264,7 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    overflow-x: hidden; }
-  .alert-info {
-    position: relative;
-    z-index: 9999; }
-    .alert-info button {
-      display: none; } }
+    overflow-x: hidden; } }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
@@ -1276,26 +1276,7 @@ body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -109px;
-    overflow-x: hidden; }
-  .alert-info-wrapper {
-    position: fixed;
-    top: 0;
-    right: 35px;
-    height: 100%;
-    width: 200px; }
-  .alert-info-wrapper .alert-info {
-    position: absolute;
-    top: 125px;
-    left: 0;
-    width: 100%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: 9999; }
-  .alert-info button {
-    display: none; } }
+    overflow-x: hidden; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
@@ -1307,23 +1288,4 @@ body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -109px;
-    overflow-x: hidden; }
-  .alert-info-wrapper {
-    position: fixed;
-    top: 0;
-    right: 35px;
-    height: 100%;
-    width: 300px; }
-  .alert-info-wrapper .alert-info {
-    position: absolute;
-    top: 125px;
-    left: 0;
-    width: 100%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: 9999; }
-  .alert-info button {
-    display: none; } }
+    overflow-x: hidden; } }
