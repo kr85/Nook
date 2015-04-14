@@ -35,8 +35,5 @@ class DeleteStatusCommandHandler implements CommandHandler
         $status = $this->statusRepository->findById($command->status_id);
 
         $this->statusRepository->delete($status->id);
-
-        return $status;
     }
-
 }
