@@ -4,6 +4,7 @@ use Nook\Statuses\PublishStatusCommand;
 use Nook\Statuses\StatusRepository;
 use Nook\Forms\PublishStatusForm;
 use Nook\Statuses\DeleteStatusCommand;
+use Nook\Statuses\HideStatusCommand;
 
 /**
  * Class StatusesController
@@ -26,7 +27,10 @@ class StatusesController extends BaseController
      * @param PublishStatusForm $publishStatusForm
      * @param StatusRepository $statusRepository
      */
-    public function __construct(PublishStatusForm $publishStatusForm, StatusRepository $statusRepository)
+    public function __construct(
+        PublishStatusForm $publishStatusForm,
+        StatusRepository $statusRepository
+    )
     {
         $this->publishStatusForm = $publishStatusForm;
         $this->statusRepository = $statusRepository;
@@ -82,7 +86,7 @@ class StatusesController extends BaseController
      */
     public function destroy($statusIdToDelete)
     {
-        // Get input abd add status id to it
+        // Get input and add status id to it
         $input = array_add(Input::all(), 'status_id', $statusIdToDelete);
 
         // Execute delete status command with input
@@ -94,6 +98,34 @@ class StatusesController extends BaseController
         $response = [
             'success' => true,
             'message' => 'The status has been successfully deleted.'
+        ];
+
+        return Response::json($response);
+    }
+
+    /**
+     * Hide a status.
+     *
+     * @param $statusIdToHide
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function hide($statusIdToHide)
+    {
+        // Get input and add status id to it
+        $input = [
+            'user_id' => Auth::id(),
+            'status_id' => $statusIdToHide
+        ];
+
+        // Execute delete status command with input
+        $this->execute(HideStatusCommand::class, $input);
+
+        // Show flash message and refresh
+        Flash::message('The status has been successfully hidden.');
+
+        $response = [
+            'success' => true,
+            'message' => 'The status has been successfully hidden.'
         ];
 
         return Response::json($response);

@@ -1,5 +1,5 @@
 var statusObject = {
-  ajaxSetup : function() {
+  ajaxSetup : function () {
     "use strict";
 
     $.ajaxSetup({
@@ -8,19 +8,16 @@ var statusObject = {
       }
     });
   },
-  deleteStatus : function(thisIdentity) {
+  deleteStatus : function (thisIdentity) {
     "use strict";
 
-    $(document).on('click', thisIdentity, function(e) {
+    $(document).on('click', thisIdentity, function (e) {
       e.preventDefault();
-      var answer = confirm('Are you sure?');
-      if (answer) {
-        var target = $(this).attr('id');
-        statusObject.deleteStatusAjax('#' + target);
-      }
+      var target = $(this).attr('id');
+      statusObject.deleteStatusAjax('#' + target);
     });
   },
-  deleteStatusAjax : function(target) {
+  deleteStatusAjax : function (target) {
     "use strict";
 
     var deleteStatus = $(target).attr('action');
@@ -34,25 +31,59 @@ var statusObject = {
         _method : 'DELETE',
         _token  : token
       }),
-      success : function(response) {
+      success : function (response) {
         if (response.success) {
           location.reload();
         }
       },
-      error : function(response) {
+      error : function (response) {
         console.log(response);
       }
     });
   },
-  postStatus : function(thisIdentity) {
+  hideStatus : function (thisIdentity) {
     "use strict";
 
-    $(document).on('click', thisIdentity, function(e) {
+    $(document).on('click', thisIdentity, function (e) {
+      e.preventDefault();
+      var target = $(this).attr('id');
+      statusObject.hideStatusAjax('#' + target);
+    });
+  },
+  hideStatusAjax : function (target) {
+    "use strict";
+
+    var hideStatusUrl = $(target).attr('action');
+    var id = $(target).data('id');
+    var token = $('input[name="_token"]').val();
+
+    $.ajax({
+      url      : hideStatusUrl,
+      type     : 'POST',
+      dataType : 'json',
+      data : ({
+        _method : 'POST',
+        _token  : token
+      }),
+      success : function (response) {
+        if (response.success) {
+          location.reload();
+        }
+      },
+      error : function (response) {
+        console.log(response);
+      }
+    });
+  },
+  postStatus : function (thisIdentity) {
+    "use strict";
+
+    $(document).on('click', thisIdentity, function (e) {
       e.preventDefault();
       statusObject.postStatusAjax('#post-status-form');
     });
   },
-  postStatusAjax : function(target) {
+  postStatusAjax : function (target) {
     "use strict";
 
     var postStatus = $(target).attr('action');
@@ -69,21 +100,21 @@ var statusObject = {
         body   : text,
         _token : token
       }),
-      success : function(response) {
+      success : function (response) {
         if (response.success) {
           $(target)[0].reset();
           location.reload();
         }
       },
-      error : function(response) {
+      error : function (response) {
         console.log(response);
       }
     });
   },
-  postComment : function(thisIdentity) {
+  postComment : function (thisIdentity) {
     "use strict";
 
-    $(document).on('keydown', thisIdentity, function(e) {
+    $(document).on('keydown', thisIdentity, function (e) {
       var code = e.keyCode ? e.keyCode : e.which;
       if (code == 13) {
         e.preventDefault();
@@ -94,7 +125,7 @@ var statusObject = {
       }
     });
   },
-  postCommentAjax : function(target, id, statusId) {
+  postCommentAjax : function (target, id, statusId) {
     "use strict";
 
     var postComment = $(target).attr('action');
@@ -110,25 +141,25 @@ var statusObject = {
         body      : text,
         _token    : token
       }),
-      success : function(response) {
+      success : function (response) {
         if (response.success) {
           $(target)[0].reset();
           location.reload();
         }
       },
-      error : function(response) {
+      error : function (response) {
         console.log(response);
       }
     });
   },
-  alertShowHide : function(thisIdentity) {
+  alertShowHide : function (thisIdentity) {
     var element = $(thisIdentity).find('.alert-info');
     if (element.length > 0) {
       $(element).hide();
-      $(element).fadeIn(500, function() {
+      $(element).fadeIn(500, function () {
         $(this).show();
-        setTimeout(function() {
-          $(element).fadeOut(500, function() {
+        setTimeout(function () {
+          $(element).fadeOut(500, function () {
             $(this).hide();
           });
         }, 1500);
@@ -139,15 +170,18 @@ var statusObject = {
 
 var systemObject = {
   addPressedToHomeIcon : function (thisIdentity) {
+    "use strict";
+
     if (window.location.pathname === '/statuses') {
       $(thisIdentity).addClass('navbar-home-icon-pressed');
     }
   }
 };
 
-$(function() {
+$(function () {
   statusObject.ajaxSetup();
   statusObject.deleteStatus('.delete-status');
+  statusObject.hideStatus('.hide-status');
   statusObject.postStatus('#post-status');
   statusObject.postComment('.comments_create-form');
   statusObject.alertShowHide('body');

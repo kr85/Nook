@@ -1,5 +1,6 @@
 <?php namespace Nook\Statuses;
 
+use DB;
 use Nook\Users\User;
 
 /**
@@ -9,6 +10,8 @@ use Nook\Users\User;
  */
 class StatusRepository
 {
+
+    protected $hiddenStatusesTable = 'hidden_statuses';
 
     /**
      * Get all statuses for a user.
@@ -20,6 +23,20 @@ class StatusRepository
     public function getAllForUser(User $user, $howMany = 10)
     {
         return $user->statuses()->with('user')->latest()->simplePaginate($howMany);
+    }
+
+    /**
+     * Get all hidden statuses for a user.
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function getHiddenForUser($userId)
+    {
+        return DB::table($this->hiddenStatusesTable)
+            ->select('status_id')
+            ->where('user_id', '=', $userId)
+            ->get();
     }
 
     /**
@@ -36,10 +53,33 @@ class StatusRepository
         // Append current user
         $userIds[] = $user->id;
 
+        // Get all user's hidden statuses
+        $hiddenStatuses = $this->getHiddenForUser($user->id);
+        // Get the ids of the hidden statuses
+        $hiddenStatusIds = $this->getHiddenStatusIds($hiddenStatuses);
+
         return Status::with('comments')
             ->whereIn('user_id', $userIds)
+            ->whereNotIn('id', $hiddenStatusIds)
             ->latest()
             ->simplePaginate($howMany);
+    }
+
+    /**
+     * Get hidden statuses' ids
+     *
+     * @param $hiddenStatuses
+     * @return array
+     */
+    private function getHiddenStatusIds($hiddenStatuses)
+    {
+        $hiddenStatusIds = [];
+
+        foreach ($hiddenStatuses as $hs) {
+            $hiddenStatusIds[] = $hs->status_id;
+        }
+
+        return $hiddenStatusIds;
     }
 
     /**
@@ -91,5 +131,21 @@ class StatusRepository
     public function delete($id)
     {
         return Status::destroy($id);
+    }
+
+    /**
+     * Hide a status from a user.
+     *
+     * @param $userId
+     * @param $statusId
+     * @return static
+     */
+    public function hide($userId, $statusId)
+    {
+        $status = HiddenStatuses::hide($userId, $statusId);
+
+        User::findOrFail($userId)->hiddenStatuses()->save($status);
+
+        return $status;
     }
 }

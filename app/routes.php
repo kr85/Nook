@@ -62,6 +62,12 @@ Route::post('statuses/{id}/comments', [
     'before' => 'csrf'
 ]);
 
+Route::post('statuses/{id}/hide', [
+    'as'     => 'hide_status_route',
+    'uses'   => 'StatusesController@hide',
+    'before' => 'auth'
+]);
+
 /**
  * Users
  */
