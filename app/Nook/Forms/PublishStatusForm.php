@@ -15,6 +15,7 @@ class PublishStatusForm extends FormValidator
      * @var array
      */
     protected $rules = [
-        'body' => 'required'
+        'body'  => 'min:2',
+        'image' => 'image|mimes:jpeg,jpg,bmp,png,gif|max:2000'
     ];
 }

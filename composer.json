@@ -8,12 +8,14 @@
         "laravel/framework": "4.2.*",
         "barryvdh/laravel-ide-helper": "1.11.*",
         "laracasts/commander": "~1.0",
-        "dflydev/markdown": "1.0.*",
+        "michelf/php-markdown": "1.5.*",
         "erusev/parsedown": "~0.7",
         "doctrine/dbal": "~2.3",
         "laracasts/validation": "1.1.*",
         "laracasts/flash": "~1.0",
-        "laracasts/presenter": "0.1.*"
+        "laracasts/presenter": "0.1.*",
+        "intervention/image": "~2.1",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "way/generators": "~2.0",

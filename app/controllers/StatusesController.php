@@ -5,6 +5,8 @@ use Nook\Statuses\StatusRepository;
 use Nook\Forms\PublishStatusForm;
 use Nook\Statuses\DeleteStatusCommand;
 use Nook\Statuses\HideStatusCommand;
+use Nook\Statuses\UpdateStatusCommand;
+use Nook\Helpers\Helper;
 
 /**
  * Class StatusesController
@@ -48,7 +50,13 @@ class StatusesController extends BaseController
             return Redirect::home();
         }
 
+        // Get user's timeline feed
         $statuses = $this->statusRepository->getFeedForUser(Auth::user());
+
+        if (Request::ajax())
+        {
+            return View::make('statuses.partials.statuses', compact('statuses'));
+        }
 
         return View::make('statuses.index', compact('statuses'));
     }
@@ -60,19 +68,73 @@ class StatusesController extends BaseController
      */
     public function store()
     {
-        $input = array_add(Input::all(), 'userId', Auth::id());
+        // Get input
+        $input = Input::all();
+
+        if ($input['image'])
+        {
+            // Validates the image
+            if (!Helper::getValidImage($input)['success'])
+            {
+                // Return error response
+                $response = [
+                    'success'  => Helper::getValidImage($input)['success'],
+                    'message'  => Helper::getValidImage($input)['message']
+                ];
+
+                return Response::json($response);
+            }
+        }
+
+        // Validate the input
+        $this->publishStatusForm->validate($input);
+
+        // Executes the command
+        $result = $this->execute(PublishStatusCommand::class, $input);
+
+        // Check if an error message has been set
+        if (isset($result['message']))
+        {
+            return Response::json([
+                'success' => false,
+                'message' => $result['message']
+            ]);
+        }
+
+        // Store the status to a variable
+        $status = $result['status'];
+
+        // Render status view
+        $view = View::make('statuses.partials.status', compact('status'))->render();
+
+        // Return response
+        $response = [
+            'success'  => true,
+            'timeline' => $view,
+            'message'  => 'Your status has been posted.'
+        ];
+
+        return Response::json($response);
+    }
+
+    public function update($id)
+    {
+        $input = [
+            'body'     => Input::get('body'),
+            'statusId' => $id,
+            'userId'   => Auth::id()
+        ];
 
         // Validates the input
         $this->publishStatusForm->validate($input);
 
         // Executes the command
-        $this->execute(PublishStatusCommand::class, $input);
+        $this->execute(UpdateStatusCommand::class, $input);
 
-        Flash::message('Your status has been posted!');
-
+        // Return response
         $response = [
-            'success' => true,
-            'message' => 'The status has been successfully posted.'
+            'success'  => true,
+            'message'  => 'Your status has been updated.'
         ];
 
         return Response::json($response);
@@ -81,23 +143,20 @@ class StatusesController extends BaseController
     /**
      * Delete a status.
      *
-     * @param $statusIdToDelete
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($statusIdToDelete)
+    public function destroy()
     {
-        // Get input and add status id to it
-        $input = array_add(Input::all(), 'status_id', $statusIdToDelete);
+        // Get input
+        $input = Input::all();
 
         // Execute delete status command with input
         $this->execute(DeleteStatusCommand::class, $input);
 
-        // Show flash message and refresh
-        Flash::message('Your status has been deleted!');
-
+        // Return response
         $response = [
-            'success' => true,
-            'message' => 'The status has been successfully deleted.'
+            'success'  => true,
+            'message'  => 'Your status has been deleted.'
         ];
 
         return Response::json($response);
@@ -106,26 +165,20 @@ class StatusesController extends BaseController
     /**
      * Hide a status.
      *
-     * @param $statusIdToHide
      * @return \Illuminate\Http\JsonResponse
      */
-    public function hide($statusIdToHide)
+    public function hide()
     {
-        // Get input and add status id to it
-        $input = [
-            'user_id' => Auth::id(),
-            'status_id' => $statusIdToHide
-        ];
+        // Get input
+        $input = Input::all();
 
         // Execute delete status command with input
         $this->execute(HideStatusCommand::class, $input);
 
-        // Show flash message and refresh
-        Flash::message('The status has been successfully hidden.');
-
+        // Return response
         $response = [
-            'success' => true,
-            'message' => 'The status has been successfully hidden.'
+            'success'  => true,
+            'message'  => 'The status has been successfully hidden.'
         ];
 
         return Response::json($response);

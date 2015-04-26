@@ -1,7 +1,7 @@
 <div class="status-post">
-    {{ Form::open(['route' => 'statuses_route', 'id' => 'post-status-form']) }}
+    {{ Form::open(['route' => 'statuses_route', 'id' => 'post-status-form', 'files' => true]) }}
 
-        {{ Form::hidden('userId', $signedIn->id) }}
+        {{ Form::hidden('user_id', $signedIn->id) }}
 
         <!-- Status Form Input -->
         <div class="form-group">
@@ -10,6 +10,12 @@
 
         <!-- Button Form Input -->
         <div class="form-group status-post-submit">
+            <div class="attach-image-wrapper" title="Attach an Image">
+                <label for="image">
+                    <!--i class="fa fa-picture-o"></i-->
+                </label>
+                <input type="file" name="image" id="image"/>
+            </div>
             {{ Form::submit('Post Status', ['class' => 'btn btn-default btn-xs', 'id' => 'post-status']) }}
         </div>
 

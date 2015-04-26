@@ -14,7 +14,6 @@
         <meta name="description" content="A social networking website">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kosta Rashev">
-        <meta name="_token" content="{{ csrf_token() }}"/>
 
         <!-- Styles -->
         {{ HTML::style('css/all.min.css') }}
@@ -32,8 +31,8 @@
             <!-- Navigation Bar -->
             @include('partials.navbar')
 
-            <!-- Main Content Area -->
-            <div class="container">
+            <!-- Alerts Content Area -->
+            <div class="container" id="alert-container">
 
                 <div class="alert-info-wrapper">
                     @include('flash::message')
@@ -42,7 +41,10 @@
 
             </div>
 
-            @yield('content')
+            <!-- Main Content Area -->
+            <div id="main-container">
+                @yield('content')
+            </div>
 
             <!-- Sticky Footer Fix -->
             <div class="push"></div>

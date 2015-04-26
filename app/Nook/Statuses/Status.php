@@ -19,7 +19,7 @@ class Status extends Eloquent
      *
      * @var array
      */
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'image'];
 
     /**
      * Path to the presenter for a status.
@@ -42,13 +42,14 @@ class Status extends Eloquent
      * Publish a new status.
      *
      * @param $body
+     * @param $image
      * @return static
      */
-    public static function publish($body)
+    public static function publish($body, $image)
     {
-        $status = new static(compact('body'));
+        $status = new static(compact('body', 'image'));
 
-        $status->raise(new StatusWasPublished($body));
+        $status->raise(new StatusWasPublished($status));
 
         return $status;
     }

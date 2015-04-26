@@ -1,5 +1,7 @@
 <?php namespace Nook\Statuses;
 
+use File;
+use Nook\Helpers\Helper;
 use Laracasts\Commander\CommandHandler;
 
 /**
@@ -32,8 +34,21 @@ class DeleteStatusCommandHandler implements CommandHandler
      */
     public function handle($command)
     {
+        // Find the status by id
         $status = $this->statusRepository->findById($command->status_id);
 
+        // Check if the status has a file name in the database
+        if ($status->image)
+        {
+            // Check if the image file exists
+            if (File::exists(Helper::getStatusMediaPath($status->image)))
+            {
+                // Delete the image
+                unlink(Helper::getStatusMediaPath($status->image));
+            }
+        }
+
+        // Delete the record from the database
         $this->statusRepository->delete($status->id);
     }
 }

@@ -3,6 +3,7 @@
 use Laracasts\Commander\CommanderTrait;
 use Nook\Statuses\LeaveCommentOnStatusCommand;
 use Nook\Forms\LeaveCommentForm;
+use Nook\Statuses\DeleteCommentCommand;
 
 /**
  * Class CommentsController
@@ -26,30 +27,49 @@ class CommentsController extends BaseController
         $this->leaveCommentFormForm = $leaveCommentFormForm;
     }
 
-	/**
+    /**
      * Leave a new comment.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+     *
+     * @return Response
+     */
+    public function store()
+    {
         // Fetch the input
-        $input = array_add(Input::all(), 'user_id', Auth::id());
+        $input = Input::all();
 
         // Validate the input
         $this->leaveCommentFormForm->validate($input);
 
         // Execute a command to leave a comment
-        $this->execute(LeaveCommentOnStatusCommand::class, $input);
+        $comment = $this->execute(LeaveCommentOnStatusCommand::class, $input);
 
-        Flash::message('Your comment has been posted!');
+        // Render comment view
+        $view = View::make('statuses.partials.comment', compact('comment'))->render();
 
         // Return response
         $response = [
-            'success' => true,
-            'message' => 'The comment has been successfully posted.'
+            'success'  => true,
+            'timeline' => $view,
+            'message'  => 'Your comment has been posted.'
         ];
 
         return Response::json($response);
-	}
+    }
+
+    public function destroy()
+    {
+        // Get input
+        $input = Input::all();
+
+        // Execute delete comment command with input
+        $this->execute(DeleteCommentCommand::class, $input);
+
+        // Return response
+        $response = [
+            'success'  => true,
+            'message'  => 'Your comment has been deleted.'
+        ];
+
+        return Response::json($response);
+    }
 }
