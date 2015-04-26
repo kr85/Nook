@@ -20,7 +20,7 @@ class Helper
      */
     public static function getStatusMediaPath($imageName)
     {
-        return public_path() . '/media/profiles/' . Auth::user()->username . '/statuses/' . $imageName;
+        return public_path().'/media/profiles/'.Auth::user()->username.'/statuses/'.$imageName;
     }
 
     /**
@@ -66,7 +66,7 @@ class Helper
         if ($file['image']->getSize() > 20000000)
         {
             $isValid['success'] = false;
-            $isValid['message'] = 'Your image\'s size is greater than the maximum (20 MB).';
+            $isValid['message'] = "Your image's size is greater than the maximum (20 MB).";
 
             return $isValid;
         }
@@ -83,7 +83,7 @@ class Helper
      */
     public static function statusImageExist($userFolder, $imageName)
     {
-        return File::exists(public_path() . '/media/profiles/' . $userFolder . '/statuses/' . $imageName);
+        return File::exists(public_path().'/media/profiles/'.$userFolder.'/statuses/'.$imageName);
     }
 
     /**

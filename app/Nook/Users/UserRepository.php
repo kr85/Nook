@@ -1,4 +1,4 @@
-<?php  namespace Nook\Users;
+<?php namespace Nook\Users;
 
 use Input;
 

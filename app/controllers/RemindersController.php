@@ -5,6 +5,10 @@
  */
 class RemindersController extends BaseController
 {
+
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->beforeFilter('guest');
