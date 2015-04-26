@@ -1,157 +1,426 @@
-var statusObject = {
-  ajaxSetup : function() {
-    "use strict";
+/* global jQuery:false */
 
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-Token' : $('input[name="_token"]').val()
-      }
-    });
-  },
-  deleteStatus : function(thisIdentity) {
-    "use strict";
+(function ($) {
+  "use strict";
 
-    $(document).on('click', thisIdentity, function(e) {
-      e.preventDefault();
-      var answer = confirm('Are you sure?');
-      if (answer) {
-        var target = $(this).attr('id');
-        statusObject.deleteStatusAjax('#' + target);
-      }
-    });
-  },
-  deleteStatusAjax : function(target) {
-    "use strict";
-
-    var deleteStatus = $(target).attr('action');
-    var token = $('input[name="_token"]').val();
-
-    $.ajax({
-      url      : deleteStatus,
-      type     : 'POST',
-      dataType : 'json',
-      data : ({
-        _method : 'DELETE',
-        _token  : token
-      }),
-      success : function(response) {
-        if (response.success) {
-          location.reload();
+  var statusObject = {
+    ajaxSetup : function () {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token' : $('input[name="_token"]').val()
         }
-      },
-      error : function(response) {
-        console.log(response);
+      });
+    },
+    statusFormChange : function (thisIdentity) {
+      var thisForm           = $(thisIdentity),
+          thisTextarea       = thisForm.find('#post-status-textarea'),
+          thisImageName      = thisForm.find('input[name="image"]').val(),
+          thisBodyText       = $(thisTextarea).val(),
+          submitStatusButton = $('#post-status');
+      // Initial state of the button
+      if (!systemObject.isEmpty(thisBodyText) || !systemObject.isEmpty(thisImageName)) {
+        submitStatusButton.prop('disabled', false);
+      } else {
+        submitStatusButton.prop('disabled', true);
       }
-    });
-  },
-  postStatus : function(thisIdentity) {
-    "use strict";
-
-    $(document).on('click', thisIdentity, function(e) {
-      e.preventDefault();
-      statusObject.postStatusAjax('#post-status-form');
-    });
-  },
-  postStatusAjax : function(target) {
-    "use strict";
-
-    var postStatus = $(target).attr('action');
-    var text       = $('#post-status-textarea').val();
-    var token      = $('input[name="_token"]').val();
-    var userId     = $('input[name="userId"]').val();
-
-    $.ajax({
-      url      : postStatus,
-      type     : 'POST',
-      dataType : 'json',
-      data : ({
-        userId : userId,
-        body   : text,
-        _token : token
-      }),
-      success : function(response) {
-        if (response.success) {
-          $(target)[0].reset();
-          location.reload();
+      // Change input listener on status text area
+      $(thisTextarea).on('input', function () {
+        thisBodyText  = $(this).val();
+        console.log(thisBodyText);
+        if (!systemObject.isEmpty(thisBodyText) || !systemObject.isEmpty(thisImageName)) {
+          submitStatusButton.prop('disabled', false);
+        } else {
+          submitStatusButton.prop('disabled', true);
         }
-      },
-      error : function(response) {
-        console.log(response);
-      }
-    });
-  },
-  postComment : function(thisIdentity) {
-    "use strict";
-
-    $(document).on('keydown', thisIdentity, function(e) {
-      var code = e.keyCode ? e.keyCode : e.which;
-      if (code == 13) {
+      });
+      // Change input listener on status image
+      $(thisIdentity).change(function () {
+        thisImageName = thisForm.find('input[name="image"]').val();
+        if (!systemObject.isEmpty(thisBodyText) || !systemObject.isEmpty(thisImageName)) {
+          submitStatusButton.prop('disabled', false);
+        } else {
+          submitStatusButton.prop('disabled', true);
+        }
+      });
+    },
+    statusFormSubmit : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
         e.preventDefault();
-        var formId   = $(this).attr('id');
-        var array    = formId.split('-');
-        var statusId = array[0];
-        statusObject.postCommentAjax('#' + formId, formId, statusId);
-      }
-    });
-  },
-  postCommentAjax : function(target, id, statusId) {
-    "use strict";
-
-    var postComment = $(target).attr('action');
-    var text        = $('#post-comment-textarea-' + id).val();
-    var token       = $('input[name="_token"]').val();
-
-    $.ajax({
-      url      : postComment,
-      type     : 'POST',
-      dataType : 'json',
-      data : ({
-        status_id : statusId,
-        body      : text,
-        _token    : token
-      }),
-      success : function(response) {
-        if (response.success) {
-          $(target)[0].reset();
-          location.reload();
+        var thisForm = $(this),
+            thisUrl  = thisForm.attr('action'),
+            thisFromData, imageWidth;
+        if (systemObject.supportFormData()) {
+          thisFromData = new FormData(this);
+          $.ajax({
+            url         : thisUrl,
+            type        : 'POST',
+            data        : thisFromData,
+            processData : false,
+            contentType : false,
+            success : function (response) {
+              if (response.success) {
+                thisForm[0].reset();
+                if (response.message && response.timeline) {
+                  $('#timeline').prepend(response.timeline);
+                  imageWidth = $('.status-image-box').width();
+                  $('.status-image').css({ width : imageWidth });
+                  $('#post-status').prop('disabled', true);
+                  systemObject.showAlertMessage(response.message);
+                }
+              } else {
+                if (response.message) {
+                  systemObject.showErrorMessage(response.message);
+                }
+              }
+            },
+            error : function (response) {
+              console.log(response);
+              thisForm[0].reset();
+            }
+          });
+        } else {
+          thisFromData = thisForm.serialize();
+          $.ajax({
+            url         : thisUrl,
+            type        : 'POST',
+            dataType    : 'JSON',
+            data        : thisFromData,
+            success : function (response) {
+              if (response.success) {
+                thisForm[0].reset();
+                if (response.message && response.timeline) {
+                  $('#timeline').prepend(response.timeline);
+                  imageWidth = $('.status-image-box').width();
+                  $('.status-image').css({ width : imageWidth });
+                  systemObject.showAlertMessage(response.message);
+                }
+              }
+            },
+            error : function (response) {
+              console.log(response);
+            }
+          });
         }
-      },
-      error : function(response) {
-        console.log(response);
+        return false;
+      });
+    },
+    statusFormDelete : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisForm     = '#' + $(this).attr('id'),
+            thisId       = $(thisForm).data('id'),
+            thisUrl      = $(thisForm).attr('action'),
+            thisFormData = $(thisForm).serialize();
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $('#timeline-status-' + thisId).remove();
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
+            }
+          },
+          error : function (response) {
+            console.log(response);
+          }
+        });
+        return false;
+      });
+    },
+    statusFormHide : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisForm     = '#' + $(this).attr('id'),
+            thisId       = $(thisForm).data('id'),
+            thisUrl      = $(thisForm).attr('action'),
+            thisFormData = $(thisForm).serialize();
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $('#timeline-status-' + thisId).remove();
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
+            }
+          },
+          error : function (response) {
+            console.log(response);
+          }
+        });
+        return false;
+      });
+    },
+    statusEditShowInputField : function (thisIdentity) {
+      $(document).on('click', thisIdentity, function (e) {
+        e.preventDefault();
+        var statusId      = $(this).attr('id'),
+            dataShowClass = '.click-hide-show-' + statusId,
+            thisTarget    = $(dataShowClass).data('show');
+        $(dataShowClass).hide();
+        $(thisTarget).show().focus();
+      });
+    },
+    statusFormEditSubmitFocusOut : function (thisIdentity) {
+      $(document).on('focusout', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj         = $(this),
+            thisId          = thisObj.data('id'),
+            thisShow        = thisObj.attr('id'),
+            thisForm        = '#edit-status-form-' + thisId,
+            thisUrl         = $(thisForm).attr('action'),
+            thisValue       = $.trim(thisObj.val()),
+            textElement     = $('[data-show="#' + thisShow + '"]'),
+            thisFormData    = $(thisForm).serialize();
+        if (!systemObject.isEmpty(thisValue)) {
+          $.ajax({
+            url      : thisUrl,
+            type     : 'POST',
+            dataType : 'JSON',
+            data     : thisFormData,
+            beforeSend : function () {
+              var currentValue = $.trim(textElement.text());
+              if (currentValue == thisValue) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                return false;
+              }
+            },
+            success : function (response) {
+              if (response.success && response.message) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                $('#timeline-status-text-' + thisId).addClass('status-media');
+                systemObject.showAlertMessage(response.message);
+              }
+            },
+            error : function (response) {
+              console.log(response);
+            }
+          });
+        } else {
+          systemObject.showErrorMessage('This field cannot be empty.');
+        }
+        return false;
+      });
+    },
+    statusFormEditSubmitKeyDown : function (thisIdentity) {
+      $(document).on('keydown', thisIdentity, function (e) {
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+          e.preventDefault();
+          var thisObj         = $(this),
+              thisId          = thisObj.data('id'),
+              thisShow        = thisObj.attr('id'),
+              thisForm        = '#edit-status-form-' + thisId,
+              thisUrl         = $(thisForm).attr('action'),
+              thisValue       = thisObj.val(),
+              textElement     = $('[data-show="#' + thisShow + '"]'),
+              thisFormData    = $(thisForm).serialize();
+          if (!systemObject.isEmpty(thisValue)) {
+            $.ajax({
+              url      : thisUrl,
+              type     : 'POST',
+              dataType : 'JSON',
+              data     : thisFormData,
+              beforeSend : function () {
+                var currentValue = $.trim(textElement.text());
+                if (currentValue == thisValue) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  return false;
+                }
+              },
+              success: function (response) {
+                if (response.success && response.message) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  $('#timeline-status-text-' + thisId).addClass('status-media');
+                  systemObject.showAlertMessage(response.message);
+                }
+              },
+              error: function (response) {
+                console.log(response);
+              }
+            });
+          } else {
+            systemObject.showErrorMessage('This field cannot be empty.');
+          }
+          return false;
+        }
+      });
+    },
+    commentFormSubmit : function (thisIdentity) {
+      $(document).on('keydown', thisIdentity, function (e) {
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+          e.preventDefault();
+          var formId       = $(this).attr('id'),
+              thisForm     = $('#' + formId),
+              thisFormData = thisForm.serialize(),
+              thisUrl      = thisForm.attr('action'),
+              thisText     = thisForm.find('.comment-textarea').val(),
+              statusId     = thisForm.data('id');
+          if (!systemObject.isEmpty(thisText)) {
+            $.ajax({
+              url      : thisUrl,
+              type     : 'POST',
+              dataType : 'JSON',
+              data     : thisFormData,
+              success : function (response) {
+                if (response.success) {
+                  thisForm[0].reset();
+                  if (response.message && response.timeline) {
+                    $('#status-' + statusId + '-comments').append(response.timeline);
+                    systemObject.showAlertMessage(response.message);
+                  }
+                }
+              },
+              error : function (response) {
+                console.log(response);
+              }
+            });
+          } else {
+            systemObject.showErrorMessage('This field cannot be empty.');
+          }
+          return false;
+        }
+      });
+    },
+    commentFormDelete : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj      = $(this),
+            thisForm     = $('#' + thisObj.attr('id')),
+            thisFormData = thisForm.serialize(),
+            thisUrl      = thisObj.attr('action'),
+            thisId       = thisObj.data('id');
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $('#comment-' + thisId).remove();
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
+            }
+          },
+          error : function (response) {
+            console.log(response);
+          }
+        });
+        return false;
+      });
+    },
+    statusImageResize : function (thisIdentity) {
+      var width = $(thisIdentity).width();
+      $('.status-image').css({ width : width });
+      $(window).resize(function () {
+        width = $(thisIdentity).width();
+        $('.status-image').css({ width : width });
+      });
+    }
+  };
+
+  var systemObject = {
+    addPressedToHomeIcon : function (thisIdentity) {
+      if (window.location.pathname === '/statuses') {
+        $(thisIdentity).addClass('navbar-home-icon-pressed');
       }
-    });
-  },
-  alertShowHide : function(thisIdentity) {
-    var element = $(thisIdentity).find('.alert-info');
-    if (element.length > 0) {
-      $(element).hide();
-      $(element).fadeIn(500, function() {
-        $(this).show();
-        setTimeout(function() {
-          $(element).fadeOut(500, function() {
+    },
+    alertShowHide : function (thisIdentity) {
+      var element = $(thisIdentity).find('.alert-info-wrapper');
+      $(element).animate({ top : '51px' }, function () {
+        setTimeout(function () {
+          $(element).animate({ top : '0px' }, function () {
             $(this).hide();
           });
         }, 1500);
       });
+    },
+    showAlertMessage : function (thisMessage) {
+      if (thisMessage !== '' && typeof thisMessage !== 'undefined') {
+        var messageElement = '.alert-info-wrapper';
+        if ($(messageElement).length > 0) {
+          $(messageElement).remove();
+        }
+        $('#alert-container').prepend($(systemObject.alertMessageTemplate(thisMessage)));
+        $(messageElement).animate({ top : '51px' });
+        setTimeout(function () {
+          $(messageElement).animate({ top : '0px' }, function () {
+            $(this).hide();
+          });
+        }, 1500);
+      }
+    },
+    showErrorMessage : function (thisMessage) {
+      if (thisMessage !== '' && typeof thisMessage !== 'undefined') {
+        var messageElement = '.alert-info-wrapper';
+        if ($(messageElement).length > 0) {
+          $(messageElement).remove();
+        }
+        $('#alert-container').prepend($(systemObject.errorMessageTemplate(thisMessage)));
+        $(messageElement).animate({ top : '51px' });
+      }
+    },
+    alertMessageTemplate : function (thisMessage) {
+      var template     = '<div class="container">';
+          template    += '<div class="alert-info-wrapper">';
+          template    += '<div class="alert alert-info">';
+          template    += thisMessage;
+          template    += '</div>';
+          template    += '</div>';
+          template    += '</div>';
+      return template;
+    },
+    errorMessageTemplate : function (thisMessage) {
+      var template     = '<div class="container">';
+          template    += '<div class="alert-info-wrapper">';
+          template    += '<div class="alert alert-danger-flash">';
+          template    += thisMessage;
+          template    += '</div>';
+          template    += '</div>';
+          template    += '</div>';
+      return template;
+    },
+    isEmpty : function (thisValue) {
+      return (!(thisValue !== '' && typeof  thisValue !== 'undefined'));
+    },
+    forceTopOfPageOnRefresh : function () {
+      $(document).scrollTop(0);
+    },
+    supportFormData : function () {
+      return !! window.FormData;
     }
-  }
-};
+  };
 
-var systemObject = {
-  addPressedToHomeIcon : function (thisIdentity) {
-    if (window.location.pathname === '/statuses') {
-      $(thisIdentity).addClass('navbar-home-icon-pressed');
-    }
-  }
-};
+  $(function () {
+    statusObject.ajaxSetup();
+    statusObject.statusFormChange('#post-status-form');
+    statusObject.statusFormSubmit('#post-status-form');
+    statusObject.statusEditShowInputField('.edit-status');
+    statusObject.statusFormEditSubmitFocusOut('.blur-update-hide-show');
+    statusObject.statusFormEditSubmitKeyDown('.blur-update-hide-show');
+    statusObject.statusFormDelete('.delete-status');
+    statusObject.statusFormHide('.hide-status');
+    statusObject.statusImageResize('.status-image-box');
+    statusObject.commentFormSubmit('.comments_create-form');
+    statusObject.commentFormDelete('.delete-comment-form');
 
-$(function() {
-  statusObject.ajaxSetup();
-  statusObject.deleteStatus('.delete-status');
-  statusObject.postStatus('#post-status');
-  statusObject.postComment('.comments_create-form');
-  statusObject.alertShowHide('body');
-  $('#flash-overlay-modal').modal();
+    systemObject.addPressedToHomeIcon('.navbar-home-icon-box');
+    systemObject.alertShowHide('body');
+    systemObject.forceTopOfPageOnRefresh();
 
-  systemObject.addPressedToHomeIcon('.navbar-home-icon-box');
-});
+    $('#flash-overlay-modal').modal();
+  });
+}(jQuery));

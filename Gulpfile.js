@@ -24,6 +24,7 @@ gulp.task('css', function() {
     }))
     .pipe(gulp.dest('app/assets/css'));
   return gulp.src([
+    'app/assets/css/lib/jquery-ui.css',
     'app/assets/css/lib/bootstrap.css',
     'app/assets/css/lib/font-awesome.css',
     'app/assets/css/main.css'
@@ -43,10 +44,13 @@ gulp.task('css', function() {
 gulp.task('scripts', function() {
   return gulp.src([
     'app/assets/js/lib/jquery.js',
+    'app/assets/js/lib/jquery-ui.js',
     'app/assets/js/lib/bootstrap.min.js',
     'app/assets/js/lib/bootstrap-hover-dropdown.js',
     'app/assets/js/lib/jquery.placeholder.min.js',
-    'app/assets/js/lib/jquery.jscroll.js',
+    'app/assets/js/placeholder.js',
+    'app/assets/js/lib/jquery.infinitescroll.js',
+    'app/assets/js/infinitescroll.js',
     'app/assets/js/custom.js'
   ])
     .pipe(jshint('.jshintrc'))

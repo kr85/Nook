@@ -22,6 +22,7 @@ class StatusesTableSeeder extends Seeder
 			Status::create([
                 'user_id' => $faker->randomElement($userIds),
                 'body' => $faker->sentence(),
+                'image' => $faker->imageUrl($width = 536, $height = 450),
                 'created_at' => $faker->dateTimeThisYear()
 			]);
 		}

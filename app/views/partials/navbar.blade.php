@@ -44,10 +44,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="250" data-close-others="false">
                             <div class="navbar-user">
                                 <img class="navbar-gravatar" src="{{ $currentUser->present()->gravatar() }}" alt="{{ $currentUser->username }}"/>
-                                <strong>{{ $currentUser->username }}</strong>
+                                <strong>{{ Str::limit($currentUser->username, 15) }}</strong>
                             </div>
                         </a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu navbar-dropdown" role="menu">
                             <li>{{ link_to_route('profile_route', 'View Profile', $currentUser->username) }}</li>
                             <li>{{ link_to_route('edit_profile_route', 'Edit Profile', $currentUser->id) }}</li>
                             <li class="divider"></li>

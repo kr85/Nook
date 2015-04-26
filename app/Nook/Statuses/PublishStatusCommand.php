@@ -13,19 +13,26 @@ class PublishStatusCommand
     public $body;
 
     /**
-     * @var $userId
+     * @var $user_id
      */
-    public $userId;
+    public $user_id;
+
+    /**
+     * @var $image
+     */
+    public $image;
 
     /**
      * Constructor.
      *
      * @param $body
-     * @param $userId
+     * @param $user_id
+     * @param $image
      */
-    function __construct($body, $userId)
+    function __construct($body, $user_id, $image)
     {
         $this->body = $body;
-        $this->userId = $userId;
+        $this->user_id = $user_id;
+        $this->image = $image;
     }
 }

@@ -1,0 +1,39 @@
+<?php namespace Nook\Statuses;
+
+use Laracasts\Commander\CommandHandler;
+
+/**
+ * Class DeleteStatusCommandHandler
+ *
+ * @package Nook\Statuses
+ */
+class HideStatusCommandHandler implements CommandHandler
+{
+    /**
+     * @var StatusRepository
+     */
+    protected $statusRepository;
+
+    /**
+     * Constructor.
+     *
+     * @param StatusRepository $statusRepository
+     */
+    public function __construct(StatusRepository $statusRepository)
+    {
+        $this->statusRepository = $statusRepository;
+    }
+
+    /**
+     * Handle the command.
+     *
+     * @param object $command
+     * @return void
+     */
+    public function handle($command)
+    {
+        $status = $this->statusRepository->findById($command->status_id);
+
+        $this->statusRepository->hide($command->user_id, $status->id);
+    }
+}

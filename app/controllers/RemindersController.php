@@ -27,7 +27,9 @@ class RemindersController extends BaseController
 	 */
 	public function postRemind()
 	{
-		switch ($response = Password::remind(Input::only('email')))
+		switch ($response = Password::remind(Input::only('email'), function($message) {
+            $message->subject('Password Reset');
+        }))
 		{
 			case Password::INVALID_USER:
                 Flash::error(Lang::get($response));

@@ -46,7 +46,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      *
      * @var array
      */
-    protected $hidden = array('password', 'remember_token');
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * Hash the user password.
@@ -110,5 +110,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function comments()
     {
         return $this->hasMany('Nook\Statuses\Comment');
+    }
+
+    /**
+     * User has many hidden statuses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hiddenStatuses()
+    {
+        return $this->hasMany('Nook\Statuses\HiddenStatuses');
     }
 }

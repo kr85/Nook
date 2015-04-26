@@ -21,14 +21,13 @@
   color: $linkButtonTextColor;
   white-space: nowrap;
   text-decoration: none;
-  text-align: left;
+  text-align: center;
   font-weight: 400;
   line-height: 1.42857;
   cursor: pointer;
-  padding: 3px 0 3px 20px;
+  padding: 3px 3px 3px 3px;
 
   &:hover {
-    border-radius: 5px;
     color: $white;
     text-decoration: none;
     background-color: $linkButtonHoverColor;
