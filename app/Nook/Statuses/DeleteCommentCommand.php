@@ -8,11 +8,13 @@
 class DeleteCommentCommand
 {
     /**
-     * @var string
+     * @var $comment_id
      */
     public $comment_id;
 
     /**
+     * Constructor.
+     *
      * @param string $comment_id
      */
     public function __construct($comment_id)

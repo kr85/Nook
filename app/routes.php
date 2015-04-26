@@ -41,37 +41,43 @@ Route::get('statuses', [
 Route::post('statuses', [
    'as'     => 'statuses_route',
    'uses'   => 'StatusesController@store',
-   'before' => 'csrf'
+   'before' => 'auth|csrf'
 ]);
 
 Route::delete('statuses/{id}', [
     'as'   => 'delete_status_route',
     'uses' => 'StatusesController@destroy',
-    'before' => 'csrf'
+    'before' => 'auth|csrf'
 ]);
 
 Route::patch('statuses/{id}', [
     'as'     => 'update_status_route',
     'uses'   => 'StatusesController@update',
-    'before' => 'csrf'
-]);
-
-Route::post('statuses/{id}/comments', [
-    'as'     => 'comment_route',
-    'uses'   => 'CommentsController@store',
-    'before' => 'csrf'
-]);
-
-Route::delete('comments/{id}', [
-    'as'     => 'delete_comment_route',
-    'uses'   => 'CommentsController@destroy',
-    'before' => 'csrf'
+    'before' => 'auth|csrf'
 ]);
 
 Route::post('statuses/{id}/hide', [
     'as'     => 'hide_status_route',
     'uses'   => 'StatusesController@hide',
     'before' => 'auth'
+]);
+
+Route::post('statuses/{id}/like', [
+    'as'     => 'like_status_route',
+    'uses'   => 'StatusesController@like',
+    'before' => 'auth|csrf'
+]);
+
+Route::post('statuses/{id}/comments', [
+    'as'     => 'comment_route',
+    'uses'   => 'CommentsController@store',
+    'before' => 'auth|csrf'
+]);
+
+Route::delete('comments/{id}', [
+    'as'     => 'delete_comment_route',
+    'uses'   => 'CommentsController@destroy',
+    'before' => 'auth|csrf'
 ]);
 
 /**

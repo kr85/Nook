@@ -9,8 +9,17 @@ use Laracasts\Commander\CommandHandler;
  */
 class LeaveCommentOnStatusCommandHandler implements CommandHandler
 {
+
+    /**
+     * @var StatusRepository $statusRepository
+     */
     protected $statusRepository;
 
+    /**
+     * Constructor.
+     *
+     * @param StatusRepository $statusRepository
+     */
     public function __construct(StatusRepository $statusRepository)
     {
         $this->statusRepository = $statusRepository;
@@ -19,8 +28,8 @@ class LeaveCommentOnStatusCommandHandler implements CommandHandler
     /**
      * Handle the command.
      *
-     * @param object $command
-     * @return void
+     * @param $command
+     * @return static
      */
     public function handle($command)
     {

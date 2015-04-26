@@ -11564,21 +11564,25 @@ textarea.form-control.comment-textarea:focus {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.status-like-button {
+.status-like-button-wrapper {
   position: relative;
   float: left;
   display: inline;
-  height: 100%;
-  width: 48px;
-  -moz-user-select: none;
-  background: transparent url("../../images/pages/feed-assets.png") no-repeat scroll 8px 6px;
   border-right: 1px solid #DDD;
   -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
   -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
 }
 
-.status-liked {
+.status-like-button-wrapper .status-like-button {
+  height: 40px;
+  width: 48px;
+  -moz-user-select: none;
+  background: transparent url("../../images/pages/feed-assets.png") no-repeat scroll 8px 6px;
+  border: none;
+}
+
+.status-like-button-wrapper .status-liked {
   background: transparent url("../../images/pages/feed-assets.png") no-repeat scroll 8px -44px;
 }
 

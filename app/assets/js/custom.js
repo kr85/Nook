@@ -163,7 +163,9 @@
         e.preventDefault();
         var statusId      = $(this).attr('id'),
             dataShowClass = '.click-hide-show-' + statusId,
-            thisTarget    = $(dataShowClass).data('show');
+            thisTarget    = $(dataShowClass).data('show'),
+            thisArticle   = '#timeline-status-text-' + statusId;
+        $(thisArticle).removeClass('status-media-mobile');
         $(dataShowClass).hide();
         $(thisTarget).show().focus();
       });
@@ -255,6 +257,33 @@
           }
           return false;
         }
+      });
+    },
+    statusFormLike : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj      = $(this),
+            thisForm     = $('#' + thisObj.attr('id')),
+            thisUrl      = thisObj.attr('action'),
+            thisFormData = thisForm.serialize(),
+            thisId       = thisObj.data('id'),
+            thisLikeIcon = '#status-like-button-' + thisId;
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $(thisLikeIcon).toggleClass('status-liked');
+              systemObject.showAlertMessage(response.message);
+            }
+          },
+          error : function (response) {
+            console.log(response);
+          }
+        });
+        return false;
       });
     },
     commentFormSubmit : function (thisIdentity) {
@@ -413,6 +442,7 @@
     statusObject.statusFormEditSubmitKeyDown('.blur-update-hide-show');
     statusObject.statusFormDelete('.delete-status');
     statusObject.statusFormHide('.hide-status');
+    statusObject.statusFormLike('.like-status-form');
     statusObject.statusImageResize('.status-image-box');
     statusObject.commentFormSubmit('.comments_create-form');
     statusObject.commentFormDelete('.delete-comment-form');

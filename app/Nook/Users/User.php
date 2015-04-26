@@ -121,4 +121,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     {
         return $this->hasMany('Nook\Statuses\HiddenStatuses');
     }
+
+    /**
+     * User has many likes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany('Nook\Statuses\Like');
+    }
 }

@@ -1,11 +1,11 @@
 <?php namespace Nook\Statuses;
 
 /**
- * Class HideStatusCommand
+ * Class LikeStatusCommand
  *
  * @package Nook\Statuses
  */
-class HideStatusCommand
+class LikeStatusCommand
 {
     /**
      * @var $status_id
@@ -20,12 +20,12 @@ class HideStatusCommand
     /**
      * Constructor.
      *
-     * @param $user_id
      * @param $status_id
+     * @param $user_id
      */
-    public function __construct($user_id, $status_id)
+    public function __construct($status_id, $user_id)
     {
-        $this->user_id = $user_id;
         $this->status_id = $status_id;
+        $this->user_id = $user_id;
     }
 }

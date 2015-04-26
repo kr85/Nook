@@ -56,6 +56,11 @@ class CommentsController extends BaseController
         return Response::json($response);
     }
 
+    /**
+     * Delete a comment.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy()
     {
         // Get input
