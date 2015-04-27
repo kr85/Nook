@@ -15,8 +15,10 @@ class CreateStatusUserLikesTable extends Migration {
 		Schema::create('status_user_likes', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->integer('user_id')->index();
-            $table->integer('status_id')->index();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
