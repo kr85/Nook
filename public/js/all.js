@@ -27950,7 +27950,6 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       // Change input listener on status text area
       $(thisTextarea).on('input', function () {
         thisBodyText  = $(this).val();
-        console.log(thisBodyText);
         if (!systemObject.isEmpty(thisBodyText) || !systemObject.isEmpty(thisImageName)) {
           submitStatusButton.prop('disabled', false);
         } else {
@@ -27970,8 +27969,9 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     statusFormSubmit : function (thisIdentity) {
       $(document).on('submit', thisIdentity, function (e) {
         e.preventDefault();
-        var thisForm = $(this),
-            thisUrl  = thisForm.attr('action'),
+        var thisForm     = $(this),
+            thisUrl      = thisForm.attr('action'),
+            thisTimeline = $('#timeline'),
             thisFromData, imageWidth;
         if (systemObject.supportFormData()) {
           thisFromData = new FormData(this);
@@ -27985,7 +27985,10 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               if (response.success) {
                 thisForm[0].reset();
                 if (response.message && response.timeline) {
-                  $('#timeline').prepend(response.timeline);
+                  if (thisTimeline.find('.no-status-fix').length > 0) {
+                    thisTimeline.find('.no-status-fix p').html("");
+                  }
+                  thisTimeline.prepend(response.timeline);
                   imageWidth = $('.status-image-box').width();
                   $('.status-image').css({ width : imageWidth });
                   $('#post-status').prop('disabled', true);
