@@ -149,6 +149,18 @@ class StatusRepository
     }
 
     /**
+     * Update a comment.
+     *
+     * @param $commentId
+     * @param $data
+     * @return bool|int
+     */
+    public function updateComment($commentId, $data)
+    {
+        return Comment::findOrFail($commentId)->update($data);
+    }
+
+    /**
      * Like a status.
      *
      * @param $userId

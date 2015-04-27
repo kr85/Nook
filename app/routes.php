@@ -76,6 +76,12 @@ Route::post('statuses/{id}/comments', [
     'before' => 'auth|csrf'
 ]);
 
+Route::patch('statuses/{sId}/comments/{cId}', [
+    'as'     => 'update_comment_route',
+    'uses'   => 'CommentsController@update',
+    'before' => 'auth|csrf'
+]);
+
 Route::delete('comments/{id}', [
     'as'     => 'delete_comment_route',
     'uses'   => 'CommentsController@destroy',

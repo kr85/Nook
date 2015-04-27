@@ -11269,6 +11269,10 @@ ul.dropdown-menu {
   min-width: 65px !important;
 }
 
+.comment-dropdown-user {
+  min-width: 65px !important;
+}
+
 .status-media-dropdown ul.dropdown-menu {
   padding: 10px 0;
 }

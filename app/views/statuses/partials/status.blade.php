@@ -51,13 +51,13 @@
                                     </span>
                                     @if($currentUser->id == $status->user->id)
                                     <input
-                                            type="text"
-                                            id="edit-status-input-{{ $status->id }}"
-                                            name="body"
-                                            class="blur-update-hide-show"
-                                            data-id="{{ $status->id }}"
-                                            value="{{ $status->body }}"
-                                            style="display: none;"
+                                        type="text"
+                                        id="edit-status-input-{{ $status->id }}"
+                                        name="body"
+                                        class="blur-update-hide-show"
+                                        data-id="{{ $status->id }}"
+                                        value="{{ $status->body }}"
+                                        style="display: none;"
                                     />
                                     @endif
                                 {{ Form::close() }}
@@ -74,7 +74,7 @@
                     <div class="comments" id="status-{{ $status->id }}-comments">
                         @unless($status->comments->isEmpty())
                             @foreach($status->comments as $comment)
-                                @include('statuses.partials.comment')
+                                @include('statuses.partials.comment', ['status' => $status])
                             @endforeach
                         @endunless
                     </div>

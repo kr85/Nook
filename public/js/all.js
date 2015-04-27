@@ -27997,9 +27997,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 }
               }
             },
-            error : function (response) {
-              console.log(response);
-              thisForm[0].reset();
+            error : function () {
+              window.location.reload();
             }
           });
         } else {
@@ -28020,8 +28019,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 }
               }
             },
-            error : function (response) {
-              console.log(response);
+            error : function () {
+              window.location.reload();
             }
           });
         }
@@ -28048,8 +28047,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               }
             }
           },
-          error : function (response) {
-            console.log(response);
+          error : function () {
+            window.location.reload();
           }
         });
         return false;
@@ -28075,8 +28074,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               }
             }
           },
-          error : function (response) {
-            console.log(response);
+          error : function () {
+            window.location.reload();
           }
         });
         return false;
@@ -28127,8 +28126,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 systemObject.showAlertMessage(response.message);
               }
             },
-            error : function (response) {
-              console.log(response);
+            error : function () {
+              //window.location.reload();
             }
           });
         } else {
@@ -28172,8 +28171,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                   systemObject.showAlertMessage(response.message);
                 }
               },
-              error: function (response) {
-                console.log(response);
+              error: function () {
+                //window.location.reload();
               }
             });
           } else {
@@ -28203,8 +28202,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               systemObject.showAlertMessage(response.message);
             }
           },
-          error : function (response) {
-            console.log(response);
+          error : function () {
+            window.location.reload();
           }
         });
         return false;
@@ -28236,8 +28235,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                   }
                 }
               },
-              error : function (response) {
-                console.log(response);
+              error : function () {
+                //window.location.reload();
               }
             });
           } else {
@@ -28268,11 +28267,108 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               }
             }
           },
-          error : function (response) {
-            console.log(response);
+          error : function () {
+            //window.location.reload();
           }
         });
         return false;
+      });
+    },
+    commentEditShowInputField : function (thisIdentity) {
+      $(document).on('click', thisIdentity, function (e) {
+        e.preventDefault();
+        var statusId      = $(this).attr('id'),
+            dataShowClass = '.comment-click-hide-show-' + statusId,
+            thisTarget    = $(dataShowClass).data('show');
+        $(dataShowClass).hide();
+        $(thisTarget).show().focus();
+      });
+    },
+    commentFormEditSubmitFocusOut : function (thisIdentity) {
+      $(document).on('focusout', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj         = $(this),
+            thisId          = thisObj.data('id'),
+            thisShow        = thisObj.attr('id'),
+            thisForm        = '#edit-comment-form-' + thisId,
+            thisUrl         = $(thisForm).attr('action'),
+            thisValue       = $.trim(thisObj.val()),
+            textElement     = $('[data-show="#' + thisShow + '"]'),
+            thisFormData    = $(thisForm).serialize();
+        if (!systemObject.isEmpty(thisValue)) {
+          $.ajax({
+            url      : thisUrl,
+            type     : 'POST',
+            dataType : 'JSON',
+            data     : thisFormData,
+            beforeSend : function () {
+              var currentValue = $.trim(textElement.text());
+              if (currentValue == thisValue) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                return false;
+              }
+            },
+            success : function (response) {
+              if (response.success && response.message) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                systemObject.showAlertMessage(response.message);
+              }
+            },
+            error : function () {
+              //window.location.reload();
+            }
+          });
+        } else {
+          systemObject.showErrorMessage('This field cannot be empty.');
+        }
+        return false;
+      });
+    },
+    commentFormEditSubmitKeyDown : function (thisIdentity) {
+      $(document).on('keydown', thisIdentity, function (e) {
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+          e.preventDefault();
+          var thisObj         = $(this),
+              thisId          = thisObj.data('id'),
+              thisShow        = thisObj.attr('id'),
+              thisForm        = '#edit-comment-form-' + thisId,
+              thisUrl         = $(thisForm).attr('action'),
+              thisValue       = thisObj.val(),
+              textElement     = $('[data-show="#' + thisShow + '"]'),
+              thisFormData    = $(thisForm).serialize();
+          if (!systemObject.isEmpty(thisValue)) {
+            $.ajax({
+              url      : thisUrl,
+              type     : 'POST',
+              dataType : 'JSON',
+              data     : thisFormData,
+              beforeSend : function () {
+                var currentValue = $.trim(textElement.text());
+                if (currentValue == thisValue) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  return false;
+                }
+              },
+              success: function (response) {
+                if (response.success && response.message) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  systemObject.showAlertMessage(response.message);
+                }
+              },
+              error: function () {
+                //window.location.reload();
+              }
+            });
+          } else {
+            systemObject.showErrorMessage('This field cannot be empty.');
+          }
+          return false;
+        }
       });
     },
     statusImageResize : function (thisIdentity) {
@@ -28370,6 +28466,9 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     statusObject.statusImageResize('.status-image-box');
     statusObject.commentFormSubmit('.comments_create-form');
     statusObject.commentFormDelete('.delete-comment-form');
+    statusObject.commentEditShowInputField('.edit-comment');
+    statusObject.commentFormEditSubmitFocusOut('.comment-blur-update-hide-show');
+    statusObject.commentFormEditSubmitKeyDown('.comment-blur-update-hide-show');
 
     systemObject.addPressedToHomeIcon('.navbar-home-icon-box');
     systemObject.alertShowHide('body');
