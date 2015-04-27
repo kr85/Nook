@@ -10,7 +10,7 @@
             <a href="" class="dropdown-toggle delete-comment pull-right" aria-hidden="true" data-toggle="dropdown">
                 <i class="fa fa-chevron-down"></i>
             </a>
-            @include('statuses.partials.comment-options', ['comment' => $comment])
+            @include('statuses.partials.comment-options', ['status' => $status, 'comment' => $comment])
         </h4>
         <p class="status-media-time">
             {{ $comment->present()->timeSinceCommentPublished() }}
