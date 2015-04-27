@@ -6,6 +6,7 @@ use Nook\Forms\PublishStatusForm;
 use Nook\Statuses\DeleteStatusCommand;
 use Nook\Statuses\HideStatusCommand;
 use Nook\Statuses\UpdateStatusCommand;
+use Nook\Statuses\LikeStatusCommand;
 use Nook\Helpers\Helper;
 
 /**
@@ -117,8 +118,16 @@ class StatusesController extends BaseController
         return Response::json($response);
     }
 
+    /**
+     * Update a status.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Laracasts\Validation\FormValidationException
+     */
     public function update($id)
     {
+        // Get the input
         $input = [
             'body'     => Input::get('body'),
             'statusId' => $id,
@@ -172,13 +181,36 @@ class StatusesController extends BaseController
         // Get input
         $input = Input::all();
 
-        // Execute delete status command with input
+        // Execute hide status command with input
         $this->execute(HideStatusCommand::class, $input);
 
         // Return response
         $response = [
             'success'  => true,
             'message'  => 'The status has been successfully hidden.'
+        ];
+
+        return Response::json($response);
+    }
+
+    /**
+     * Like a status.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function like()
+    {
+        // Get the input
+        $input = Input::all();
+
+        // Execute like status command with input
+        $result = $this->execute(LikeStatusCommand::class, $input);
+
+        // Return response
+        $response = [
+            'success'  => $result['success'],
+            'liked'    => $result['liked'],
+            'message'  => $result['message']
         ];
 
         return Response::json($response);

@@ -13,7 +13,7 @@
             <div id="timeline">
                 @include('statuses.partials.statuses')
             </div>
-            @if(count($statuses))
+            @if(count($statuses) >= 25)
                 <div class="col-md-6_5 timeline-status-form-offset">
                     <div class="timeline-wrapper timeline-wrapper-last-child">
                         <div class="centered">

@@ -4,6 +4,8 @@ use Laracasts\Commander\CommanderTrait;
 use Nook\Statuses\LeaveCommentOnStatusCommand;
 use Nook\Forms\LeaveCommentForm;
 use Nook\Statuses\DeleteCommentCommand;
+use Nook\Statuses\StatusRepository;
+use Nook\Statuses\UpdateCommentCommand;
 
 /**
  * Class CommentsController
@@ -18,12 +20,22 @@ class CommentsController extends BaseController
     protected $leaveCommentFormForm;
 
     /**
+     * @var StatusRepository
+     */
+    protected $statusRepository;
+
+    /**
      * Constructor.
      *
+     * @param StatusRepository $statusRepository
      * @param LeaveCommentForm $leaveCommentFormForm
      */
-    public function __construct(LeaveCommentForm $leaveCommentFormForm)
+    public function __construct(
+        StatusRepository $statusRepository,
+        LeaveCommentForm $leaveCommentFormForm
+    )
     {
+        $this->statusRepository = $statusRepository;
         $this->leaveCommentFormForm = $leaveCommentFormForm;
     }
 
@@ -36,15 +48,18 @@ class CommentsController extends BaseController
     {
         // Fetch the input
         $input = Input::all();
+        $statusId = Input::get('status_id');
 
         // Validate the input
         $this->leaveCommentFormForm->validate($input);
 
         // Execute a command to leave a comment
         $comment = $this->execute(LeaveCommentOnStatusCommand::class, $input);
+        // Find the status
+        $status = $this->statusRepository->findById($statusId);
 
         // Render comment view
-        $view = View::make('statuses.partials.comment', compact('comment'))->render();
+        $view = View::make('statuses.partials.comment', compact('status', 'comment'))->render();
 
         // Return response
         $response = [
@@ -56,6 +71,37 @@ class CommentsController extends BaseController
         return Response::json($response);
     }
 
+    /**
+     * Update a comment.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Laracasts\Validation\FormValidationException
+     */
+    public function update()
+    {
+        // Get the input
+        $input = Input::all();
+
+        // Validates the input
+        $this->leaveCommentFormForm->validate($input);
+
+        // Executes the command
+        $this->execute(UpdateCommentCommand::class, $input);
+
+        // Return response
+        $response = [
+            'success'  => true,
+            'message'  => 'Your comment has been updated.'
+        ];
+
+        return Response::json($response);
+    }
+
+    /**
+     * Delete a comment.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy()
     {
         // Get input

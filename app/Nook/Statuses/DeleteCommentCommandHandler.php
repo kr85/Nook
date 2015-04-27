@@ -2,6 +2,11 @@
 
 use Laracasts\Commander\CommandHandler;
 
+/**
+ * Class DeleteCommentCommandHandler
+ *
+ * @package Nook\Statuses
+ */
 class DeleteCommentCommandHandler implements CommandHandler
 {
     /**

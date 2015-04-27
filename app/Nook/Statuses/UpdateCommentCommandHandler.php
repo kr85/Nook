@@ -1,17 +1,19 @@
 <?php namespace Nook\Statuses;
 
 use Laracasts\Commander\CommandHandler;
+use Laracasts\Commander\Events\DispatchableTrait;
 
 /**
- * Class LeaveCommentOnStatusCommandHandler
+ * Class UpdateCommentCommandHandler
  *
  * @package Nook\Statuses
  */
-class LeaveCommentOnStatusCommandHandler implements CommandHandler
+class UpdateCommentCommandHandler implements CommandHandler
 {
+    use DispatchableTrait;
 
     /**
-     * @var StatusRepository $statusRepository
+     * @var StatusRepository
      */
     protected $statusRepository;
 
@@ -29,13 +31,16 @@ class LeaveCommentOnStatusCommandHandler implements CommandHandler
      * Handle the command.
      *
      * @param $command
-     * @return static
+     * @return mixed
      */
     public function handle($command)
     {
-        $comment = $this->statusRepository->leaveComment($command->user_id, $command->status_id, trim($command->body));
+        // Update the comment
+        $this->statusRepository->updateComment($command->comment_id, ['body' => trim($command->body)]);
+
+        // Find the updated comment
+        $comment = Comment::find($command->comment_id);
 
         return $comment;
     }
-
 }

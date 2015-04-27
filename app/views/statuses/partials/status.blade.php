@@ -51,13 +51,13 @@
                                     </span>
                                     @if($currentUser->id == $status->user->id)
                                     <input
-                                            type="text"
-                                            id="edit-status-input-{{ $status->id }}"
-                                            name="edit-status-input-{{ $status->id }}"
-                                            class="blur-update-hide-show"
-                                            data-id="{{ $status->id }}"
-                                            value="{{ $status->body }}"
-                                            style="display: none;"
+                                        type="text"
+                                        id="edit-status-input-{{ $status->id }}"
+                                        name="body"
+                                        class="blur-update-hide-show"
+                                        data-id="{{ $status->id }}"
+                                        value="{{ $status->body }}"
+                                        style="display: none;"
                                     />
                                     @endif
                                 {{ Form::close() }}
@@ -66,7 +66,7 @@
                     </article>
                     <div class="status-likes-options">
                         <div class="status-options-box">
-                            <a href="" class="status-like-button"></a>
+                            @include('statuses.partials.status-like', ['status' => $status])
                             <a href="" class="dropdown-toggle status-more-options" aria-hidden="true" data-toggle="dropdown"></a>
                             @include('statuses.partials.status-options', ['status' => $status])
                         </div>
@@ -74,7 +74,7 @@
                     <div class="comments" id="status-{{ $status->id }}-comments">
                         @unless($status->comments->isEmpty())
                             @foreach($status->comments as $comment)
-                                @include('statuses.partials.comment')
+                                @include('statuses.partials.comment', ['status' => $status])
                             @endforeach
                         @endunless
                     </div>

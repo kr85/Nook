@@ -27,8 +27,8 @@ class EditProfileCommandHandler implements CommandHandler
     /**
      * Handle the command.
      *
-     * @param object $command
-     * @return void
+     * @param $command
+     * @return \Illuminate\Support\Collection|UserRepository|static
      */
     public function handle($command)
     {

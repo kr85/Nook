@@ -13,6 +13,11 @@ class RegistrationController extends BaseController
      */
     protected $registrationForm;
 
+    /**
+     * Constructor.
+     *
+     * @param RegistrationForm $registrationForm
+     */
     public function __construct(RegistrationForm $registrationForm)
     {
         $this->registrationForm = $registrationForm;

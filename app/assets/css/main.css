@@ -240,8 +240,19 @@ ul.dropdown-menu {
 .status-dropdown-user {
   min-width: 65px !important; }
 
+.comment-dropdown-user {
+  min-width: 65px !important; }
+
 .status-media-dropdown ul.dropdown-menu {
   padding: 10px 0; }
+
+.no-status-fix p {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 0 0 rgba(0, 0, 0, 0.05) inset;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 0 0 rgba(0, 0, 0, 0.05) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset, 0 0 0 rgba(0, 0, 0, 0.05) inset;
+  text-align: center;
+  padding: 2em; }
 
 .status-post {
   background: white;
@@ -469,21 +480,22 @@ textarea.form-control.comment-textarea {
     .status-options-box .status-more-options:hover {
       background-color: rgba(255, 255, 255, 0.8); }
 
-.status-like-button {
+.status-like-button-wrapper {
   position: relative;
   float: left;
   display: inline;
-  height: 100%;
-  width: 48px;
-  -moz-user-select: none;
-  background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px;
   border-right: 1px solid #DDD;
   -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
   -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9); }
-
-.status-liked {
-  background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px; }
+  .status-like-button-wrapper .status-like-button {
+    height: 40px;
+    width: 48px;
+    -moz-user-select: none;
+    background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px;
+    border: none; }
+  .status-like-button-wrapper .status-liked {
+    background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px; }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {

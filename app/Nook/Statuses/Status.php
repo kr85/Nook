@@ -63,4 +63,14 @@ class Status extends Eloquent
     {
         return $this->hasMany('Nook\Statuses\Comment');
     }
+
+    /**
+     * Status has many likes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany('Nook\Statuses\Like');
+    }
 }

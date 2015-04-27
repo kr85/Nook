@@ -14,7 +14,15 @@ use Intervention\Image\Facades\Image;
 class StatusRepository
 {
 
+    /**
+     * @var string Database table name for hidden statuses
+     */
     protected $hiddenStatusesTable = 'hidden_statuses';
+
+    /**
+     * @var string Database table name for user status likes
+     */
+    protected $statusUserLikesTable = 'status_user_likes';
 
     /**
      * Get all statuses for a user.
@@ -43,6 +51,20 @@ class StatusRepository
     }
 
     /**
+     * Get user liked statuses.
+     *
+     * @param $userId
+     * @return array|static[]
+     */
+    public function getUserLikedStatuses($userId)
+    {
+        return DB::table($this->statusUserLikesTable)
+            ->select('status_id')
+            ->where('user_id', '=', $userId)
+            ->get();
+    }
+
+    /**
      * Get the feed for a user.
      *
      * @param User $user
@@ -61,7 +83,7 @@ class StatusRepository
         // Get the ids of the hidden statuses
         $hiddenStatusIds = $this->getHiddenStatusIds($hiddenStatuses);
 
-        return Status::with('comments')
+        return Status::with('comments', 'likes')
             ->whereIn('user_id', $userIds)
             ->whereNotIn('id', $hiddenStatusIds)
             ->latest()
@@ -127,6 +149,34 @@ class StatusRepository
     }
 
     /**
+     * Update a comment.
+     *
+     * @param $commentId
+     * @param $data
+     * @return bool|int
+     */
+    public function updateComment($commentId, $data)
+    {
+        return Comment::findOrFail($commentId)->update($data);
+    }
+
+    /**
+     * Like a status.
+     *
+     * @param $userId
+     * @param $statusId
+     * @return static
+     */
+    public function likeStatus($userId, $statusId)
+    {
+        $like = Like::like($userId, $statusId);
+
+        User::findOrFail($userId)->likes()->save($like);
+
+        return $like;
+    }
+
+    /**
      * Fetch a status by status id.
      *
      * @param $id
@@ -135,6 +185,20 @@ class StatusRepository
     public function findById($id)
     {
         return Status::findOrFail($id);
+    }
+
+    /**
+     * Fetch a status like.
+     *
+     * @param $userId
+     * @param $statusId
+     * @return \Illuminate\Database\Eloquent\Model|static
+     */
+    public function statusLiked($userId, $statusId)
+    {
+        return Like::where('user_id', '=', $userId, 'and')
+            ->where('status_id', '=', $statusId)
+            ->first();
     }
 
     /**
@@ -168,6 +232,17 @@ class StatusRepository
     public function deleteComment($id)
     {
         return Comment::destroy($id);
+    }
+
+    /**
+     * Unlike status.
+     *
+     * @param $id
+     * @return int
+     */
+    public function unlikeStatus($id)
+    {
+        return Like::destroy($id);
     }
 
     /**

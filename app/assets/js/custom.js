@@ -26,7 +26,6 @@
       // Change input listener on status text area
       $(thisTextarea).on('input', function () {
         thisBodyText  = $(this).val();
-        console.log(thisBodyText);
         if (!systemObject.isEmpty(thisBodyText) || !systemObject.isEmpty(thisImageName)) {
           submitStatusButton.prop('disabled', false);
         } else {
@@ -46,8 +45,9 @@
     statusFormSubmit : function (thisIdentity) {
       $(document).on('submit', thisIdentity, function (e) {
         e.preventDefault();
-        var thisForm = $(this),
-            thisUrl  = thisForm.attr('action'),
+        var thisForm     = $(this),
+            thisUrl      = thisForm.attr('action'),
+            thisTimeline = $('#timeline'),
             thisFromData, imageWidth;
         if (systemObject.supportFormData()) {
           thisFromData = new FormData(this);
@@ -61,7 +61,10 @@
               if (response.success) {
                 thisForm[0].reset();
                 if (response.message && response.timeline) {
-                  $('#timeline').prepend(response.timeline);
+                  if (thisTimeline.find('.no-status-fix').length > 0) {
+                    thisTimeline.find('.no-status-fix p').html("");
+                  }
+                  thisTimeline.prepend(response.timeline);
                   imageWidth = $('.status-image-box').width();
                   $('.status-image').css({ width : imageWidth });
                   $('#post-status').prop('disabled', true);
@@ -73,9 +76,8 @@
                 }
               }
             },
-            error : function (response) {
-              console.log(response);
-              thisForm[0].reset();
+            error : function () {
+              window.location.reload();
             }
           });
         } else {
@@ -96,65 +98,11 @@
                 }
               }
             },
-            error : function (response) {
-              console.log(response);
+            error : function () {
+              window.location.reload();
             }
           });
         }
-        return false;
-      });
-    },
-    statusFormDelete : function (thisIdentity) {
-      $(document).on('submit', thisIdentity, function (e) {
-        e.preventDefault();
-        var thisForm     = '#' + $(this).attr('id'),
-            thisId       = $(thisForm).data('id'),
-            thisUrl      = $(thisForm).attr('action'),
-            thisFormData = $(thisForm).serialize();
-        $.ajax({
-          url      : thisUrl,
-          type     : 'POST',
-          dataType : 'JSON',
-          data     : thisFormData,
-          success : function (response) {
-            if (response.success) {
-              $('#timeline-status-' + thisId).remove();
-              if (response.message) {
-                systemObject.showAlertMessage(response.message);
-              }
-            }
-          },
-          error : function (response) {
-            console.log(response);
-          }
-        });
-        return false;
-      });
-    },
-    statusFormHide : function (thisIdentity) {
-      $(document).on('submit', thisIdentity, function (e) {
-        e.preventDefault();
-        var thisForm     = '#' + $(this).attr('id'),
-            thisId       = $(thisForm).data('id'),
-            thisUrl      = $(thisForm).attr('action'),
-            thisFormData = $(thisForm).serialize();
-        $.ajax({
-          url      : thisUrl,
-          type     : 'POST',
-          dataType : 'JSON',
-          data     : thisFormData,
-          success : function (response) {
-            if (response.success) {
-              $('#timeline-status-' + thisId).remove();
-              if (response.message) {
-                systemObject.showAlertMessage(response.message);
-              }
-            }
-          },
-          error : function (response) {
-            console.log(response);
-          }
-        });
         return false;
       });
     },
@@ -163,7 +111,9 @@
         e.preventDefault();
         var statusId      = $(this).attr('id'),
             dataShowClass = '.click-hide-show-' + statusId,
-            thisTarget    = $(dataShowClass).data('show');
+            thisTarget    = $(dataShowClass).data('show'),
+            thisArticle   = '#timeline-status-text-' + statusId;
+        $(thisArticle).removeClass('status-media-mobile');
         $(dataShowClass).hide();
         $(thisTarget).show().focus();
       });
@@ -201,8 +151,8 @@
                 systemObject.showAlertMessage(response.message);
               }
             },
-            error : function (response) {
-              console.log(response);
+            error : function () {
+              window.location.reload();
             }
           });
         } else {
@@ -246,8 +196,8 @@
                   systemObject.showAlertMessage(response.message);
                 }
               },
-              error: function (response) {
-                console.log(response);
+              error: function () {
+                window.location.reload();
               }
             });
           } else {
@@ -255,6 +205,87 @@
           }
           return false;
         }
+      });
+    },
+    statusFormDelete : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisForm     = '#' + $(this).attr('id'),
+          thisId       = $(thisForm).data('id'),
+          thisUrl      = $(thisForm).attr('action'),
+          thisFormData = $(thisForm).serialize();
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $('#timeline-status-' + thisId).remove();
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
+            }
+          },
+          error : function () {
+            window.location.reload();
+          }
+        });
+        return false;
+      });
+    },
+    statusFormHide : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisForm     = '#' + $(this).attr('id'),
+          thisId       = $(thisForm).data('id'),
+          thisUrl      = $(thisForm).attr('action'),
+          thisFormData = $(thisForm).serialize();
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $('#timeline-status-' + thisId).remove();
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
+            }
+          },
+          error : function () {
+            window.location.reload();
+          }
+        });
+        return false;
+      });
+    },
+    statusFormLike : function (thisIdentity) {
+      $(document).on('submit', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj      = $(this),
+            thisForm     = $('#' + thisObj.attr('id')),
+            thisUrl      = thisObj.attr('action'),
+            thisFormData = thisForm.serialize(),
+            thisId       = thisObj.data('id'),
+            thisLikeIcon = '#status-like-button-' + thisId;
+        $.ajax({
+          url      : thisUrl,
+          type     : 'POST',
+          dataType : 'JSON',
+          data     : thisFormData,
+          success : function (response) {
+            if (response.success) {
+              $(thisLikeIcon).toggleClass('status-liked');
+              systemObject.showAlertMessage(response.message);
+            }
+          },
+          error : function () {
+            window.location.reload();
+          }
+        });
+        return false;
       });
     },
     commentFormSubmit : function (thisIdentity) {
@@ -283,8 +314,105 @@
                   }
                 }
               },
-              error : function (response) {
-                console.log(response);
+              error : function () {
+                window.location.reload();
+              }
+            });
+          } else {
+            systemObject.showErrorMessage('This field cannot be empty.');
+          }
+          return false;
+        }
+      });
+    },
+    commentEditShowInputField : function (thisIdentity) {
+      $(document).on('click', thisIdentity, function (e) {
+        e.preventDefault();
+        var statusId      = $(this).attr('id'),
+            dataShowClass = '.comment-click-hide-show-' + statusId,
+            thisTarget    = $(dataShowClass).data('show');
+        $(dataShowClass).hide();
+        $(thisTarget).show().focus();
+      });
+    },
+    commentFormEditSubmitFocusOut : function (thisIdentity) {
+      $(document).on('focusout', thisIdentity, function (e) {
+        e.preventDefault();
+        var thisObj         = $(this),
+            thisId          = thisObj.data('id'),
+            thisShow        = thisObj.attr('id'),
+            thisForm        = '#edit-comment-form-' + thisId,
+            thisUrl         = $(thisForm).attr('action'),
+            thisValue       = $.trim(thisObj.val()),
+            textElement     = $('[data-show="#' + thisShow + '"]'),
+            thisFormData    = $(thisForm).serialize();
+        if (!systemObject.isEmpty(thisValue)) {
+          $.ajax({
+            url      : thisUrl,
+            type     : 'POST',
+            dataType : 'JSON',
+            data     : thisFormData,
+            beforeSend : function () {
+              var currentValue = $.trim(textElement.text());
+              if (currentValue == thisValue) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                return false;
+              }
+            },
+            success : function (response) {
+              if (response.success && response.message) {
+                thisObj.hide();
+                textElement.text(thisValue).show();
+                systemObject.showAlertMessage(response.message);
+              }
+            },
+            error : function () {
+              window.location.reload();
+            }
+          });
+        } else {
+          systemObject.showErrorMessage('This field cannot be empty.');
+        }
+        return false;
+      });
+    },
+    commentFormEditSubmitKeyDown : function (thisIdentity) {
+      $(document).on('keydown', thisIdentity, function (e) {
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+          e.preventDefault();
+          var thisObj         = $(this),
+              thisId          = thisObj.data('id'),
+              thisShow        = thisObj.attr('id'),
+              thisForm        = '#edit-comment-form-' + thisId,
+              thisUrl         = $(thisForm).attr('action'),
+              thisValue       = thisObj.val(),
+              textElement     = $('[data-show="#' + thisShow + '"]'),
+              thisFormData    = $(thisForm).serialize();
+          if (!systemObject.isEmpty(thisValue)) {
+            $.ajax({
+              url      : thisUrl,
+              type     : 'POST',
+              dataType : 'JSON',
+              data     : thisFormData,
+              beforeSend : function () {
+                var currentValue = $.trim(textElement.text());
+                if (currentValue == thisValue) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  return false;
+                }
+              },
+              success: function (response) {
+                if (response.success && response.message) {
+                  thisObj.hide();
+                  textElement.text(thisValue).show();
+                  systemObject.showAlertMessage(response.message);
+                }
+              },
+              error: function () {
+                window.location.reload();
               }
             });
           } else {
@@ -298,10 +426,10 @@
       $(document).on('submit', thisIdentity, function (e) {
         e.preventDefault();
         var thisObj      = $(this),
-            thisForm     = $('#' + thisObj.attr('id')),
-            thisFormData = thisForm.serialize(),
-            thisUrl      = thisObj.attr('action'),
-            thisId       = thisObj.data('id');
+          thisForm     = $('#' + thisObj.attr('id')),
+          thisFormData = thisForm.serialize(),
+          thisUrl      = thisObj.attr('action'),
+          thisId       = thisObj.data('id');
         $.ajax({
           url      : thisUrl,
           type     : 'POST',
@@ -315,19 +443,11 @@
               }
             }
           },
-          error : function (response) {
-            console.log(response);
+          error : function () {
+            window.location.reload();
           }
         });
         return false;
-      });
-    },
-    statusImageResize : function (thisIdentity) {
-      var width = $(thisIdentity).width();
-      $('.status-image').css({ width : width });
-      $(window).resize(function () {
-        width = $(thisIdentity).width();
-        $('.status-image').css({ width : width });
       });
     }
   };
@@ -401,6 +521,14 @@
     },
     supportFormData : function () {
       return !! window.FormData;
+    },
+    statusImageResize : function (thisIdentity) {
+      var width = $(thisIdentity).width();
+      $('.status-image').css({ width : width });
+      $(window).resize(function () {
+        width = $(thisIdentity).width();
+        $('.status-image').css({ width : width });
+      });
     }
   };
 
@@ -413,13 +541,17 @@
     statusObject.statusFormEditSubmitKeyDown('.blur-update-hide-show');
     statusObject.statusFormDelete('.delete-status');
     statusObject.statusFormHide('.hide-status');
-    statusObject.statusImageResize('.status-image-box');
+    statusObject.statusFormLike('.like-status-form');
     statusObject.commentFormSubmit('.comments_create-form');
+    statusObject.commentEditShowInputField('.edit-comment');
+    statusObject.commentFormEditSubmitFocusOut('.comment-blur-update-hide-show');
+    statusObject.commentFormEditSubmitKeyDown('.comment-blur-update-hide-show');
     statusObject.commentFormDelete('.delete-comment-form');
 
     systemObject.addPressedToHomeIcon('.navbar-home-icon-box');
     systemObject.alertShowHide('body');
     systemObject.forceTopOfPageOnRefresh();
+    systemObject.statusImageResize('.status-image-box');
 
     $('#flash-overlay-modal').modal();
   });

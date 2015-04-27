@@ -15,7 +15,8 @@ class CreateHiddenStatusesTable extends Migration {
         Schema::create('hidden_statuses', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('user_id')->index();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('status_id');
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();

@@ -8,11 +8,13 @@
 class DeleteStatusCommand
 {
     /**
-     * @var string
+     * @var $status_id
      */
     public $status_id;
 
     /**
+     * Constructor.
+     *
      * @param string $status_id
      */
     public function __construct($status_id)
