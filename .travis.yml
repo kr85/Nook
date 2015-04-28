@@ -10,7 +10,11 @@ env:
 before_script:
   - export ADDITIONAL_PATH=`php -i | grep -F --color=never 'Scan this dir for additional .ini files'`
   - echo 'xdebug.max_nesting_level=9999' | sudo tee ${ADDITIONAL_PATH:42}/php.ini
-  - echo "extension = ext-imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - yum install gcc php-devel php-pear
+  - yum install ImageMagick ImageMagick-devel
+  - pecl install imagick
+  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - service httpd reload
   - mv travis.env.php .env.testing.php
   - mysql -e 'create database IF NOT EXISTS defdx;'
   - travis_retry composer self-update
