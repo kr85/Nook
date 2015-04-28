@@ -10,11 +10,13 @@ env:
 before_script:
   - export ADDITIONAL_PATH=`php -i | grep -F --color=never 'Scan this dir for additional .ini files'`
   - echo 'xdebug.max_nesting_level=9999' | sudo tee ${ADDITIONAL_PATH:42}/php.ini
-  - sudo apt-get install imagemagick
-  - sudo apt-get install php5-imagick
-  - pecl install imagick
-  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - service httpd reload
+  - sudo apt-get install gcc make autoconf libc-dev --no-interaction -vvv
+  - sudo apt-get install libmagickwand-dev --no-interaction -vvv
+  - sudo apt-get install imagemagick --no-interaction -vvv
+  - sudo apt-get install php5-imagick --no-interaction -vvv
+  - pecl install imagick --no-interaction -vvv
+  - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini --no-interaction -vvv
+  - service httpd reload --no-interaction -vvv
   - mv travis.env.php .env.testing.php
   - mysql -e 'create database IF NOT EXISTS nook;'
   - travis_retry composer self-update
