@@ -10,10 +10,11 @@ env:
 before_script:
   - export ADDITIONAL_PATH=`php -i | grep -F --color=never 'Scan this dir for additional .ini files'`
   - echo 'xdebug.max_nesting_level=9999' | sudo tee ${ADDITIONAL_PATH:42}/php.ini
+  - echo "extension = ext-imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - mv travis.env.php .env.testing.php
   - mysql -e 'create database IF NOT EXISTS defdx;'
   - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction --dev
+  - travis_retry composer install --prefer-source --no-interaction
   - chmod -R 777 app/storage
   - php artisan migrate:install --env=testing --no-interaction -vvv
 
