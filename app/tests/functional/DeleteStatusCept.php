@@ -10,6 +10,8 @@ $I->amOnPage('statuses');
 
 $I->postAStatus('The status I am going to delete.');
 
+$I->amOnPage('statuses');
+
 $I->seeCurrentUrlEquals('/statuses');
 $I->see('The status I am going to delete.');
 $I->seeRecord('statuses', [
@@ -18,8 +20,8 @@ $I->seeRecord('statuses', [
 
 $I->click('Delete Status');
 
-$I->seeCurrentUrlEquals('/statuses');
-$I->see('Your status has been deleted!');
+$I->see('Your status has been deleted.');
+
 $I->dontSee('The status I am going to delete.');
 $I->dontSeeRecord('statuses', [
     'body' => 'The status I am going to delete.'

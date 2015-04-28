@@ -55,14 +55,14 @@ class StatusRepositoryTest extends \Codeception\TestCase\Test
     /** @test */
     public function it_saves_a_status_for_a_user()
     {
-        // Given I have an unsaved status
-        $status = TestDummy::create('Nook\Statuses\Status', [
-            'user_id' => null,
-            'body' => 'My status'
-        ]);
-
         // And an existing user
         $user = TestDummy::create('Nook\Users\User');
+
+        // Given I have an unsaved status
+        $status = TestDummy::create('Nook\Statuses\Status', [
+            'user_id' => $user->id,
+            'body' => 'My status'
+        ]);
 
         // When I try to persist this status
         $savedStatus = $this->repository->save($status, $user->id);

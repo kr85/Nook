@@ -6,7 +6,7 @@
 
             {{ Form::hidden('status_id', $status->id) }}
 
-            <button type="submit" class="link-button" title="Delete Status">
+            <button type="submit" class="link-button" title="Delete Status" name="Delete Status">
                 <i class="fa fa-trash-o"></i>
             </button>
 

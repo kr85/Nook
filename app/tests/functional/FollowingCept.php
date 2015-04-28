@@ -7,7 +7,7 @@ $I->wantTo('follow other Nook members.');
 $I->haveAnAccount(['username' => 'OtherUser']);
 $I->signIn();
 
-$I->click(['link' => 'Browse Users']);
+$I->amOnPage('users');
 $I->click('OtherUser');
 
 $I->seeCurrentUrlEquals('/@OtherUser');

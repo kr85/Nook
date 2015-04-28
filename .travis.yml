@@ -16,7 +16,7 @@ before_script:
   - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - service httpd reload
   - mv travis.env.php .env.testing.php
-  - mysql -e 'create database IF NOT EXISTS defdx;'
+  - mysql -e 'create database IF NOT EXISTS nook;'
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
   - chmod -R 777 app/storage

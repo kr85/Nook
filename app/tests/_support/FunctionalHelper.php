@@ -38,6 +38,7 @@ class FunctionalHelper extends \Codeception\Module
         $I = $this->getModule('Laravel4');
 
         $I->fillField('body', $status);
+        $I->attachFile('image', 'test.jpg');
         $I->click('Post Status');
     }
 
