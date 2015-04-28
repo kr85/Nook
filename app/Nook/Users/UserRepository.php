@@ -20,6 +20,11 @@ class UserRepository
         return $user->save();
     }
 
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getUsers()
     {
         return User::orderBy('username', 'asc')->get();

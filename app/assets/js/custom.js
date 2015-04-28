@@ -529,6 +529,15 @@
         width = $(thisIdentity).width();
         $('.status-image').css({ width : width });
       });
+    },
+    facebookOAuthRedirectUrlFix : function () {
+      $(document).ready(function (e) {
+        if (window.location.hash == '#_=_') {
+          window.location.hash = '';
+          history.pushState('', document.title, window.location.pathname);
+          e.preventDefault();
+        }
+      });
     }
   };
 
@@ -552,6 +561,7 @@
     systemObject.alertShowHide('body');
     systemObject.forceTopOfPageOnRefresh();
     systemObject.statusImageResize('.status-image-box');
+    systemObject.facebookOAuthRedirectUrlFix();
 
     $('#flash-overlay-modal').modal();
   });

@@ -12,43 +12,59 @@ Route::get('/', [
  * Registration
  */
 Route::post('register', [
-   'as'     => 'register_route',
-   'uses'   => 'RegistrationController@store',
-   'before' => 'guest'
+    'as'     => 'register_route',
+    'uses'   => 'RegistrationController@store',
+    'before' => 'guest'
+]);
+
+/**
+ * OAuth Login
+ */
+Route::get('{provider}/authorize', [
+    'as'     => 'oauth_authorize_route',
+    'uses'   => 'OAuthController@authorize',
+    'before' => 'guest'
+]);
+
+Route::get('{provider}/login', [
+    'as'     => 'oauth_login_route',
+    'uses'   => 'OAuthController@login',
+    'before' => 'guest'
 ]);
 
 /**
  * Sessions
  */
 Route::post('login', [
-   'as'     => 'login_route',
-   'uses'   => 'SessionsController@store',
-   'before' => 'guest'
+    'as'     => 'login_route',
+    'uses'   => 'SessionsController@store',
+    'before' => 'guest'
 ]);
 
 Route::get('logout', [
-   'as'   => 'logout_route',
-   'uses' => 'SessionsController@destroy'
+    'as'     => 'logout_route',
+    'uses'   => 'SessionsController@destroy',
+    'before' => 'auth'
 ]);
 
 /**
  * Statuses
  */
 Route::get('statuses', [
-   'as'     => 'statuses_route',
-   'uses'   => 'StatusesController@index',
-   'before' => 'auth'
+    'as'     => 'statuses_route',
+    'uses'   => 'StatusesController@index',
+    'before' => 'auth'
 ]);
 
 Route::post('statuses', [
-   'as'     => 'statuses_route',
-   'uses'   => 'StatusesController@store',
-   'before' => 'auth|csrf'
+    'as'     => 'statuses_route',
+    'uses'   => 'StatusesController@store',
+    'before' => 'auth|csrf'
 ]);
 
 Route::delete('statuses/{id}', [
-    'as'   => 'delete_status_route',
-    'uses' => 'StatusesController@destroy',
+    'as'     => 'delete_status_route',
+    'uses'   => 'StatusesController@destroy',
     'before' => 'auth|csrf'
 ]);
 

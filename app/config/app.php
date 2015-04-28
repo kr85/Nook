@@ -127,7 +127,8 @@ return array(
         'Laracasts\Validation\ValidationServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Nook\Providers\EventServiceProvider',
-        'Intervention\Image\ImageServiceProvider'
+        'Intervention\Image\ImageServiceProvider',
+        'AdamWathan\EloquentOAuth\EloquentOAuthServiceProvider'
 
     ),
 
@@ -196,7 +197,8 @@ return array(
         'Validator'         => 'Illuminate\Support\Facades\Validator',
         'View'              => 'Illuminate\Support\Facades\View',
         'Flash'             => 'Laracasts\Flash\Flash',
-        'Image'             => 'Intervention\Image\Facades\Image'
+        'Image'             => 'Intervention\Image\Facades\Image',
+        'OAuth'             => 'AdamWathan\EloquentOAuth\Facades\OAuth'
 
     ),
 

@@ -15,7 +15,8 @@
         "laracasts/flash": "~1.0",
         "laracasts/presenter": "0.1.*",
         "intervention/image": "~2.1",
-        "ext-imagick": "*"
+        "ext-imagick": "*",
+        "adamwathan/eloquent-oauth": "~4.0"
     },
     "require-dev": {
         "way/generators": "~2.0",
