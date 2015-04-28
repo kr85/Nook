@@ -9,6 +9,28 @@ use Input;
  */
 class UserRepository 
 {
+
+    /**
+     * Find by email or create a new user.
+     *
+     * @param $user
+     * @param $userDetails
+     * @return mixed
+     */
+    public function findByEmailOrCreate($user, $userDetails)
+    {
+        $currUser = $this->findByEmail($userDetails->email);
+
+        if (!isset($currUser))
+        {
+            $user['email'] = $userDetails->email;
+            $user['username'] = $userDetails->firstName.'.'.$userDetails->lastName;
+            $user->save();
+        }
+
+        return $currUser;
+    }
+
     /**
      * Persist the user.
      *
@@ -50,6 +72,17 @@ class UserRepository
     public function findByUsername($username)
     {
         return User::with('statuses')->whereUsername($username)->first();
+    }
+
+    /**
+     * Find user by email.
+     *
+     * @param $email
+     * @return mixed
+     */
+    public function findByEmail($email)
+    {
+        return User::with('statuses')->whereEmail($email)->first();
     }
 
     /**

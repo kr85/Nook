@@ -1,5 +1,6 @@
 <?php
 
+use Nook\Users\UserRepository;
 use AdamWathan\EloquentOAuth\Exceptions\ApplicationRejectedException;
 use AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
 
@@ -8,6 +9,21 @@ use AdamWathan\EloquentOAuth\Exceptions\InvalidAuthorizationCodeException;
  */
 class OAuthController extends BaseController
 {
+
+    /**
+     * @var UserRepository $userRepository
+     */
+    protected $userRepository;
+
+    /**
+     * Constructor.
+     *
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * Authorize a provider.
@@ -32,33 +48,7 @@ class OAuthController extends BaseController
         {
             OAuth::login($provider, function ($user, $userDetails)
             {
-                try
-                {
-                    dd($userDetails);
-                    $user['username'] = $userDetails->nickname;
-                    if (isset($userDetails->email))
-                    {
-                        $user['email'] = $userDetails->email;
-                    }
-                    else
-                    {
-                        $user['email'] = '';
-                    }
-                    if ($user->save())
-                    {
-                        Redirect::intended();
-                    }
-                    else
-                    {
-                        throw new Exception;
-                    }
-                }
-                catch (Exception $e)
-                {
-                    Log::error($e);
-
-                    return Redirect::home();
-                }
+                $this->userRepository->findByEmailOrCreate($user, $userDetails);
             });
         }
         catch (ApplicationRejectedException $e)
