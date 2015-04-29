@@ -11,7 +11,7 @@ before_script:
   - export ADDITIONAL_PATH=`php -i | grep -F --color=never 'Scan this dir for additional .ini files'`
   - echo 'xdebug.max_nesting_level=9999' | sudo tee ${ADDITIONAL_PATH:42}/php.ini
   - sudo apt-get install gcc make autoconf libc-dev
-  - sudo apt-get install libmagickwand-devv
+  - sudo apt-get install libmagickwand-dev
   - sudo apt-get install imagemagick
   - sudo apt-get install php5-imagick
   - pecl install imagick --no-interaction -vvv
