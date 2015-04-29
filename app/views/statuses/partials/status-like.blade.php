@@ -4,10 +4,10 @@
     {{ Form::hidden('user_id', $signedIn->id) }}
 
     <span class="status-like-button-wrapper">
-        @if($status->likes->isEmpty())
-            <input type="submit" value="" class="status-like-button" id="status-like-button-{{ $status->id }}"/>
-        @else
+        @if($status->present()->didLike($signedIn->id))
             <input type="submit" value="" class="status-like-button status-liked" id="status-like-button-{{ $status->id }}"/>
+        @else
+            <input type="submit" value="" class="status-like-button" id="status-like-button-{{ $status->id }}"/>
         @endif
     </span>
 

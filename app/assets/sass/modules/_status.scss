@@ -321,6 +321,24 @@ textarea.form-control.comment-textarea {
   }
 }
 
+.likes-owners-box {
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 0.8em;
+    padding-left: 1em;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    a {
+      font-weight: 700;
+    }
+  }
+}
+
 .status-options-box {
   position: relative;
   height: 40px;
@@ -330,10 +348,9 @@ textarea.form-control.comment-textarea {
 
   .status-more-options {
     position: relative;
-    display: inline;
     float: right;
     height: 100%;
-    width: 48px;
+    width: 49px;
     border-left: 1px solid #DDD;
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 7px -94px;
@@ -377,6 +394,12 @@ textarea.form-control.comment-textarea {
   .timeline-status-form-offset {
     margin-left: 0;
   }
+
+  .likes-owners-box {
+    span {
+      width: 59%;
+    }
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -388,6 +411,12 @@ textarea.form-control.comment-textarea {
   .timeline-mobile {
     display: block;
   }
+
+  .likes-owners-box {
+    span {
+      width: 73%;
+    }
+  }
 }
 
 /* Small Devices, Tablets */
@@ -398,6 +427,12 @@ textarea.form-control.comment-textarea {
 
   .timeline-mobile {
     display: block;
+  }
+
+  .likes-owners-box {
+    span {
+      width: 83%;
+    }
   }
 }
 
@@ -453,6 +488,12 @@ textarea.form-control.comment-textarea {
   .status-media-mobile {
     display: none;
   }
+
+  .likes-owners-box {
+    span {
+      width: 77%;
+    }
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -468,6 +509,12 @@ textarea.form-control.comment-textarea {
   .timeline-sidebar {
     ul {
       width: 213px;
+    }
+  }
+
+  .likes-owners-box {
+    span {
+      width: 80%
     }
   }
 }

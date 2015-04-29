@@ -206,11 +206,19 @@ class StatusesController extends BaseController
         // Execute like status command with input
         $result = $this->execute(LikeStatusCommand::class, $input);
 
+        // Store the status to a variable
+        $status = $result['status'];
+
+        // Render status view
+        $view = View::make('statuses.partials.status', compact('status'))->render();
+
+
         // Return response
         $response = [
             'success'  => $result['success'],
             'liked'    => $result['liked'],
-            'message'  => $result['message']
+            'message'  => $result['message'],
+            'timeline' => $view
         ];
 
         return Response::json($response);

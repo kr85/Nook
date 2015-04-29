@@ -11560,6 +11560,25 @@ textarea.form-control.comment-textarea:focus {
   border: 1px solid #C6C6C6;
 }
 
+.likes-owners-box {
+  position: relative;
+}
+
+.likes-owners-box span {
+  position: absolute;
+  top: 0.8em;
+  padding-left: 1em;
+  color: rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.likes-owners-box span a {
+  font-weight: 700;
+}
+
 .status-options-box {
   position: relative;
   height: 40px;
@@ -11572,10 +11591,9 @@ textarea.form-control.comment-textarea:focus {
 
 .status-options-box .status-more-options {
   position: relative;
-  display: inline;
   float: right;
   height: 100%;
-  width: 48px;
+  width: 49px;
   border-left: 1px solid #DDD;
   -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
   -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
@@ -11623,6 +11641,10 @@ textarea.form-control.comment-textarea:focus {
   .timeline-status-form-offset {
     margin-left: 0;
   }
+
+  .likes-owners-box span {
+    width: 59%;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -11635,6 +11657,10 @@ textarea.form-control.comment-textarea:focus {
   .timeline-mobile {
     display: block;
   }
+
+  .likes-owners-box span {
+    width: 73%;
+  }
 }
 
 /* Small Devices, Tablets */
@@ -11646,6 +11672,10 @@ textarea.form-control.comment-textarea:focus {
 
   .timeline-mobile {
     display: block;
+  }
+
+  .likes-owners-box span {
+    width: 83%;
   }
 }
 
@@ -11700,6 +11730,10 @@ textarea.form-control.comment-textarea:focus {
   .status-media-mobile {
     display: none;
   }
+
+  .likes-owners-box span {
+    width: 77%;
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -11715,6 +11749,10 @@ textarea.form-control.comment-textarea:focus {
 
   .timeline-sidebar ul {
     width: 213px;
+  }
+
+  .likes-owners-box span {
+    width: 80%;
   }
 }
 

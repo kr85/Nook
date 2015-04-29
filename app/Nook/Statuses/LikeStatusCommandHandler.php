@@ -39,7 +39,8 @@ class LikeStatusCommandHandler implements CommandHandler
         $result = [];
         $result['success'] = false;
         $result['message'] = 'There was a problem.';
-        $result['liked'] = false;
+        $result['liked']   = false;
+        $result['status']  = null;
 
         // Check if the status was already liked
         $liked = $this->statusRepository->statusLiked($userId, $statusId);
@@ -47,16 +48,18 @@ class LikeStatusCommandHandler implements CommandHandler
         {
             // Unliked the status
             $this->statusRepository->unlikeStatus($liked->id);
+            $result['status']  = $this->statusRepository->findById($statusId);
             $result['success'] = true;
             $result['message'] = 'You unliked this status.';
-            $result['liked'] = false;
+            $result['liked']   = false;
 
         } else {
             // Like the status
-            $this->statusRepository->likeStatus($command->user_id, $command->status_id);
+            $this->statusRepository->likeStatus($userId, $statusId);
+            $result['status']  = $this->statusRepository->findById($statusId);
             $result['success'] = true;
             $result['message'] = 'You liked this status.';
-            $result['liked'] = true;
+            $result['liked']   = true;
         }
 
         return $result;

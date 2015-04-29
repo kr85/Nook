@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     protected $tables = [
-        'users', 'statuses'
+        'users', 'statuses', 'status_user_likes'
     ];
 
     /**
@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
      */
     protected $seeders = [
         'UsersTableSeeder',
-        'StatusesTableSeeder'
+        'StatusesTableSeeder',
+        'StatusUserLikesTableSeeder'
     ];
 
 	/**

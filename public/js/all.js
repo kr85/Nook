@@ -28192,8 +28192,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
             thisForm     = $('#' + thisObj.attr('id')),
             thisUrl      = thisObj.attr('action'),
             thisFormData = thisForm.serialize(),
-            thisId       = thisObj.data('id'),
-            thisLikeIcon = '#status-like-button-' + thisId;
+            thisId       = thisObj.data('id');
         $.ajax({
           url      : thisUrl,
           type     : 'POST',
@@ -28201,8 +28200,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
           data     : thisFormData,
           success : function (response) {
             if (response.success) {
-              $(thisLikeIcon).toggleClass('status-liked');
-              systemObject.showAlertMessage(response.message);
+              if (response.timeline) {
+                $('#timeline-status-' + thisId).html(response.timeline);
+              }
+              if (response.message) {
+                systemObject.showAlertMessage(response.message);
+              }
             }
           },
           error : function () {

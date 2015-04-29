@@ -466,6 +466,20 @@ textarea.form-control.comment-textarea {
       color: #444;
       border: 1px solid #C6C6C6; }
 
+.likes-owners-box {
+  position: relative; }
+  .likes-owners-box span {
+    position: absolute;
+    top: 0.8em;
+    padding-left: 1em;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; }
+    .likes-owners-box span a {
+      font-weight: 700; }
+
 .status-options-box {
   position: relative;
   height: 40px;
@@ -476,10 +490,9 @@ textarea.form-control.comment-textarea {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 3px rgba(0, 0, 0, 0.1); }
   .status-options-box .status-more-options {
     position: relative;
-    display: inline;
     float: right;
     height: 100%;
-    width: 48px;
+    width: 49px;
     border-left: 1px solid #DDD;
     -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
     -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
@@ -512,21 +525,27 @@ textarea.form-control.comment-textarea {
   .timeline-mobile {
     display: block; }
   .timeline-status-form-offset {
-    margin-left: 0; } }
+    margin-left: 0; }
+  .likes-owners-box span {
+    width: 59%; } }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
   .timeline-desktop {
     display: none; }
   .timeline-mobile {
-    display: block; } }
+    display: block; }
+  .likes-owners-box span {
+    width: 73%; } }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   .timeline-desktop {
     display: none; }
   .timeline-mobile {
-    display: block; } }
+    display: block; }
+  .likes-owners-box span {
+    width: 83%; } }
 
 @media only screen and (max-width: 992px) {
   .media-body {
@@ -558,7 +577,9 @@ textarea.form-control.comment-textarea {
   .timeline-status-form-offset {
     margin-left: 23%; }
   .status-media-mobile {
-    display: none; } }
+    display: none; }
+  .likes-owners-box span {
+    width: 77%; } }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
@@ -567,7 +588,9 @@ textarea.form-control.comment-textarea {
   .timeline-mobile {
     display: none; }
   .timeline-sidebar ul {
-    width: 213px; } }
+    width: 213px; }
+  .likes-owners-box span {
+    width: 80%; } }
 
 .btn-primary {
   background: #00bae9;
