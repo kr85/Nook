@@ -4,9 +4,8 @@
     {{ Form::hidden('user_id', $signedIn->id) }}
 
     <div class="form-group">
-
         {{ Form::textarea('body', null, ['class' => 'form-control comment-textarea', 'rows' => 1, 'placeholder' => 'Write a comment...']) }}
-
+        <span>Press Enter to post.</span>
     </div>
 
 {{ Form::close() }}

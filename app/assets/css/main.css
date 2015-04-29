@@ -316,7 +316,7 @@ ul.dropdown-menu {
   -webkit-box-shadow: 0 1px 16px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 16px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 16px rgba(0, 0, 0, 0.1);
-  margin-bottom: 25px; }
+  margin-bottom: 2.5em; }
 
 .comments_create-form textarea {
   border: 1px solid #e3e3e3;
@@ -349,7 +349,15 @@ article.comments_comment.media.status-media {
   border-top-left-radius: 0; }
 
 .comments_create-form .form-group {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  position: relative; }
+  .comments_create-form .form-group span {
+    position: absolute;
+    padding-top: 0.4em;
+    right: 0;
+    font-size: 0.7em;
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.05em; }
 
 textarea.form-control.comment-textarea {
   padding-bottom: 0;

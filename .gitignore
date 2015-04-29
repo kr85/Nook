@@ -10,3 +10,4 @@ _ide_helper.php
 /node_modules
 /.idea
 app/tests/_output/*
+/public/media/profiles/*
