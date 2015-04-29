@@ -15,7 +15,6 @@ before_script:
   - sudo apt-get -y --reinstall install imagemagick
   - printf "\n" | pecl install imagick-beta
   - echo "extension=imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - service httpd reload
   - mv travis.env.php .env.testing.php
   - mysql -e 'create database IF NOT EXISTS nook;'
   - travis_retry composer self-update
