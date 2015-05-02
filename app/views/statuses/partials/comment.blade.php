@@ -7,10 +7,12 @@
             <a href="{{ route('profile_route', $comment->owner->username) }}">
                 {{ Str::limit($comment->owner->username, 30) }}
             </a>
-            <a href="" class="dropdown-toggle delete-comment pull-right" aria-hidden="true" data-toggle="dropdown">
-                <i class="fa fa-chevron-down"></i>
-            </a>
-            @include('statuses.partials.comment-options', ['status' => $status, 'comment' => $comment])
+            @if($comment->owner->id == $currentUser->id)
+                <a href="" class="dropdown-toggle delete-comment pull-right" aria-hidden="true" data-toggle="dropdown">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+                @include('statuses.partials.comment-options', ['status' => $status, 'comment' => $comment])
+            @endif
         </h4>
         <p class="status-media-time">
             {{ $comment->present()->timeSinceCommentPublished() }}

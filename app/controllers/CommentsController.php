@@ -63,9 +63,10 @@ class CommentsController extends BaseController
 
         // Return response
         $response = [
-            'success'  => true,
-            'timeline' => $view,
-            'message'  => 'Your comment has been posted.'
+            'success'   => true,
+            'timeline'  => $view,
+            'message'   => 'Your comment has been posted.',
+            'commentId' => $comment->id
         ];
 
         return Response::json($response);

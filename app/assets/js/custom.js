@@ -47,34 +47,54 @@
         e.preventDefault();
         var thisForm     = $(this),
             thisUrl      = thisForm.attr('action'),
-            thisTimeline = $('#timeline'),
-            thisFromData, imageWidth;
+            $thisTimeline = $('#timeline'),
+            imageWidth    = $('.status-image-box').width(),
+            thisFromData, $newStatus;
         if (systemObject.supportFormData()) {
           thisFromData = new FormData(this);
+          thisFromData.append('imageWidth', imageWidth);
           $.ajax({
             url         : thisUrl,
             type        : 'POST',
             data        : thisFromData,
             processData : false,
             contentType : false,
+            beforeSend : function () {
+              $('.status-post-loading-box').show();
+            },
             success : function (response) {
               if (response.success) {
                 thisForm[0].reset();
-                if (response.message && response.timeline) {
-                  if (thisTimeline.find('.no-status-fix').length > 0) {
-                    thisTimeline.find('.no-status-fix p').html("");
+                if (response.timeline) {
+                  if ($thisTimeline.find('.no-status-fix').length > 0) {
+                    $thisTimeline.find('.no-status-fix p').html("");
                   }
-                  thisTimeline.prepend(response.timeline);
+                  // Prepend the new status to the timeline
+                  $thisTimeline.prepend(response.timeline);
+                  // Get the id of the new status
+                  $newStatus = $('#timeline-status-' + response.statusId);
+                  // Hide the new status
+                  $newStatus.hide();
+                  // Add a slide down animation to the new status
+                  $newStatus.slideDown(400);
+                  // Resize the image of the new status
                   imageWidth = $('.status-image-box').width();
-                  $('.status-image').css({ width : imageWidth });
+                  $('.status-image').css({ width : imageWidth, height : 'auto' });
+                  // Disable the status post button
                   $('#post-status').prop('disabled', true);
-                  systemObject.showAlertMessage(response.message);
+                  // Display message if available
+                  if (response.message) {
+                    systemObject.showAlertMessage(response.message);
+                  }
                 }
               } else {
                 if (response.message) {
                   systemObject.showErrorMessage(response.message);
                 }
               }
+            },
+            complete : function () {
+              $('.status-post-loading-box').hide();
             },
             error : function () {
               window.location.reload();
@@ -90,11 +110,27 @@
             success : function (response) {
               if (response.success) {
                 thisForm[0].reset();
-                if (response.message && response.timeline) {
-                  $('#timeline').prepend(response.timeline);
+                if (response.timeline) {
+                  if ($thisTimeline.find('.no-status-fix').length > 0) {
+                    $thisTimeline.find('.no-status-fix p').html("");
+                  }
+                  // Prepend the new status to the timeline
+                  $thisTimeline.prepend(response.timeline);
+                  // Get the id of the new status
+                  $newStatus = $('#timeline-status-' + response.statusId);
+                  // Hide the new status
+                  $newStatus.hide();
+                  // Add a slide down animation to the new status
+                  $newStatus.slideDown(400);
+                  // Resize the image of the new status
                   imageWidth = $('.status-image-box').width();
-                  $('.status-image').css({ width : imageWidth });
-                  systemObject.showAlertMessage(response.message);
+                  $('.status-image').css({ width : imageWidth, height : 'auto' });
+                  // Disable the status post button
+                  $('#post-status').prop('disabled', true);
+                  // Display message if available
+                  if (response.message) {
+                    systemObject.showAlertMessage(response.message);
+                  }
                 }
               }
             },
@@ -221,7 +257,7 @@
           data     : thisFormData,
           success : function (response) {
             if (response.success) {
-              $('#timeline-status-' + thisId).remove();
+              $('#timeline-status-' + thisId).slideUp(400);
               if (response.message) {
                 systemObject.showAlertMessage(response.message);
               }
@@ -248,7 +284,7 @@
           data     : thisFormData,
           success : function (response) {
             if (response.success) {
-              $('#timeline-status-' + thisId).remove();
+              $('#timeline-status-' + thisId).slideUp(400);
               if (response.message) {
                 systemObject.showAlertMessage(response.message);
               }
@@ -301,7 +337,8 @@
               thisFormData = thisForm.serialize(),
               thisUrl      = thisForm.attr('action'),
               thisText     = thisForm.find('.comment-textarea').val(),
-              statusId     = thisForm.data('id');
+              statusId     = thisForm.data('id'),
+              $newComment, commentsDiv;
           if (!systemObject.isEmpty(thisText)) {
             $.ajax({
               url      : thisUrl,
@@ -310,9 +347,28 @@
               data     : thisFormData,
               success : function (response) {
                 if (response.success) {
+                  // Reset the form
                   thisForm[0].reset();
-                  if (response.message && response.timeline) {
-                    $('#status-' + statusId + '-comments').append(response.timeline);
+                  if (response.timeline) {
+                    // Find status comments div
+                    commentsDiv = $('#status-' + statusId + '-comments');
+                    // Append the new comment
+                    commentsDiv.append(response.timeline);
+                    // Find the new comment
+                    $newComment = $('#comment-' + response.commentId);
+                    // Hide the new comment
+                    $newComment.hide();
+                    // Add slide down animation to the new comment
+                    $newComment.slideDown(300);
+                    // Add scroll down animation to the comments div
+                    commentsDiv.animate({
+                      scrollTop : commentsDiv[0].scrollHeight
+                    }, "slow");
+                    // Remove a styling class
+                    thisForm.find('.comment-textarea').removeClass('remove-border-top');
+                  }
+                  // Display message if available
+                  if (response.message) {
                     systemObject.showAlertMessage(response.message);
                   }
                 }
@@ -432,7 +488,8 @@
           thisForm     = $('#' + thisObj.attr('id')),
           thisFormData = thisForm.serialize(),
           thisUrl      = thisObj.attr('action'),
-          thisId       = thisObj.data('id');
+          thisId       = thisObj.data('id'),
+          $thisComment;
         $.ajax({
           url      : thisUrl,
           type     : 'POST',
@@ -440,7 +497,10 @@
           data     : thisFormData,
           success : function (response) {
             if (response.success) {
-              $('#comment-' + thisId).remove();
+              $thisComment = $('#comment-' + thisId);
+              $thisComment.slideUp(300, function () {
+                $(this).remove();
+              });
               if (response.message) {
                 systemObject.showAlertMessage(response.message);
               }
@@ -530,7 +590,7 @@
       $('.status-image').css({ width : width });
       $(window).resize(function () {
         width = $(thisIdentity).width();
-        $('.status-image').css({ width : width });
+        $('.status-image').css({ width : width, height : 'auto' });
       });
     },
     facebookOAuthRedirectUrlFix : function () {
@@ -540,6 +600,17 @@
           history.pushState('', document.title, window.location.pathname);
           e.preventDefault();
         }
+      });
+    },
+    scrollToBottomCommentsDivs : function (thisIdentity) {
+      $(document).ready(function () {
+        $(thisIdentity).each(function () {
+          var thisObj = $(this);
+          var thisId = '#' + thisObj.attr('id');
+          $(thisId).animate({
+           scrollTop : $(thisId)[0].scrollHeight
+           }, "fast");
+        });
       });
     }
   };
@@ -565,6 +636,7 @@
     systemObject.forceTopOfPageOnRefresh();
     systemObject.statusImageResize('.status-image-box');
     systemObject.facebookOAuthRedirectUrlFix();
+    systemObject.scrollToBottomCommentsDivs('.comments');
 
     $('#flash-overlay-modal').modal();
   });

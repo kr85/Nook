@@ -84,10 +84,10 @@ class StatusRepository
         $hiddenStatusIds = $this->getHiddenStatusIds($hiddenStatuses);
 
         return Status::with('comments', 'likes')
-            ->whereIn('user_id', $userIds)
-            ->whereNotIn('id', $hiddenStatusIds)
-            ->latest()
-            ->simplePaginate($howMany);
+                ->whereIn('user_id', $userIds)
+                ->whereNotIn('id', $hiddenStatusIds)
+                ->latest()
+                ->simplePaginate($howMany);
     }
 
     /**
@@ -100,8 +100,8 @@ class StatusRepository
     {
         $hiddenStatusIds = [];
 
-        foreach ($hiddenStatuses as $hs) {
-            $hiddenStatusIds[] = $hs->status_id;
+        foreach ($hiddenStatuses as $hiddenStatus) {
+            $hiddenStatusIds[] = $hiddenStatus->status_id;
         }
 
         return $hiddenStatusIds;
@@ -259,116 +259,5 @@ class StatusRepository
         User::findOrFail($userId)->hiddenStatuses()->save($status);
 
         return $status;
-    }
-
-    /**
-     * Handle image manipulation for a image object.
-     *
-     * @param $image
-     * @return array
-     * @throws Exception
-     */
-    public static function imageManipulationObj($image)
-    {
-        $result = [];
-
-        try
-        {
-            // Create image's name
-            $fileName = str_random(12) . '.jpg';
-
-            // Get folder name
-            $folderName = Auth::user()->username . '/statuses';
-
-            // Get path to the image's folder
-            $path = public_path() . '/media/profiles/' . $folderName;
-
-            // Move the original image to the folder
-            $image->move($path, $fileName);
-
-            // Image manipulation
-            // Create a new image
-            $statusImage = Image::make($path . '/' . $fileName);
-
-            // Resize the new image
-            $statusImage->resize(536, null, function ($constraint)
-            {
-                $constraint->aspectRatio();
-            });
-
-            // Encode the image
-            $statusImage->encode('jpg', 100);
-
-            // Delete the original image
-            unlink($path . '/' . $fileName);
-
-            // Save the new image
-            $statusImage->save($path . '/' . $fileName);
-
-            $result['fileName'] = $fileName;
-            $result['path'] = $path;
-        }
-        catch (Exception $e)
-        {
-            throw $e;
-        }
-
-        return $result;
-    }
-
-    /**
-     * Handle image manipulation for a image from a url.
-     *
-     * @param $url
-     * @return array
-     * @throws Exception
-     */
-    public static function imageManipulationUrl($url)
-    {
-        $result = [];
-
-        try
-        {
-            // Create new image's name
-            $fileName = str_random(12) . '.jpg';
-
-            // Get folder name
-            $folderName = Auth::user()->username . '/statuses';
-
-            // Get path to the image's folder
-            $path = public_path() . '/media/profiles/' . $folderName;
-
-            // Check if the url is an image
-            $image = getimagesize($url);
-            if (is_array($image))
-            {
-                $statusImage = Image::make($url);
-
-                // Resize the new image
-                $statusImage->resize(536, null, function ($constraint)
-                {
-                    $constraint->aspectRatio();
-                });
-
-                // Encode the image
-                $statusImage->encode('jpg', 100);
-
-                // Save the new image
-                $statusImage->save($path . '/' . $fileName);
-
-                $result['path'] = $path;
-                $result['fileName'] = $fileName;
-            }
-            else
-            {
-                $result['errorMessage'] = 'The url is not an image.';
-            }
-        }
-        catch (Exception $e)
-        {
-            throw $e;
-        }
-
-        return $result;
     }
 }

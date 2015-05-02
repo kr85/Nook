@@ -6,45 +6,65 @@
 
 (function ($) {
 
-  // Timeline element
-  var thisSelector = '#timeline';
+  var paginationDiv   = $('ul.pagination'),
+      loadingImageDiv = $('.loading-image'),
+      timelineDiv     = $('#timeline'),
+      currentPage     = 1;
 
-  // Initialize infinite scroll plugin
-  $(thisSelector).infinitescroll({
-    extraScrollPx: 0
-  }, function () {
-
-    // Fix timeline bottom border
-    autoScrollTimelineWrapperFix();
-
-    // Show load more button
-    $('ul.pagination').show();
-
-    // Hide loading image
-    $('.loading-image').hide();
-  });
-
-  // Fix timeline bottom border
-  autoScrollTimelineWrapperFix();
-
-  // Unbind infinite scroll plugin
-  $(thisSelector).infinitescroll('unbind');
-
-  // On load more click
-  $('ul.pagination li a.active').on('click', function (e) {
+  // On load more button click
+  $(document).on('click', 'ul.pagination li a.active', function (e) {
+    currentPage = currentPage + 1;
+    getStatuses(currentPage);
     e.preventDefault();
-
-    // Show loading image
-    $('.loading-image').show();
-
-    // Reinitialize infinite scroll plugin
-    $(thisSelector).infinitescroll('retrieve');
   });
+
+  // Get new statuses
+  function getStatuses(page) {
+    $.ajax({
+      url      : '?page=' + page,
+      type     : 'GET',
+      dataType : 'JSON',
+      beforeSend : function () {
+        // Hide load more button
+        paginationDiv.hide();
+
+        // Show loading image
+        loadingImageDiv.show();
+
+        // Fix timeline bottom border styles
+        autoScrollTimelineWrapperFix();
+      },
+      success : function (response) {
+        // Append new content
+        timelineDiv.append(response.view);
+
+        if (response.countStatuses >= 25) {
+          // Show load more button
+          paginationDiv.show();
+        }
+
+        // Hide loading image
+        loadingImageDiv.hide();
+      },
+      complete : function () {
+        $('.comments').each(function () {
+          var thisObj = $(this);
+          var thisId = '#' + thisObj.attr('id');
+          $(thisId).animate({
+            scrollTop : $(thisId)[0].scrollHeight
+          }, "fast");
+        });
+      },
+      error : function (response) {
+        console.log(response);
+      }
+    });
+  }
 
   // Fixes timeline's bottom border
   function autoScrollTimelineWrapperFix () {
     $('.timeline-wrapper-last-child').css({
-      'border-color' : '#E0E1E2'
+      'border-bottom-color' : '#E0E1E2'
     });
   }
 }(jQuery));

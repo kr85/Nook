@@ -56,7 +56,12 @@ class StatusesController extends BaseController
 
         if (Request::ajax())
         {
-            return View::make('statuses.partials.statuses', compact('statuses'));
+            $response = [
+                'view' => View::make('statuses.partials.statuses', compact('statuses'))->render(),
+                'countStatuses' => count($statuses)
+            ];
+
+            return Response::json($response);
         }
 
         return View::make('statuses.index', compact('statuses'));
@@ -79,8 +84,8 @@ class StatusesController extends BaseController
             {
                 // Return error response
                 $response = [
-                    'success'  => Helper::getValidImage($input)['success'],
-                    'message'  => Helper::getValidImage($input)['message']
+                    'success' => Helper::getValidImage($input)['success'],
+                    'message' => Helper::getValidImage($input)['message']
                 ];
 
                 return Response::json($response);
@@ -112,7 +117,8 @@ class StatusesController extends BaseController
         $response = [
             'success'  => true,
             'timeline' => $view,
-            'message'  => 'Your status has been posted.'
+            'message'  => 'Your status has been posted.',
+            'statusId' => $status->id
         ];
 
         return Response::json($response);
@@ -142,8 +148,8 @@ class StatusesController extends BaseController
 
         // Return response
         $response = [
-            'success'  => true,
-            'message'  => 'Your status has been updated.'
+            'success' => true,
+            'message' => 'Your status has been updated.'
         ];
 
         return Response::json($response);
@@ -164,8 +170,8 @@ class StatusesController extends BaseController
 
         // Return response
         $response = [
-            'success'  => true,
-            'message'  => 'Your status has been deleted.'
+            'success' => true,
+            'message' => 'Your status has been deleted.'
         ];
 
         return Response::json($response);
@@ -186,8 +192,8 @@ class StatusesController extends BaseController
 
         // Return response
         $response = [
-            'success'  => true,
-            'message'  => 'The status has been successfully hidden.'
+            'success' => true,
+            'message' => 'The status has been successfully hidden.'
         ];
 
         return Response::json($response);

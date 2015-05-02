@@ -1,17 +1,17 @@
 <?php
 
+use Nook\Statuses\Comment;
 use Nook\Users\User;
 use Nook\Statuses\Status;
-use Nook\Statuses\Like;
 use Faker\Factory as Faker;
 
 /**
- * Class StatusUserLikesTableSeeder
+ * Class CommentsTableSeeder
  */
-class StatusUserLikesTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
-     * Run the seeder for the status user likes table.
+     * Run the seeder for the comments table.
      */
 	public function run()
 	{
@@ -21,9 +21,10 @@ class StatusUserLikesTableSeeder extends Seeder
 
 		foreach(range(1, 10000) as $index)
 		{
-			Like::create([
-                'user_id' => $faker->randomElement($userIds),
+			Comment::create([
                 'status_id' => $faker->randomElement($statusIds),
+                'user_id' => $faker->randomElement($userIds),
+                'body' => $faker->sentence(),
                 'created_at' => $faker->dateTimeThisYear()
 			]);
 		}

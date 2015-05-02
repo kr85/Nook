@@ -1,4 +1,3 @@
-@if($comment->owner->id == $currentUser->id)
 <ul class="dropdown-menu comment-dropdown-user" role="menu">
     <li id="{{ $comment->id }}" class="link-button edit-comment" title="Edit Comment"><i class="fa fa-pencil-square-o"></i></li>
     <li>
@@ -13,4 +12,3 @@
         {{ Form::close() }}
     </li>
 </ul>
-@endif

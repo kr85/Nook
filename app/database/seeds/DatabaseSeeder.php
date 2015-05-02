@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     protected $tables = [
-        'users', 'statuses', 'status_user_likes'
+        'users', 'statuses', 'comments', 'status_user_likes', 'follows'
     ];
 
     /**
@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
     protected $seeders = [
         'UsersTableSeeder',
         'StatusesTableSeeder',
-        'StatusUserLikesTableSeeder'
+        'CommentsTableSeeder',
+        'StatusUserLikesTableSeeder',
+        'FollowsTableSeeder'
     ];
 
 	/**
@@ -56,5 +58,4 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
-
 }

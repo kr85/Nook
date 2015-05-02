@@ -40,6 +40,8 @@ class PublishStatusCommandHandler implements CommandHandler
         $fileName = (string) null;
         // Store the status image
         $image = $command->image;
+        // Image width
+        $imageWidth = $command->imageWidth;
         // Store the status text
         $text = trim($command->body);
         // Error message
@@ -50,7 +52,7 @@ class PublishStatusCommandHandler implements CommandHandler
         if ($image)
         {
             // Handle image manipulation
-            $array = StatusRepository::imageManipulationObj($image);
+            $array = Helper::imageManipulationObj($image, $imageWidth);
             // Get the new image's name
             $fileName = $array['fileName'];
         }
@@ -63,7 +65,7 @@ class PublishStatusCommandHandler implements CommandHandler
             if ($arrayStringUrl['url'])
             {
                 // Handle image manipulation
-                $arrayImage = StatusRepository::imageManipulationUrl($arrayStringUrl['url']);
+                $arrayImage = Helper::imageManipulationUrl($arrayStringUrl['url'], $imageWidth);
 
                 if (!isset($arrayImage['errorMessage']))
                 {

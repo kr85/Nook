@@ -49,7 +49,6 @@ gulp.task('scripts', function() {
     'app/assets/js/lib/bootstrap-hover-dropdown.js',
     'app/assets/js/lib/jquery.placeholder.min.js',
     'app/assets/js/placeholder.js',
-    'app/assets/js/lib/jquery.infinitescroll.js',
     'app/assets/js/infinitescroll.js',
     'app/assets/js/custom.js'
   ])

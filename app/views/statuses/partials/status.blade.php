@@ -17,13 +17,19 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-6_5">
+    <div class="col-md-6_5" style="margin-top: -1px;">
         <div class="timeline-wrapper">
             <div class="status-comments-wrapper">
                 @if($status->image)
                     <div class="status-image-box">
                         @if(Helper::statusImageExist($status->user->username, $status->image))
-                            <img src="../media/profiles/{{ $status->user->username }}/statuses/{{ $status->image }}" alt="{{ $status->image }}" width="536" class="status-image"/>
+                            <img
+                                src="{{ Helper::getStatusImagePath($status->user->username, $status->image) }}"
+                                alt="{{ $status->image }}"
+                                width="{{ Helper::getStatusImageWidth($status->user->username, $status->image) }}"
+                                height="{{ Helper::getStatusImageHeight($status->user->username, $status->image) }}"
+                                class="status-image"
+                            />
                         @else
                             <img src="{{ $status->image }}" alt="{{ $status->image }}" width="536" class="status-image"/>
                         @endif
@@ -76,12 +82,14 @@
                             @include('statuses.partials.status-options', ['status' => $status])
                         </div>
                     </div>
-                    <div class="comments" id="status-{{ $status->id }}-comments">
-                        @unless($status->comments->isEmpty())
-                            @foreach($status->comments as $comment)
-                                @include('statuses.partials.comment', ['status' => $status])
-                            @endforeach
-                        @endunless
+                    <div>
+                        <div class="comments" id="status-{{ $status->id }}-comments">
+                            @unless($status->comments->isEmpty())
+                                @foreach($status->comments as $comment)
+                                    @include('statuses.partials.comment', ['status' => $status])
+                                @endforeach
+                            @endunless
+                        </div>
                     </div>
                 @if($signedIn)
                     @include('statuses.partials.publish-comment-form', ['status' => $status])

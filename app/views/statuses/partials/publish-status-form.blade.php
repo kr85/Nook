@@ -1,4 +1,8 @@
 <div class="status-post">
+    <div class="status-post-loading-box">
+        <div class="status-post-loading-image-background"></div>
+        <div class="status-post-loading-image"></div>
+    </div>
     {{ Form::open(['route' => 'statuses_route', 'id' => 'post-status-form', 'files' => true]) }}
 
         {{ Form::hidden('user_id', $signedIn->id) }}

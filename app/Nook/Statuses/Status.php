@@ -61,7 +61,7 @@ class Status extends Eloquent
      */
     public function comments()
     {
-        return $this->hasMany('Nook\Statuses\Comment');
+        return $this->hasMany('Nook\Statuses\Comment')->oldest();
     }
 
     /**

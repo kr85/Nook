@@ -23,16 +23,23 @@ class PublishStatusCommand
     public $image;
 
     /**
+     * @var $imageWidth
+     */
+    public $imageWidth;
+
+    /**
      * Constructor.
      *
      * @param $body
      * @param $user_id
      * @param $image
+     * @param $imageWidth
      */
-    function __construct($body, $user_id, $image)
+    function __construct($body, $user_id, $image, $imageWidth)
     {
         $this->body = $body;
         $this->user_id = $user_id;
         $this->image = $image;
+        $this->imageWidth = $imageWidth;
     }
 }

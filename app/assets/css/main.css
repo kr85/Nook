@@ -260,7 +260,31 @@ ul.dropdown-menu {
   -moz-box-shadow: 0 1px 16px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 16px rgba(0, 0, 0, 0.1);
   margin-bottom: 2em;
-  padding: 0; }
+  padding: 0;
+  position: relative; }
+  .status-post .status-post-loading-box {
+    display: none; }
+    .status-post .status-post-loading-box .status-post-loading-image-background {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      opacity: 0.8;
+      z-index: 1;
+      border: 1px solid #BFBFBF; }
+    .status-post .status-post-loading-box .status-post-loading-image {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: transparent url(../images/pages/loading-status-post.gif) no-repeat center center;
+      -moz-background-size: 2em 2em;
+      -o-background-size: 2em 2em;
+      background-size: 2em 2em;
+      z-index: 2; }
   .status-post form {
     border: 1px solid #BFBFBF; }
   .status-post textarea {
@@ -319,8 +343,6 @@ ul.dropdown-menu {
   margin-bottom: 2.5em; }
 
 .comments_create-form textarea {
-  border: 1px solid #e3e3e3;
-  border-top: none;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -328,10 +350,28 @@ ul.dropdown-menu {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
-  transition: none; }
+  transition: none;
+  padding-bottom: 0;
+  height: 34px;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-top: 1px solid #D9D9D9; }
+  .comments_create-form textarea:focus {
+    border: 1px solid #0091b6; }
+
+.remove-border-top {
+  border-top: none !important; }
+  .remove-border-top:focus {
+    border: 1px solid #0091b6 !important; }
 
 .comments {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 27em;
+  height: auto; }
 
 .comments_comment {
   background: #FAFAFA;
@@ -339,6 +379,9 @@ ul.dropdown-menu {
   border-top: 1px solid #d9d9d9; }
   .comments_comment img {
     border: 1px solid rgba(0, 0, 0, 0.4); }
+
+.comments_comment:first-child {
+  border-top: none; }
 
 article.comments_comment.media.status-media {
   -webkit-border-top-right-radius: 0;
@@ -358,20 +401,6 @@ article.comments_comment.media.status-media {
     font-size: 0.7em;
     color: rgba(0, 0, 0, 0.6);
     letter-spacing: 0.05em; }
-
-textarea.form-control.comment-textarea {
-  padding-bottom: 0;
-  height: 34px;
-  border: none;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border-top: 1px solid #D9D9D9; }
-  textarea.form-control.comment-textarea:focus {
-    border: 1px solid #0091b6; }
 
 .timeline-status {
   position: relative; }
@@ -470,13 +499,14 @@ textarea.form-control.comment-textarea {
   position: relative; }
   .likes-owners-box span {
     position: absolute;
-    top: 0.8em;
+    top: 1.3em;
     padding-left: 1em;
     color: rgba(0, 0, 0, 0.6);
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis;
+    font-size: 0.8em; }
     .likes-owners-box span a {
       font-weight: 700; }
 
@@ -485,9 +515,10 @@ textarea.form-control.comment-textarea {
   height: 40px;
   margin: 1px 0 0;
   background: #E6E6E6 url(../images/pages/white-gradient-100px.png) repeat-x scroll 50% 50%;
-  -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 3px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 3px rgba(0, 0, 0, 0.1); }
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #d9d9d9; }
   .status-options-box .status-more-options {
     position: relative;
     float: right;
@@ -1620,7 +1651,8 @@ body {
 .alert-info {
   color: #31708F;
   background-color: rgba(217, 237, 247, 0.8);
-  border-color: #BCE8F1; }
+  border-color: #BCE8F1;
+  margin-bottom: 0; }
   .alert-info button {
     display: none; }
 
@@ -1634,7 +1666,8 @@ body {
 .alert-danger-flash {
   color: #A94442;
   background-color: rgba(242, 222, 222, 0.8);
-  border-color: #EBCCD1; }
+  border-color: #EBCCD1;
+  margin-bottom: 0; }
 
 .centered {
   text-align: center;

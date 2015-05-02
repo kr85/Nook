@@ -2,7 +2,9 @@
 
 use Auth;
 use File;
+use Image;
 use Config;
+use Exception;
 
 /**
  * Class Helper
@@ -83,7 +85,66 @@ class Helper
      */
     public static function statusImageExist($userFolder, $imageName)
     {
-        return File::exists(public_path().'/media/profiles/'.$userFolder.'/statuses/'.$imageName);
+        return File::exists(self::getStatusImageFolderAbsPath($userFolder).'/'.$imageName);
+    }
+
+    /**
+     * Get the height of a status image.
+     *
+     * @param $userFolder
+     * @param $imageName
+     * @return int
+     */
+    public static function getStatusImageHeight($userFolder, $imageName)
+    {
+        return Image::make(public_path().'/'.self::getStatusImagePath($userFolder, $imageName))->height();
+    }
+
+    /**
+     * Get the width of a status image.
+     *
+     * @param $userFolder
+     * @param $imageName
+     * @return int
+     */
+    public static function getStatusImageWidth($userFolder, $imageName)
+    {
+        return Image::make(public_path().'/'.self::getStatusImagePath($userFolder, $imageName))->width();
+    }
+
+    /**
+     * Get the absolute path of user's status images folder.
+     *
+     * @param $userFolder
+     * @return string
+     */
+    private static function getStatusImageFolderAbsPath($userFolder)
+    {
+        return public_path().'/media/profiles/'.$userFolder.'/statuses';
+    }
+
+    /**
+     * Get a status image file.
+     *
+     * @param $userFolder
+     * @param $imageName
+     * @return string
+     */
+    public static function getStatusImage($userFolder, $imageName)
+    {
+        return File::get(self::getStatusImageFolderAbsPath($userFolder).'/'.$imageName);
+    }
+
+    /**
+     * Get the path of a status image.
+     *
+     * @param $userFolder
+     * @param $imageName
+     * @return string
+     */
+    public static function getStatusImagePath($userFolder, $imageName)
+    {
+        return 'media/profiles/'.$userFolder.'/statuses/'.$imageName;
     }
 
     /**
@@ -125,6 +186,113 @@ class Helper
             {
                 $result['text'][] = $a;
             }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Handle image manipulation for a image object.
+     *
+     * @param $image
+     * @param $imageWidth
+     * @return array
+     * @throws Exception
+     */
+    public static function imageManipulationObj($image, $imageWidth)
+    {
+        $result = [];
+
+        try
+        {
+            // Create image's name
+            $fileName = str_random(12).'.jpg';
+
+            // Get path to the image's folder
+            $path = self::getStatusImageFolderAbsPath(Auth::user()->username);
+
+            // Move the original image to the folder
+            $image->move($path, $fileName);
+
+            // Image manipulation
+            // Create a new image
+            $statusImage = Image::make($path.'/'.$fileName);
+
+            // Resize the new image
+            $statusImage->resize($imageWidth, null, function ($constraint)
+            {
+                $constraint->aspectRatio();
+            });
+
+            // Encode the image
+            $statusImage->encode('jpg', 100);
+
+            // Delete the original image
+            unlink($path.'/'.$fileName);
+
+            // Save the new image
+            $statusImage->save($path.'/'.$fileName);
+
+            $result['fileName'] = $fileName;
+            $result['path'] = $path;
+        }
+        catch (Exception $e)
+        {
+            throw $e;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Handle image manipulation for a image from a url.
+     *
+     * @param $url
+     * @param $imageWidth
+     * @return array
+     * @throws Exception
+     */
+    public static function imageManipulationUrl($url, $imageWidth)
+    {
+        $result = [];
+
+        try
+        {
+            // Create new image's name
+            $fileName = str_random(12).'.jpg';
+
+            // Get path to the image's folder
+            $path = self::getStatusImageFolderAbsPath(Auth::user()->username);
+
+            // Check if the url is an image
+            $image = getimagesize($url);
+            if (is_array($image))
+            {
+                $statusImage = Image::make($url);
+
+                // Resize the new image
+                $statusImage->resize($imageWidth, null, function ($constraint)
+                {
+                    $constraint->aspectRatio();
+                });
+
+                // Encode the image
+                $statusImage->encode('jpg', 100);
+
+                // Save the new image
+                $statusImage->save($path.'/'.$fileName);
+
+                $result['path'] = $path;
+                $result['fileName'] = $fileName;
+            }
+            else
+            {
+                $result['errorMessage'] = 'The url is not an image.';
+            }
+        }
+        catch (Exception $e)
+        {
+            throw $e;
         }
 
         return $result;

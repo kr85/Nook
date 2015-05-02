@@ -1,5 +1,5 @@
 @if ($paginator->getLastPage() > 1)
-    <ul class="pagination" id="pagination-{{ $paginator->getCurrentPage() }}">
+    <ul class="pagination">
         <li>
             <a
                 href="{{ $paginator->getUrl($paginator->getCurrentPage() + 1) }}"
