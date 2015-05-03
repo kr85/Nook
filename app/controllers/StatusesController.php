@@ -95,6 +95,12 @@ class StatusesController extends BaseController
         // Validate the input
         $this->publishStatusForm->validate($input);
 
+        // Add a imageWidth variable for Codeception tests
+        if (App::environment() == 'testing')
+        {
+            $input['imageWidth'] = 655;
+        }
+
         // Executes the command
         $result = $this->execute(PublishStatusCommand::class, $input);
 

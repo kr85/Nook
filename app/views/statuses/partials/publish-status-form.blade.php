@@ -15,9 +15,6 @@
         <!-- Button Form Input -->
         <div class="form-group status-post-submit">
             <div class="attach-image-wrapper" title="Attach an Image">
-                <label for="image">
-                    <!--i class="fa fa-picture-o"></i-->
-                </label>
                 <input type="file" name="image" id="image"/>
             </div>
             {{ Form::submit('Post Status', ['class' => 'btn btn-default btn-xs', 'id' => 'post-status']) }}
