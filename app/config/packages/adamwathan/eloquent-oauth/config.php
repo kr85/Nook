@@ -6,7 +6,7 @@ return array(
 		'google' => array(
 			'id' => getenv('GOOGLE_CLIENT_ID'),
 			'secret' => getenv('GOOGLE_CLIENT_SECRET'),
-			'redirect' => URL::to('http://nook.com/google/login'),
+			'redirect' => URL::to(getenv('GOOGLE_CLIENT_REDIRECT')),
 			'scope' => array(),
 		),
 	)
