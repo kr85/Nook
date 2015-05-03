@@ -41,7 +41,7 @@ class DeleteStatusCommandHandler implements CommandHandler
         if ($status->image)
         {
             // Check if the image file exists
-            if (File::exists(Helper::getStatusMediaPath($status->image)))
+            while (File::exists(Helper::getStatusMediaPath($status->image)))
             {
                 // Delete the image
                 unlink(Helper::getStatusMediaPath($status->image));

@@ -64,7 +64,7 @@ class CommentsController extends BaseController
         // Return response
         $response = [
             'success'   => true,
-            'timeline'  => $view,
+            'view'      => $view,
             'message'   => 'Your comment has been posted.',
             'commentId' => $comment->id
         ];
@@ -82,17 +82,25 @@ class CommentsController extends BaseController
     {
         // Get the input
         $input = Input::all();
+        $statusId = $input['status_id'];
 
         // Validates the input
         $this->leaveCommentFormForm->validate($input);
 
-        // Executes the command
-        $this->execute(UpdateCommentCommand::class, $input);
+        // Executes the command to update the comment
+        $comment = $this->execute(UpdateCommentCommand::class, $input);
+
+        // Find the status
+        $status = $this->statusRepository->findById($statusId);
+
+        // Render comment view
+        $view = View::make('statuses.partials.comment', compact('status', 'comment'))->render();
 
         // Return response
         $response = [
-            'success'  => true,
-            'message'  => 'Your comment has been updated.'
+            'success' => true,
+            'message' => 'Your comment has been updated.',
+            'view'    => $view
         ];
 
         return Response::json($response);

@@ -78,6 +78,8 @@ ul.dropdown-menu {
 
 .comment-dropdown-user {
   min-width: 65px !important;
+  top: 10px !important;
+  right: 12px !important;
 }
 
 .status-media-dropdown ul.dropdown-menu {
@@ -208,6 +210,7 @@ ul.dropdown-menu {
   overflow-x: hidden;
   max-height: 27em;
   height: auto;
+  width: 100%;
 }
 
 .comments_comment {
@@ -326,8 +329,20 @@ article.comments_comment.media.status-media {
 }
 
 .status-image-box {
+  position: relative;
   text-align: center;
-  background-color: #ffffff;
+
+  .status-image-loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff url("../../images/pages/loading-status-post.gif") no-repeat scroll center center;
+    background-size: 2em 2em;
+    z-index: 10;
+    display: none;
+  }
 }
 
 .delete-comment {
@@ -382,7 +397,7 @@ article.comments_comment.media.status-media {
 
 .status-options-box {
   position: relative;
-  height: 40px;
+  height: 3.1em;
   margin: 1px 0 0;
   background: #E6E6E6 url(../images/pages/white-gradient-100px.png) repeat-x scroll 50% 50%;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.1);
@@ -392,7 +407,7 @@ article.comments_comment.media.status-media {
     position: relative;
     float: right;
     height: 100%;
-    width: 49px;
+    width: 3.77em;
     border-left: 1px solid #DDD;
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 7px -94px;
@@ -411,15 +426,24 @@ article.comments_comment.media.status-media {
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
 
   .status-like-button {
-    height: 40px;
-    width: 48px;
+    display: block;
+    height: 3em;
+    width: 3.7em;
     -moz-user-select: none;
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px;
     border: none;
+
+    &:hover {
+      background: rgba(255,255,255,.8) url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px;
+    }
   }
 
   .status-liked {
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px;
+
+    &:hover {
+      background: rgba(255,255,255,.8) url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px;
+    }
   }
 }
 

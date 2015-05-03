@@ -27181,12 +27181,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
             success : function (response) {
               if (response.success) {
                 thisForm[0].reset();
-                if (response.timeline) {
+                if (response.view) {
                   if ($thisTimeline.find('.no-status-fix').length > 0) {
                     $thisTimeline.find('.no-status-fix p').html("");
                   }
                   // Prepend the new status to the timeline
-                  $thisTimeline.prepend(response.timeline);
+                  $thisTimeline.prepend(response.view);
                   // Get the id of the new status
                   $newStatus = $('#timeline-status-' + response.statusId);
                   // Hide the new status
@@ -27226,12 +27226,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
             success : function (response) {
               if (response.success) {
                 thisForm[0].reset();
-                if (response.timeline) {
+                if (response.view) {
                   if ($thisTimeline.find('.no-status-fix').length > 0) {
                     $thisTimeline.find('.no-status-fix p').html("");
                   }
                   // Prepend the new status to the timeline
-                  $thisTimeline.prepend(response.timeline);
+                  $thisTimeline.prepend(response.view);
                   // Get the id of the new status
                   $newStatus = $('#timeline-status-' + response.statusId);
                   // Hide the new status
@@ -27291,16 +27291,18 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               var currentValue = $.trim(textElement.text());
               if (currentValue == thisValue) {
                 thisObj.hide();
-                textElement.text(thisValue).show();
+                textElement.show();
                 return false;
               }
             },
             success : function (response) {
-              if (response.success && response.message) {
+              if (response.success) {
                 thisObj.hide();
-                textElement.text(thisValue).show();
+                $('#status-' + thisId + '-body').html(response.view);
                 $('#timeline-status-text-' + thisId).addClass('status-media');
-                systemObject.showAlertMessage(response.message);
+                if (response.message) {
+                  systemObject.showAlertMessage(response.message);
+                }
               }
             },
             error : function () {
@@ -27336,14 +27338,14 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 var currentValue = $.trim(textElement.text());
                 if (currentValue == thisValue) {
                   thisObj.hide();
-                  textElement.text(thisValue).show();
+                  textElement.show();
                   return false;
                 }
               },
               success: function (response) {
                 if (response.success && response.message) {
                   thisObj.hide();
-                  textElement.text(thisValue).show();
+                  $('#status-' + thisId + '-body').html(response.view);
                   $('#timeline-status-text-' + thisId).addClass('status-media');
                   systemObject.showAlertMessage(response.message);
                 }
@@ -27428,8 +27430,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
           data     : thisFormData,
           success : function (response) {
             if (response.success) {
-              if (response.timeline) {
-                $('#timeline-status-' + thisId).html(response.timeline);
+              if (response.view) {
+                $('#status-options-' + thisId).html(response.view);
               }
               if (response.message) {
                 systemObject.showAlertMessage(response.message);
@@ -27465,11 +27467,11 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 if (response.success) {
                   // Reset the form
                   thisForm[0].reset();
-                  if (response.timeline) {
+                  if (response.view) {
                     // Find status comments div
                     commentsDiv = $('#status-' + statusId + '-comments');
                     // Append the new comment
-                    commentsDiv.append(response.timeline);
+                    commentsDiv.append(response.view);
                     // Find the new comment
                     $newComment = $('#comment-' + response.commentId);
                     // Hide the new comment
@@ -27536,10 +27538,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
               }
             },
             success : function (response) {
-              if (response.success && response.message) {
+              if (response.success) {
                 thisObj.hide();
-                textElement.text(thisValue).show();
-                systemObject.showAlertMessage(response.message);
+                $('#comment-' + thisId).replaceWith(response.view);
+                if (response.message) {
+                  systemObject.showAlertMessage(response.message);
+                }
               }
             },
             error : function () {
@@ -27580,10 +27584,12 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                 }
               },
               success: function (response) {
-                if (response.success && response.message) {
+                if (response.success) {
                   thisObj.hide();
-                  textElement.text(thisValue).show();
-                  systemObject.showAlertMessage(response.message);
+                  $('#comment-' + thisId).replaceWith(response.view);
+                  if (response.message) {
+                    systemObject.showAlertMessage(response.message);
+                  }
                 }
               },
               error: function () {
@@ -27728,6 +27734,23 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
            }, "fast");
         });
       });
+    },
+    changeCursorToProgressOnAjaxRequest : function () {
+      $(document).ajaxStart(function () {
+        $('body').css({ 'cursor' : 'progress' });
+      }).ajaxStop(function () {
+        $('body').css({ 'cursor' : 'auto' });
+      });
+    },
+    showLoadingImageOnStatusImageLoad : function () {
+      // Show the loading image
+      $('.status-image-loading').show();
+      // Hide the loading image after image is loaded
+      $('.status-image').on('load', function () {
+        $('.status-image-loading').hide();
+      }).error(function () {
+        window.location.reload();
+      });
     }
   };
 
@@ -27753,6 +27776,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     systemObject.statusImageResize('.status-image-box');
     systemObject.facebookOAuthRedirectUrlFix();
     systemObject.scrollToBottomCommentsDivs('.comments');
+    systemObject.changeCursorToProgressOnAjaxRequest();
+    systemObject.showLoadingImageOnStatusImageLoad();
 
     $('#flash-overlay-modal').modal();
   });

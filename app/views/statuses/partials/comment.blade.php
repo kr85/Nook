@@ -1,3 +1,4 @@
+<?php use \Nook\Helpers\Helper; ?>
 <article class="comments_comment media status-media" id="comment-{{ $comment->id }}">
     <div class="pull-left">
         @include('users.partials.avatar-round', ['user' => $comment->owner, 'class' => 'status-media-object'])
@@ -9,7 +10,7 @@
             </a>
             @if($comment->owner->id == $currentUser->id)
                 <a href="" class="dropdown-toggle delete-comment pull-right" aria-hidden="true" data-toggle="dropdown">
-                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-cog"></i>
                 </a>
                 @include('statuses.partials.comment-options', ['status' => $status, 'comment' => $comment])
             @endif
@@ -25,7 +26,7 @@
                 {{ Form::hidden('comment_id', $comment->id) }}
 
                 <span class="comment-click-hide-show-{{ $comment->id }}" data-show="#edit-comment-input-{{ $comment->id }}">
-                    {{ $comment->body }}
+                    {{ Helper::getComment($comment->body) }}
                 </span>
                 @if($currentUser->id == $comment->owner->id)
                     <input

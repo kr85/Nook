@@ -17,11 +17,12 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-6_5" style="margin-top: -1px;">
+    <div class="col-md-6_5">
         <div class="timeline-wrapper">
             <div class="status-comments-wrapper">
                 @if($status->image)
                     <div class="status-image-box">
+                        <div id="status-{{ $status->id }}-image-loading" class="status-image-loading"></div>
                         @if(Helper::statusImageExist($status->user->username, $status->image))
                             <img
                                 src="{{ Helper::getStatusImagePath($status->user->username, $status->image) }}"
@@ -29,58 +30,24 @@
                                 width="{{ Helper::getStatusImageWidth($status->user->username, $status->image) }}"
                                 height="{{ Helper::getStatusImageHeight($status->user->username, $status->image) }}"
                                 class="status-image"
+                                id="status-{{ $status->id }}-image"
                             />
                         @else
-                            <img src="{{ $status->image }}" alt="{{ $status->image }}" width="536" class="status-image"/>
+                            <img
+                                src="{{ $status->image }}"
+                                alt="{{ $status->image }}"
+                                width="536"
+                                class="status-image"
+                                id="status-{{ $status->id }}-image"
+                            />
                         @endif
                     </div>
                 @endif
-                @if($status->body)
-                    <article class="media status-media">
-                @else
-                    <article class="media status-media-mobile" id="timeline-status-text-{{ $status->id }}">
-                @endif
-                        <div class="pull-left timeline-mobile">
-                            @include('users.partials.avatar-round', ['user' => $status->user])
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading timeline-mobile">
-                                {{ $status->user->username }}
-                            </h4>
-                            <p class="status-media-time timeline-mobile">
-                                {{ $status->present()->timeSincePublished() }}
-                            </p>
-                            <div class="status-media-body" id="edit-status-form-box-{{ $status->id }}">
-                                {{ Form::open(['id' => 'edit-status-form-'.$status->id, 'method' => 'PATCH', 'route' => ['update_status_route', $status->id]]) }}
-                                    <span class="click-hide-show-{{ $status->id }}" data-show="#edit-status-input-{{ $status->id }}">
-                                        {{ $status->body }}
-                                    </span>
-                                    @if($currentUser->id == $status->user->id)
-                                    <input
-                                        type="text"
-                                        id="edit-status-input-{{ $status->id }}"
-                                        name="body"
-                                        class="blur-update-hide-show"
-                                        data-id="{{ $status->id }}"
-                                        value="{{ $status->body }}"
-                                        style="display: none;"
-                                    />
-                                    @endif
-                                {{ Form::close() }}
-                            </div>
-                        </div>
-                    </article>
-                    <div class="status-likes-options">
-                        <div class="status-options-box">
-                            @include('statuses.partials.status-like', ['status' => $status])
-                            <div class="likes-owners-box">
-                                <span>
-                                    {{ $status->present()->displayLikesOwners() }}
-                                </span>
-                            </div>
-                            <a href="" class="dropdown-toggle status-more-options" aria-hidden="true" data-toggle="dropdown"></a>
-                            @include('statuses.partials.status-options', ['status' => $status])
-                        </div>
+                <div id="status-{{ $status->id }}-body">
+                    @include('statuses.partials.status-body', ['status' => $status])
+                </div>
+                    <div id="status-options-{{ $status->id }}">
+                        @include('statuses.partials.status-likes-options', ['status' => $status])
                     </div>
                     <div>
                         <div class="comments" id="status-{{ $status->id }}-comments">

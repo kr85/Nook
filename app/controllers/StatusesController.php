@@ -116,7 +116,7 @@ class StatusesController extends BaseController
         // Return response
         $response = [
             'success'  => true,
-            'timeline' => $view,
+            'view'     => $view,
             'message'  => 'Your status has been posted.',
             'statusId' => $status->id
         ];
@@ -143,13 +143,17 @@ class StatusesController extends BaseController
         // Validates the input
         $this->publishStatusForm->validate($input);
 
-        // Executes the command
-        $this->execute(UpdateStatusCommand::class, $input);
+        // Executes the command to update the status
+        $status = $this->execute(UpdateStatusCommand::class, $input);
+
+        // Render status body partial view
+        $view = View::make('statuses.partials.status-body', compact('status'))->render();
 
         // Return response
         $response = [
             'success' => true,
-            'message' => 'Your status has been updated.'
+            'message' => 'Your status has been updated.',
+            'view'    => $view
         ];
 
         return Response::json($response);
@@ -215,16 +219,16 @@ class StatusesController extends BaseController
         // Store the status to a variable
         $status = $result['status'];
 
-        // Render status view
-        $view = View::make('statuses.partials.status', compact('status'))->render();
+        // Render status likes options partial view
+        $view = View::make('statuses.partials.status-likes-options', compact('status'))->render();
 
 
         // Return response
         $response = [
-            'success'  => $result['success'],
-            'liked'    => $result['liked'],
-            'message'  => $result['message'],
-            'timeline' => $view
+            'success' => $result['success'],
+            'liked'   => $result['liked'],
+            'message' => $result['message'],
+            'view'    => $view
         ];
 
         return Response::json($response);

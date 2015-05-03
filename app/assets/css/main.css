@@ -241,7 +241,9 @@ ul.dropdown-menu {
   min-width: 65px !important; }
 
 .comment-dropdown-user {
-  min-width: 65px !important; }
+  min-width: 65px !important;
+  top: 10px !important;
+  right: 12px !important; }
 
 .status-media-dropdown ul.dropdown-menu {
   padding: 10px 0; }
@@ -371,7 +373,8 @@ ul.dropdown-menu {
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 27em;
-  height: auto; }
+  height: auto;
+  width: 100%; }
 
 .comments_comment {
   background: #FAFAFA;
@@ -458,8 +461,20 @@ article.comments_comment.media.status-media {
       color: #006983; }
 
 .status-image-box {
-  text-align: center;
-  background-color: #ffffff; }
+  position: relative;
+  text-align: center; }
+  .status-image-box .status-image-loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff url("../../images/pages/loading-status-post.gif") no-repeat scroll center center;
+    -moz-background-size: 2em 2em;
+    -o-background-size: 2em 2em;
+    background-size: 2em 2em;
+    z-index: 10;
+    display: none; }
 
 .delete-comment button {
   border: none; }
@@ -512,7 +527,7 @@ article.comments_comment.media.status-media {
 
 .status-options-box {
   position: relative;
-  height: 40px;
+  height: 3.1em;
   margin: 1px 0 0;
   background: #E6E6E6 url(../images/pages/white-gradient-100px.png) repeat-x scroll 50% 50%;
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 1px rgba(0, 0, 0, 0.1);
@@ -523,7 +538,7 @@ article.comments_comment.media.status-media {
     position: relative;
     float: right;
     height: 100%;
-    width: 49px;
+    width: 3.77em;
     border-left: 1px solid #DDD;
     -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
     -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9) inset;
@@ -541,13 +556,18 @@ article.comments_comment.media.status-media {
   -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9);
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.9); }
   .status-like-button-wrapper .status-like-button {
-    height: 40px;
-    width: 48px;
+    display: block;
+    height: 3em;
+    width: 3.7em;
     -moz-user-select: none;
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px;
     border: none; }
+    .status-like-button-wrapper .status-like-button:hover {
+      background: rgba(255, 255, 255, 0.8) url(../images/pages/feed-assets.png) no-repeat scroll 8px 6px; }
   .status-like-button-wrapper .status-liked {
     background: transparent url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px; }
+    .status-like-button-wrapper .status-liked:hover {
+      background: rgba(255, 255, 255, 0.8) url(../images/pages/feed-assets.png) no-repeat scroll 8px -44px; }
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
@@ -1619,6 +1639,17 @@ body {
   height: auto !important;
   height: 100%;
   overflow: hidden; }
+
+.group:before, .group:after {
+  content: "";
+  display: table; }
+
+.group:after {
+  clear: both; }
+
+.group {
+  zoom: 1;
+  /* For IE 6/7 (trigger hasLayout) */ }
 
 .navbar-padding {
   padding-top: 30px; }

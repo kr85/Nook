@@ -5,6 +5,7 @@ use File;
 use Image;
 use Config;
 use Exception;
+use Nook\Users\UserRepository as User;
 
 /**
  * Class Helper
@@ -192,6 +193,63 @@ class Helper
     }
 
     /**
+     * Create a link to user's profile if found in the status or comment text.
+     *
+     * @param $string
+     * @return array
+     */
+    private static function textManipulationToGetUserProfiles($string)
+    {
+        $array = explode(" ", $string);
+        $result = [];
+
+        foreach ($array as $a)
+        {
+            $word = null;
+            if (strpos($a, "@") !== false)
+            {
+                if (self::isUrlValid(url($a)) && User::getByUsername(str_replace('@', '', $a)))
+                {
+                    $word = '<a href="'.$a.'">'.$a.'</a>';
+                }
+                else
+                {
+                    $word = $a;
+                }
+            }
+            else
+            {
+                $word = $a;
+            }
+            $result[] = $word;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get the modified comment.
+     *
+     * @param $comment
+     * @return string
+     */
+    public static function getComment($comment)
+    {
+        return implode(' ', self::textManipulationToGetUserProfiles($comment));
+    }
+
+    /**
+     * Get the modified status.
+     *
+     * @param $status
+     * @return string
+     */
+    public static function getStatus($status)
+    {
+        return implode(' ', self::textManipulationToGetUserProfiles($status));
+    }
+
+    /**
      * Handle image manipulation for a image object.
      *
      * @param $image
@@ -201,16 +259,17 @@ class Helper
      */
     public static function imageManipulationObj($image, $imageWidth)
     {
+        // Result array
         $result = [];
+
+        // Create image's name
+        $fileName = str_random(12).'.jpg';
+
+        // Get path to the image's folder
+        $path = self::getStatusImageFolderAbsPath(Auth::user()->username);
 
         try
         {
-            // Create image's name
-            $fileName = str_random(12).'.jpg';
-
-            // Get path to the image's folder
-            $path = self::getStatusImageFolderAbsPath(Auth::user()->username);
-
             // Move the original image to the folder
             $image->move($path, $fileName);
 
@@ -238,7 +297,9 @@ class Helper
         }
         catch (Exception $e)
         {
-            throw $e;
+            // Delete the original image
+            unlink($path.'/'.$fileName);
+            $result['errorMessage'] = 'The image could not be uploaded. Please refresh the page and try again.';
         }
 
         return $result;

@@ -74,6 +74,11 @@ class UserRepository
         return User::with('statuses')->whereUsername($username)->first();
     }
 
+    public static function getByUsername($username)
+    {
+        return User::whereUsername($username)->first();
+    }
+
     /**
      * Find user by email.
      *

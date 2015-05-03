@@ -53,8 +53,16 @@ class PublishStatusCommandHandler implements CommandHandler
         {
             // Handle image manipulation
             $array = Helper::imageManipulationObj($image, $imageWidth);
-            // Get the new image's name
-            $fileName = $array['fileName'];
+
+            if (!isset($array['errorMessage']))
+            {
+                // Get the new image's name
+                $fileName = $array['fileName'];
+            }
+            else
+            {
+                $errorMessage = $array['errorMessage'];
+            }
         }
         else
         {
